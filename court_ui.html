@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Court Cause List — Automation UI</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:#f5f5f4; --surface:#fff; --surface2:#f9f9f8;
+  --border:#e5e5e4; --border2:#d4d4d2;
+  --text:#1c1c1b; --text2:#6b6b69; --text3:#9b9b99;
+  --blue:#185FA5; --blue-bg:#EBF3FC; --blue-text:#0C447C;
+  --green-bg:#EAF3DE; --green-text:#27500A;
+  --amber-bg:#FEF3CD; --amber-text:#7c5e10;
+  --red-bg:#FDEAEA; --red-text:#8B2020;
+  --r:8px; --rlg:12px;
+}
+body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; font-size:14px; background:var(--bg); color:var(--text); min-height:100vh; }
+
+/* ── Topbar ── */
+.topbar { background:var(--surface); border-bottom:1px solid var(--border); padding:0 1.5rem; display:flex; align-items:center; justify-content:space-between; height:52px; position:sticky; top:0; z-index:100; }
+.topbar-left { display:flex; align-items:center; gap:16px; }
+.topbar-title { font-size:15px; font-weight:600; display:flex; align-items:center; gap:8px; }
+.dot { width:8px; height:8px; border-radius:50%; background:var(--blue); }
+.topbar-sub { font-size:12px; color:var(--text2); }
+.server-pill { font-size:11px; padding:3px 12px; border-radius:20px; font-weight:500; }
+.server-pill.ok  { background:var(--green-bg); color:var(--green-text); }
+.server-pill.err { background:var(--red-bg);   color:var(--red-text); }
+
+/* ── Tabs ── */
+.tabs { display:flex; gap:0; border-bottom:2px solid var(--border); background:var(--surface); padding:0 1.5rem; }
+.tab { padding:10px 18px; font-size:13px; font-weight:500; color:var(--text2); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; transition:all 0.12s; white-space:nowrap; }
+.tab:hover { color:var(--text); }
+.tab.active { color:var(--blue); border-bottom-color:var(--blue); }
+.tab-badge { background:var(--blue); color:#fff; font-size:10px; padding:1px 6px; border-radius:10px; margin-left:5px; }
+
+/* ── Tab panels ── */
+.panel { display:none; }
+.panel.active { display:block; }
+
+/* ── Run tab layout ── */
+.run-layout { display:grid; grid-template-columns:1fr 340px; min-height:calc(100vh - 100px); }
+.main { padding:1.5rem; }
+.sidebar { background:var(--surface); border-left:1px solid var(--border); padding:1.5rem; display:flex; flex-direction:column; gap:1.25rem; }
+
+.card { background:var(--surface); border:1px solid var(--border); border-radius:var(--rlg); padding:1.25rem; margin-bottom:1.25rem; }
+.card-title { font-size:11px; font-weight:600; color:var(--text2); text-transform:uppercase; letter-spacing:.06em; margin-bottom:1rem; }
+
+.stat-row { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:1.25rem; }
+.stat { background:var(--surface2); border:1px solid var(--border); border-radius:var(--r); padding:12px 14px; }
+.stat-label { font-size:11px; color:var(--text2); margin-bottom:6px; }
+.stat-val { font-size:22px; font-weight:600; }
+.stat-val.small { font-size:14px; font-weight:600; padding-top:4px; }
+
+.date-tabs { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px; }
+.tab-btn { padding:6px 14px; font-size:13px; border:1px solid var(--border2); border-radius:6px; background:var(--surface); color:var(--text); cursor:pointer; transition:all .12s; }
+.tab-btn:hover { background:var(--surface2); }
+.tab-btn.active { background:var(--blue-bg); border-color:#378ADD; color:var(--blue-text); font-weight:500; }
+.date-row { display:flex; align-items:center; gap:10px; }
+input[type=date] { font-size:13px; padding:7px 10px; border:1px solid var(--border2); border-radius:var(--r); background:var(--surface); color:var(--text); font-family:inherit; }
+.day-badge { font-size:12px; padding:3px 10px; border-radius:20px; background:var(--green-bg); color:var(--green-text); font-weight:500; }
+.day-badge.weekend { background:var(--amber-bg); color:var(--amber-text); }
+
+.court-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.court-card { border:1px solid var(--border); border-radius:var(--r); padding:10px 12px; cursor:pointer; transition:all .12s; display:flex; align-items:flex-start; gap:8px; user-select:none; }
+.court-card:hover { background:var(--surface2); }
+.court-card.sel { background:var(--blue-bg); border-color:#378ADD; }
+.court-card.sel .cn { color:var(--blue-text); }
+.court-card input[type=checkbox] { margin-top:2px; accent-color:var(--blue); }
+.cn { font-size:13px; font-weight:500; }
+.cs { font-size:11px; color:var(--text2); margin-top:2px; }
+.court-quick { display:flex; gap:6px; margin-top:10px; }
+
+.search-box { width:100%; padding:7px 10px; font-size:13px; border:1px solid var(--border); border-radius:var(--r); background:var(--surface2); color:var(--text); font-family:inherit; margin-bottom:8px; }
+.search-box:focus { outline:none; border-color:var(--blue); background:var(--surface); }
+
+.client-list { max-height:260px; overflow-y:auto; display:flex; flex-direction:column; gap:3px; }
+.client-row { display:flex; align-items:center; justify-content:space-between; padding:7px 10px; border-radius:var(--r); border:1px solid var(--border); background:var(--surface); font-size:13px; gap:8px; }
+.client-row:hover { background:var(--surface2); }
+.client-left { display:flex; align-items:center; gap:8px; min-width:0; }
+.client-name { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.badge { font-size:10px; padding:2px 7px; border-radius:10px; font-weight:600; white-space:nowrap; flex-shrink:0; }
+.b0{background:#E6F1FB;color:#0C447C}.b1{background:#EAF3DE;color:#27500A}
+.b2{background:#FEF3CD;color:#7c5e10}.b3{background:#FBEAF0;color:#72243E}
+.b4{background:#FAECE7;color:#712B13}.b5{background:#EEEDFE;color:#3C3489}
+.b6{background:#F1EFE8;color:#444441}.bx{background:#f1f1f0;color:#6b6b69}
+.del-btn { background:none; border:none; color:var(--text3); cursor:pointer; font-size:16px; padding:2px 5px; border-radius:4px; line-height:1; flex-shrink:0; }
+.del-btn:hover { color:#c0392b; background:var(--red-bg); }
+
+.divider-label { font-size:11px; font-weight:600; color:var(--text3); text-transform:uppercase; letter-spacing:.05em; margin:12px 0 8px; }
+.add-form { display:flex; flex-direction:column; gap:8px; }
+.add-form input,.add-form select { width:100%; padding:8px 10px; font-size:13px; border:1px solid var(--border2); border-radius:var(--r); background:var(--surface); color:var(--text); font-family:inherit; }
+.add-btn { padding:8px 16px; font-size:13px; font-weight:500; background:var(--blue); color:#fff; border:none; border-radius:var(--r); cursor:pointer; }
+.add-btn:hover { background:#0C447C; }
+
+.run-section { border-top:1px solid var(--border); padding-top:1rem; }
+.run-btn { width:100%; padding:14px; font-size:15px; font-weight:700; background:#16a34a; color:#fff; border:none; border-radius:var(--r); cursor:pointer; transition:background .15s; display:flex; align-items:center; justify-content:center; gap:10px; }
+.run-btn:hover:not(:disabled) { background:#15803d; }
+.run-btn:disabled { background:#b0c4d8; cursor:not-allowed; color:#e8eef4; }
+.status-box { margin-top:12px; padding:12px 14px; border-radius:var(--r); font-size:13px; line-height:1.7; display:none; }
+.status-box.launching { background:var(--blue-bg); color:var(--blue-text); border:1px solid #b8d4ef; display:block; }
+.status-box.success   { background:var(--green-bg); color:var(--green-text); border:1px solid #a3d08a; display:block; }
+.status-box.error     { background:var(--red-bg); color:var(--red-text); border:1px solid #f0b8b8; display:block; }
+.status-box strong { display:block; margin-bottom:4px; font-size:14px; }
+.cmd-line { font-family:"Courier New",monospace; font-size:11px; background:rgba(0,0,0,.07); padding:6px 8px; border-radius:4px; margin-top:8px; word-break:break-all; }
+
+.notice { background:var(--blue-bg); border:1px solid #b8d4ef; border-radius:var(--r); padding:10px 14px; font-size:12px; color:var(--blue-text); line-height:1.7; }
+.notice strong { display:block; margin-bottom:2px; font-size:13px; }
+
+/* ── Results tab ── */
+.results-page { padding:1.5rem; }
+.results-toolbar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:1rem; }
+.results-meta { font-size:13px; color:var(--text2); }
+.results-meta strong { color:var(--text); }
+.results-actions { display:flex; gap:8px; }
+.icon-btn { padding:7px 14px; font-size:13px; border:1px solid var(--border2); border-radius:var(--r); background:var(--surface); color:var(--text); cursor:pointer; display:flex; align-items:center; gap:6px; }
+.icon-btn:hover { background:var(--surface2); }
+.icon-btn.primary { background:var(--blue); color:#fff; border-color:var(--blue); }
+.icon-btn.primary:hover { background:#0C447C; }
+
+.filter-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1rem; }
+.filter-pill { padding:5px 12px; font-size:12px; border:1px solid var(--border2); border-radius:20px; background:var(--surface); color:var(--text2); cursor:pointer; transition:all .12s; }
+.filter-pill:hover { background:var(--surface2); }
+.filter-pill.active { border-color:var(--blue); background:var(--blue-bg); color:var(--blue-text); font-weight:500; }
+
+.results-table-wrap { overflow-x:auto; border-radius:var(--rlg); border:1px solid var(--border); background:var(--surface); }
+.results-table { width:100%; border-collapse:collapse; font-size:13px; min-width:800px; }
+.results-table thead { background:#1a3a5c; color:#fff; }
+.results-table th { padding:10px 14px; text-align:left; font-size:12px; font-weight:500; letter-spacing:.02em; white-space:nowrap; }
+.results-table tbody tr { border-bottom:1px solid var(--border); transition:background .1s; }
+.results-table tbody tr:last-child { border-bottom:none; }
+.results-table tbody tr:hover { background:var(--surface2); }
+.results-table td { padding:10px 14px; vertical-align:top; }
+.client-cell { font-weight:600; color:var(--text); }
+.parties-cell { color:var(--text2); font-size:12px; max-width:320px; line-height:1.5; }
+.case-cell { font-family:"Courier New",monospace; font-size:12px; color:var(--blue-text); white-space:nowrap; }
+.court-cell { font-size:12px; color:var(--text2); }
+.counsel-cell { font-size:12px; color:var(--text2); max-width:200px; }
+
+.source-badge { font-size:10px; padding:2px 8px; border-radius:10px; font-weight:700; display:inline-block; }
+.src-NCLT  { background:#E6F1FB; color:#0C447C; }
+.src-NCLAT { background:#E8EAF6; color:#1A237E; }
+.src-SCI   { background:#F3E5F5; color:#4A148C; }
+.src-BHC   { background:#FFF3E0; color:#E65100; }
+
+.no-results { text-align:center; padding:60px 20px; color:var(--text2); }
+.no-results .icon { font-size:48px; margin-bottom:12px; opacity:.4; }
+.no-results p { font-size:14px; }
+.no-results .hint { font-size:12px; margin-top:6px; color:var(--text3); }
+
+.results-summary-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin-bottom:1.25rem; }
+.summary-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:12px 14px; }
+.sc-label { font-size:11px; color:var(--text2); margin-bottom:4px; }
+.sc-val { font-size:22px; font-weight:700; }
+.sc-sub { font-size:11px; color:var(--text3); margin-top:2px; }
+
+.refresh-spinner { display:none; width:14px; height:14px; border:2px solid var(--border); border-top-color:var(--blue); border-radius:50%; animation:spin .7s linear infinite; margin-left:4px; }
+.refresh-spinner.show { display:inline-block; }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* ── Toast ── */
+.toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:#222; color:#fff; padding:9px 20px; border-radius:20px; font-size:13px; opacity:0; transition:opacity .25s; pointer-events:none; z-index:9999; white-space:nowrap; }
+.toast.show { opacity:1; }
+
+@media (max-width:700px) {
+  .run-layout { grid-template-columns:1fr; }
+  .sidebar { border-left:none; border-top:1px solid var(--border); }
+  .main { padding:1rem; }
+  .stat-row { grid-template-columns:1fr 1fr; }
+  .results-summary-cards { grid-template-columns:1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div>
+      <div class="topbar-title"><span class="dot"></span> Court Cause List Automation</div>
+      <div class="topbar-sub">NCLT &bull; NCLAT &bull; Supreme Court &bull; Bombay HC</div>
+    </div>
+  </div>
+  <span class="server-pill err" id="server-pill">&#9679; Server offline</span>
+</div>
+
+<div class="tabs" id="main-tabs">
+  <div class="tab active" onclick="switchTab('run',this)">&#9654; Run</div>
+  <div class="tab" onclick="switchTab('results',this)" id="results-tab-btn">
+    &#128203; Results <span class="tab-badge" id="results-badge" style="display:none">0</span>
+  </div>
+  <div class="tab" onclick="switchTab('clients',this)">&#128100; Clients</div>
+</div>
+
+<!-- ══════════════ RUN TAB ══════════════ -->
+<div class="panel active" id="panel-run">
+<div class="run-layout">
+<div class="main">
+
+  <div class="stat-row">
+    <div class="stat"><div class="stat-label">Total clients</div><div class="stat-val" id="stat-clients">0</div></div>
+    <div class="stat"><div class="stat-label">Courts selected</div><div class="stat-val" id="stat-courts">0</div></div>
+    <div class="stat"><div class="stat-label">Run date</div><div class="stat-val small" id="stat-date">—</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">&#128197; Date selection</div>
+    <div class="date-tabs">
+      <button class="tab-btn" onclick="setPreset('today',this)">Today</button>
+      <button class="tab-btn" onclick="setPreset('yesterday',this)">Yesterday</button>
+    </div>
+    <div class="date-row">
+      <input type="date" id="date-picker" onchange="onDateChange(this.value)" />
+      <span class="day-badge" id="day-badge" style="display:none"></span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">&#127963; Court selection</div>
+    <div class="court-grid" id="court-grid">
+      <label class="court-card" onclick="toggleCourt(this)">
+        <input type="checkbox" value="NCLT" onclick="event.stopPropagation()">
+        <div><div class="cn">NCLT</div><div class="cs">Mumbai &amp; Bengaluru benches</div></div>
+      </label>
+      <label class="court-card" onclick="toggleCourt(this)">
+        <input type="checkbox" value="NCLAT" onclick="event.stopPropagation()">
+        <div><div class="cn">NCLAT</div><div class="cs">National appellate tribunal</div></div>
+      </label>
+      <label class="court-card" onclick="toggleCourt(this)">
+        <input type="checkbox" value="SCI" onclick="event.stopPropagation()">
+        <div><div class="cn">Supreme Court of India</div><div class="cs">sci.gov.in</div></div>
+      </label>
+      <label class="court-card" onclick="toggleCourt(this)">
+        <input type="checkbox" value="BHC" onclick="event.stopPropagation()">
+        <div><div class="cn">Bombay High Court</div><div class="cs">bombayhighcourt.gov.in</div></div>
+      </label>
+    </div>
+    <div class="court-quick">
+      <button class="tab-btn" onclick="selectAll()">Select all</button>
+      <button class="tab-btn" onclick="clearAll()">Clear all</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="sidebar">
+  <div>
+    <div class="card-title">&#128100; Clients monitored</div>
+    <input class="search-box" type="text" id="run-search" placeholder="Search clients…" oninput="renderRunClients()">
+    <div style="font-size:12px;color:var(--text2);margin-bottom:8px" id="run-client-count"></div>
+    <div class="client-list" id="run-client-list"></div>
+  </div>
+
+  <div style="border-top:1px solid var(--border);padding-top:1rem;">
+    <div class="notice">
+      <strong>How to use</strong>
+      1. Select date &amp; courts on the left<br>
+      2. Click <b>Run Automation</b> below<br>
+      3. A terminal window opens with live logs<br>
+      4. Switch to <b>Results</b> tab when done<br>
+      5. Email is sent automatically
+    </div>
+  </div>
+
+  <div class="run-section">
+    <button class="run-btn" id="run-btn" disabled onclick="runAutomation()">
+      &#9654; <span id="run-label">Select date &amp; court first</span>
+    </button>
+    <div class="status-box" id="status-box"></div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- ══════════════ RESULTS TAB ══════════════ -->
+<div class="panel" id="panel-results">
+<div class="results-page">
+
+  <div class="results-toolbar">
+    <div class="results-meta" id="results-meta">No results yet — run the automation first.</div>
+    <div class="results-actions">
+      <button class="icon-btn" onclick="refreshResults()">
+        &#8635; Refresh <span class="refresh-spinner" id="refresh-spin"></span>
+      </button>
+      <button class="icon-btn" onclick="exportCSV()">&#8659; Export CSV</button>
+    </div>
+  </div>
+
+  <div class="results-summary-cards" id="summary-cards" style="display:none">
+    <div class="summary-card">
+      <div class="sc-label">Total matches</div>
+      <div class="sc-val" id="sc-total">0</div>
+      <div class="sc-sub">across all courts</div>
+    </div>
+    <div class="summary-card" id="sc-nclt-wrap" style="display:none">
+      <div class="sc-label">NCLT</div>
+      <div class="sc-val" id="sc-nclt">0</div>
+      <div class="sc-sub">entries</div>
+    </div>
+    <div class="summary-card" id="sc-nclat-wrap" style="display:none">
+      <div class="sc-label">NCLAT</div>
+      <div class="sc-val" id="sc-nclat">0</div>
+      <div class="sc-sub">entries</div>
+    </div>
+    <div class="summary-card" id="sc-sci-wrap" style="display:none">
+      <div class="sc-label">SCI</div>
+      <div class="sc-val" id="sc-sci">0</div>
+      <div class="sc-sub">entries</div>
+    </div>
+    <div class="summary-card" id="sc-bhc-wrap" style="display:none">
+      <div class="sc-label">BHC</div>
+      <div class="sc-val" id="sc-bhc">0</div>
+      <div class="sc-sub">entries</div>
+    </div>
+    <div class="summary-card">
+      <div class="sc-label">Unique clients</div>
+      <div class="sc-val" id="sc-clients">0</div>
+      <div class="sc-sub">found</div>
+    </div>
+  </div>
+
+  <div class="filter-row" id="source-filters" style="display:none">
+    <span style="font-size:12px;color:var(--text2);align-self:center">Filter:</span>
+    <div class="filter-pill active" data-src="ALL" onclick="setFilter('ALL',this)">All</div>
+    <div class="filter-pill" data-src="NCLT"  onclick="setFilter('NCLT',this)">NCLT</div>
+    <div class="filter-pill" data-src="NCLAT" onclick="setFilter('NCLAT',this)">NCLAT</div>
+    <div class="filter-pill" data-src="SCI"   onclick="setFilter('SCI',this)">SCI</div>
+    <div class="filter-pill" data-src="BHC"   onclick="setFilter('BHC',this)">BHC</div>
+    <input class="search-box" type="text" id="results-search" placeholder="Search by client or case…"
+           oninput="renderResultsTable()" style="margin:0;max-width:220px;flex:1">
+  </div>
+
+  <div id="results-container">
+    <div class="no-results">
+      <div class="icon">📋</div>
+      <p>No results loaded yet</p>
+      <div class="hint">Run the automation and then click Refresh, or wait — the page auto-refreshes every 30s after a run.</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════ CLIENTS TAB ══════════════ -->
+<div class="panel" id="panel-clients">
+<div style="padding:1.5rem;max-width:900px">
+
+  <div class="card">
+    <div class="card-title">&#128100; Client list</div>
+    <input class="search-box" type="text" id="client-search" placeholder="Search clients…" oninput="renderClients()">
+    <div style="font-size:12px;color:var(--text2);margin-bottom:8px" id="client-count"></div>
+    <div class="client-list" id="client-list" style="max-height:400px"></div>
+
+    <div class="divider-label">Add new client</div>
+    <div class="add-form">
+      <input type="text" id="new-name" placeholder="Client name (ALL CAPS)" />
+      <select id="new-court">
+        <option value="">— NCLT court (leave blank for NCLAT/SCI/BHC only) —</option>
+        <option value="MUMBAI BENCH COURT-I">Mumbai Bench Court-I</option>
+        <option value="MUMBAI BENCH COURT-II">Mumbai Bench Court-II</option>
+        <option value="MUMBAI BENCH COURT-III">Mumbai Bench Court-III</option>
+        <option value="MUMBAI BENCH COURT-IV">Mumbai Bench Court-IV</option>
+        <option value="MUMBAI BENCH COURT-V">Mumbai Bench Court-V</option>
+        <option value="MUMBAI BENCH COURT-VI">Mumbai Bench Court-VI</option>
+        <option value="BENGALURU BENCH COURT-I">Bengaluru Bench Court-I</option>
+      </select>
+      <button class="add-btn" onclick="addClient()">+ Add client</button>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const SERVER = 'http://localhost:5050';
+const COURT_MAP = {
+  "MUMBAI BENCH COURT-I":["b0","MB-I"],"MUMBAI BENCH COURT-II":["b1","MB-II"],
+  "MUMBAI BENCH COURT-III":["b2","MB-III"],"MUMBAI BENCH COURT-IV":["b3","MB-IV"],
+  "MUMBAI BENCH COURT-V":["b4","MB-V"],"MUMBAI BENCH COURT-VI":["b5","MB-VI"],
+  "BENGALURU BENCH COURT-I":["b6","BLR-I"]
+};
+const DEFAULT_DATA = {
+  client_list:[
+    {"name":"MRS. ANITA RAHEJA","court":"MUMBAI BENCH COURT-I"},
+    {"name":"MR. SHIV RAHEJA","court":"MUMBAI BENCH COURT-I"},
+    {"name":"MR. DEEPAK RAHEJA","court":"MUMBAI BENCH COURT-I"},
+    {"name":"MR. ADITYA RAHEJA","court":"MUMBAI BENCH COURT-I"},
+    {"name":"MUMBAI WTR PRIVATE LIMITED","court":"MUMBAI BENCH COURT-I"},
+    {"name":"ALKA RAJESH MIMANI","court":"MUMBAI BENCH COURT-II"},
+    {"name":"DEEPAK VIJAY BAGRA","court":"MUMBAI BENCH COURT-II"},
+    {"name":"BHARAT MEHTA","court":"MUMBAI BENCH COURT-II"},
+    {"name":"LOK HOUSING & CONSTRUCTIONS LTD","court":"MUMBAI BENCH COURT-III"},
+    {"name":"CALYX LENORA REALTY LLP","court":"MUMBAI BENCH COURT-IV"},
+    {"name":"ESSEL INFRAPROJECTS LIMITED","court":"MUMBAI BENCH COURT-V"},
+    {"name":"ATUL S BHARANI","court":"MUMBAI BENCH COURT-V"},
+    {"name":"KASHYAP MEHTA","court":"MUMBAI BENCH COURT-V"},
+    {"name":"MR. ATUL TANSUKHLAL MEHTA","court":"MUMBAI BENCH COURT-V"},
+    {"name":"MR. HEMANT JITENDRARAI MEHTA","court":"MUMBAI BENCH COURT-V"},
+    {"name":"OKI INDIA PRIVATE LIMITED","court":"MUMBAI BENCH COURT-VI"},
+    {"name":"SHROFF TEXTILES LIMITED","court":"MUMBAI BENCH COURT-VI"},
+    {"name":"KAMLESH CORPORATION","court":"MUMBAI BENCH COURT-VI"},
+    {"name":"CHANEL INDIA BUSINESS SOLUTIONS P LTD","court":"BENGALURU BENCH COURT-I"}
+  ],
+  extra_names:["DEEPAK BAGRA","POOJA RAMESH SINGH","JAMMU AND KASHMIR BANK",
+    "J. C. FLOWERS ASSET RECONSTRUCTION PRIVATE LIMITED","S.J.THANAWALLA and ORS"]
+};
+
+let clientData = JSON.parse(JSON.stringify(DEFAULT_DATA));
+let selectedDate = null;
+let activeFilter = 'ALL';
+let resultsData = {entries:[]};
+const DAYS=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+function pad(n){return String(n).padStart(2,'0');}
+
+// ── Tab switching ─────────────────────────────────────────────────────────────
+function switchTab(name, el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('panel-'+name).classList.add('active');
+  if(name==='results') refreshResults();
+  if(name==='clients') renderClients();
+}
+
+// ── Server health check ────────────────────────────────────────────────────────
+async function checkServer(){
+  try{
+    const r=await fetch(SERVER+'/ping',{signal:AbortSignal.timeout(1500)});
+    if(r.ok){
+      document.getElementById('server-pill').textContent='● Server running';
+      document.getElementById('server-pill').className='server-pill ok';
+      loadClientsFromServer(); return true;
+    }
+  }catch(e){}
+  document.getElementById('server-pill').textContent='● Server offline — double-click START.bat';
+  document.getElementById('server-pill').className='server-pill err';
+  return false;
+}
+
+async function loadClientsFromServer(){
+  try{
+    const r=await fetch(SERVER+'/clients');
+    if(r.ok){ clientData=await r.json(); renderRunClients(); updateStats(); renderClients(); }
+  }catch(e){}
+}
+
+// ── Date helpers ───────────────────────────────────────────────────────────────
+function setPreset(type,btn){
+  document.querySelectorAll('.date-tabs .tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const d=new Date(); if(type==='yesterday')d.setDate(d.getDate()-1);
+  const val=d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+  document.getElementById('date-picker').value=val; onDateChange(val);
+}
+function onDateChange(val){
+  document.querySelectorAll('.date-tabs .tab-btn').forEach(b=>b.classList.remove('active'));
+  if(!val){selectedDate=null;document.getElementById('day-badge').style.display='none';updateAll();return;}
+  const[y,m,d2]=val.split('-').map(Number); selectedDate=new Date(y,m-1,d2);
+  const wd=DAYS[selectedDate.getDay()];
+  const badge=document.getElementById('day-badge');
+  badge.textContent=wd; badge.style.display='inline';
+  badge.className='day-badge'+(selectedDate.getDay()===0||selectedDate.getDay()===6?' weekend':'');
+  updateAll();
+}
+
+// ── Court selection ────────────────────────────────────────────────────────────
+function toggleCourt(label){const cb=label.querySelector('input');cb.checked=!cb.checked;label.classList.toggle('sel',cb.checked);updateAll();}
+function selectAll(){document.querySelectorAll('#court-grid .court-card').forEach(c=>{c.querySelector('input').checked=true;c.classList.add('sel');});updateAll();}
+function clearAll(){document.querySelectorAll('#court-grid .court-card').forEach(c=>{c.querySelector('input').checked=false;c.classList.remove('sel');});updateAll();}
+function getSelectedCourts(){return Array.from(document.querySelectorAll('#court-grid input:checked')).map(i=>i.value);}
+
+// ── Client helpers ─────────────────────────────────────────────────────────────
+function allClients(){
+  const list=clientData.client_list.map(c=>({name:c.name,court:c.court}));
+  clientData.extra_names.forEach(n=>list.push({name:n,court:''})); return list;
+}
+function renderRunClients(){
+  const q=(document.getElementById('run-search').value||'').toUpperCase();
+  const all=allClients(); const filtered=q?all.filter(c=>c.name.includes(q)):all;
+  document.getElementById('run-client-count').textContent=filtered.length+' of '+all.length+' clients';
+  const list=document.getElementById('run-client-list'); list.innerHTML='';
+  filtered.forEach(c=>{
+    const[bc,bl]=COURT_MAP[c.court]||['bx','Other'];
+    const div=document.createElement('div'); div.className='client-row';
+    div.innerHTML=`<div class="client-left"><span class="badge ${bc}">${bl}</span><span class="client-name" title="${c.name}">${c.name}</span></div>`;
+    list.appendChild(div);
+  });
+}
+function renderClients(){
+  const q=(document.getElementById('client-search').value||'').toUpperCase();
+  const all=allClients(); const filtered=q?all.filter(c=>c.name.includes(q)||c.court.includes(q)):all;
+  document.getElementById('client-count').textContent=filtered.length+' of '+all.length+' clients';
+  const list=document.getElementById('client-list'); list.innerHTML='';
+  filtered.forEach(c=>{
+    const[bc,bl]=COURT_MAP[c.court]||['bx','Other'];
+    const div=document.createElement('div'); div.className='client-row';
+    div.innerHTML=`<div class="client-left"><span class="badge ${bc}">${bl}</span><span class="client-name" title="${c.name}">${c.name}</span></div><button class="del-btn" onclick="removeClient('${c.name.replace(/'/g,"\\'")}')">&#10005;</button>`;
+    list.appendChild(div);
+  });
+}
+function addClient(){
+  const nameEl=document.getElementById('new-name'), courtEl=document.getElementById('new-court');
+  const name=nameEl.value.trim().toUpperCase(), court=courtEl.value;
+  if(!name){toast('Enter a client name');return;}
+  if(allClients().find(c=>c.name===name)){toast('Client already exists');return;}
+  if(court)clientData.client_list.push({name,court}); else clientData.extra_names.push(name);
+  nameEl.value=''; courtEl.value='';
+  renderClients(); renderRunClients(); updateStats(); saveClientsToServer(); toast('Added: '+name);
+}
+function removeClient(name){
+  clientData.client_list=clientData.client_list.filter(c=>c.name!==name);
+  clientData.extra_names=clientData.extra_names.filter(n=>n!==name);
+  renderClients(); renderRunClients(); updateStats(); saveClientsToServer(); toast('Removed: '+name);
+}
+async function saveClientsToServer(){
+  try{await fetch(SERVER+'/save_clients',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(clientData)});}catch(e){}
+}
+
+// ── Stats ──────────────────────────────────────────────────────────────────────
+function updateStats(){
+  document.getElementById('stat-clients').textContent=allClients().length;
+  document.getElementById('stat-courts').textContent=getSelectedCourts().length;
+  document.getElementById('stat-date').textContent=selectedDate
+    ?pad(selectedDate.getDate())+'/'+(selectedDate.getMonth()+1)+'/'+selectedDate.getFullYear():'—';
+  updateRunBtn();
+}
+function updateAll(){updateStats();}
+function updateRunBtn(){
+  const btn=document.getElementById('run-btn'), lbl=document.getElementById('run-label');
+  const courts=getSelectedCourts();
+  if(!selectedDate||!courts.length){btn.disabled=true;lbl.textContent=!selectedDate?'Select a date first':'Select at least one court';return;}
+  btn.disabled=false;
+  lbl.textContent='Run — '+pad(selectedDate.getDate())+'/'+(selectedDate.getMonth()+1)+'/'+selectedDate.getFullYear()+' · '+courts.join(', ');
+}
+
+// ── Run automation ─────────────────────────────────────────────────────────────
+async function runAutomation(){
+  const courts=getSelectedCourts(); if(!selectedDate||!courts.length)return;
+  const dateArg=pad(selectedDate.getDate())+'-'+pad(selectedDate.getMonth()+1)+'-'+selectedDate.getFullYear();
+  const box=document.getElementById('status-box');
+  box.className='status-box launching';
+  box.innerHTML='<strong>&#9654; Launching…</strong>Contacting server. A terminal window will open with live logs.';
+  document.getElementById('run-btn').disabled=true;
+  document.getElementById('run-label').textContent='Launching…';
+  try{
+    const resp=await fetch(SERVER+'/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({date:dateArg,courts})});
+    const result=await resp.json();
+    if(resp.ok){
+      box.className='status-box success';
+      box.innerHTML=`<strong>&#10003; Automation launched!</strong>A terminal window has opened with live logs.<br>Switch to the <b>Results</b> tab when done — it auto-refreshes.<div class="cmd-line">${result.command}</div>`;
+      toast('Script launched!');
+      // Start polling for results every 15s
+      startResultsPolling();
+    } else { throw new Error(result.error||'Unknown error'); }
+  }catch(e){
+    box.className='status-box error';
+    box.innerHTML=e.message.includes('fetch')||e.message.includes('Failed')
+      ?'<strong>&#10007; Server not running</strong>Double-click <b>START.bat</b> first, then try again.'
+      :`<strong>&#10007; Error</strong>${e.message}`;
+    toast('Launch failed — is START.bat running?');
+  }
+  setTimeout(()=>{updateRunBtn();document.getElementById('run-btn').disabled=false;},3000);
+}
+
+// ── Results polling ────────────────────────────────────────────────────────────
+let _pollTimer = null;
+function startResultsPolling(){
+  if(_pollTimer) clearInterval(_pollTimer);
+  _pollTimer = setInterval(()=>{ fetchResults(false); }, 15000);
+  // Stop after 30 min
+  setTimeout(()=>{ if(_pollTimer){ clearInterval(_pollTimer); _pollTimer=null; } }, 30*60*1000);
+}
+
+async function refreshResults(){
+  document.getElementById('refresh-spin').classList.add('show');
+  await fetchResults(true);
+  document.getElementById('refresh-spin').classList.remove('show');
+}
+
+async function fetchResults(showToastOnEmpty){
+  try{
+    const r=await fetch(SERVER+'/results',{signal:AbortSignal.timeout(3000)});
+    if(!r.ok) return;
+    const data=await r.json();
+    resultsData=data;
+    renderResultsPage();
+    if(data.entries && data.entries.length>0){
+      const badge=document.getElementById('results-badge');
+      badge.textContent=data.entries.length;
+      badge.style.display='inline';
+    }
+  }catch(e){
+    if(showToastOnEmpty) toast('Could not fetch results — is server running?');
+  }
+}
+
+function setFilter(src, el){
+  activeFilter=src;
+  document.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  renderResultsTable();
+}
+
+function renderResultsPage(){
+  const entries=resultsData.entries||[];
+  const date=resultsData.date||'';
+  const gen=resultsData.generated||'';
+
+  if(!entries.length){
+    document.getElementById('results-meta').textContent='No results yet — run the automation first.';
+    document.getElementById('summary-cards').style.display='none';
+    document.getElementById('source-filters').style.display='none';
+    document.getElementById('results-container').innerHTML=`
+      <div class="no-results">
+        <div class="icon">📋</div>
+        <p>No matches found yet</p>
+        <div class="hint">Run the automation and click Refresh, or wait for auto-refresh.</div>
+      </div>`;
+    return;
+  }
+
+  // Meta
+  document.getElementById('results-meta').innerHTML=
+    `<strong>${entries.length} match(es)</strong> found for <strong>${date}</strong> &nbsp;·&nbsp; Generated ${gen}`;
+
+  // Summary cards
+  const counts={NCLT:0,NCLAT:0,SCI:0,BHC:0};
+  const clients=new Set();
+  entries.forEach(e=>{ counts[e.source]=(counts[e.source]||0)+1; clients.add(e.client); });
+  document.getElementById('sc-total').textContent=entries.length;
+  document.getElementById('sc-clients').textContent=clients.size;
+  ['NCLT','NCLAT','SCI','BHC'].forEach(s=>{
+    const wrap=document.getElementById('sc-'+s.toLowerCase()+'-wrap');
+    document.getElementById('sc-'+s.toLowerCase()).textContent=counts[s]||0;
+    wrap.style.display=counts[s]?'block':'none';
+  });
+  document.getElementById('summary-cards').style.display='grid';
+  document.getElementById('source-filters').style.display='flex';
+
+  renderResultsTable();
+}
+
+function renderResultsTable(){
+  const entries=resultsData.entries||[];
+  const q=(document.getElementById('results-search')?.value||'').toUpperCase();
+  const filtered=entries.filter(e=>{
+    if(activeFilter!=='ALL' && e.source!==activeFilter) return false;
+    if(q && !e.client.includes(q) && !(e.case_no||'').includes(q) && !(e.parties||'').toUpperCase().includes(q)) return false;
+    return true;
+  });
+
+  if(!filtered.length){
+    document.getElementById('results-container').innerHTML=`
+      <div class="no-results"><div class="icon">🔍</div><p>No entries match the current filter.</p></div>`;
+    return;
+  }
+
+  const rows=filtered.map(e=>`
+    <tr>
+      <td><span class="source-badge src-${e.source}">${e.source}</span></td>
+      <td class="client-cell">${esc(e.client)}</td>
+      <td class="case-cell">${esc(e.case_no||'—')}</td>
+      <td class="court-cell">${esc(e.court||'—')}</td>
+      <td class="parties-cell">${esc(e.parties||'—')}</td>
+      <td class="counsel-cell">${esc(e.counsel||'—')}</td>
+      <td style="font-size:12px;color:var(--text2);white-space:nowrap">${esc(e.date||'—')}</td>
+    </tr>`).join('');
+
+  document.getElementById('results-container').innerHTML=`
+    <div class="results-table-wrap">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>Court</th><th>Client Name</th><th>Case No.</th>
+            <th>Bench / Coram</th><th>Parties</th><th>Counsel</th><th>Date</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+}
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function exportCSV(){
+  const entries=resultsData.entries||[];
+  if(!entries.length){toast('No results to export');return;}
+  const headers=['Court','Client Name','Case No.','Bench/Coram','Parties','Counsel','Date'];
+  const rows=entries.map(e=>[e.source,e.client,e.case_no,e.court,e.parties,e.counsel,e.date].map(v=>'"'+(v||'').replace(/"/g,'""')+'"').join(','));
+  const csv=[headers.join(','),...rows].join('\r\n');
+  const blob=new Blob([csv],{type:'text/csv'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='court_results_'+(resultsData.date||'export').replace(/\//g,'-')+'.csv';
+  a.click(); toast('CSV exported');
+}
+
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+
+// ── Init ───────────────────────────────────────────────────────────────────────
+(function init(){
+  renderRunClients(); updateStats();
+  checkServer();
+  setInterval(checkServer,5000);
+  // Load any existing results silently on startup
+  fetchResults(false);
+})();
+</script>
+</body>
+</html>
