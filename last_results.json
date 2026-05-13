@@ -1,17 +1,27 @@
 {
-  "date": "15 April 2026",
-  "generated": "12 May 2026 04:48 PM",
-  "total": 1,
+  "date": "08/05/2026",
+  "generated": "13 May 2026 12:41 PM",
+  "total": 2,
   "entries": [
     {
-      "source": "NCLAT",
-      "client": "JAMMU AND KASHMIR BANK",
-      "court": "Court-IV",
-      "case_no": "Comp. App. (AT) (Ins) No. 1054 of 2024 & I.A. No. 6867 of 2025",
-      "parties": "Comp. App. (AT) | Jammu & Kashmir Bank Ltd. (Ins) No. 1054 of 2024 & I.A. No. 6867 of 2025",
-      "counsel": "Munawwar Naseem | Ravinder K Rawat Vs. Jitender Kumar Jain & Anr.",
-      "purpose": "",
-      "date": "15 April 2026"
+      "source": "NCLT",
+      "client": "MR. ADITYA RAHEJA",
+      "court": "Principal Bench Court-I",
+      "case_no": "(IB)- 182(PB)/2024",
+      "parties": "Surinder Aggarwal & Ors. Vs. Raheja Developers Limited",
+      "purpose": "Pending For Admission/ Appeal Disposed of by Hon'ble NCLAT vide order dt. 20.03.2026",
+      "counsel": "Piyush Singh/ Aditya Parulia/ Vivek Kumar",
+      "date": "08/05/2026"
+    },
+    {
+      "source": "NCLT",
+      "client": "CALYX LENORA REALTY LLP",
+      "court": "Mumbai Bench Court-IV",
+      "case_no": "C.P. (IB)/204(MB)2021",
+      "parties": "IA(IBC)(PLAN)/10(MB)2025 ATUL TANSUKHLAL MEHTA IA (I.B.C)/2286(MB)2025 GAURAV SUNIL SOMANI VS ATUL TANSUKHLAL MEHTA IA (I.B.C)/494(MB)2026 NITIN SALAVE VS ATUL TANSUKHLAL MEHTA RESOLUTION PROFESSIONAL OF CALYX LENORA REALTY LLP IA(I.B.C)/5183(MB)2025 IA(I.B.C)/2914(MB)2025 ABHAY INDRABHAN FULFAGAR VS ATUL TANSUKHLAL MEHTA IA(I.B.C)/2875(MB)2025 IA(I.B.C)/5090(MB)2025 REVELSTAR HOUSING LLP VS ATUL TANSUKHLAL MEHTA In the matter of MADHURE INFRA ENGINEERING PVT. LTD. VS CALYX LENORA REALTY LLP",
+      "purpose": "Resolution Plan Last Listed 13.04.2026 25.03.2026",
+      "counsel": "BARAKA LEGAL LLP DEVARAJAN RAMAN MAYANK PADIYA KUNAL KANUNGO",
+      "date": "08/05/2026"
     }
   ]
 }
