@@ -132,7 +132,7 @@ with col_h2:
     if rr and rr.get("status") == "pending":
         st.warning("⏳ Run pending…")
     elif rr and rr.get("status") == "running":
-        st.info("⚙️ Running on PC…")
+        st.info("⚙️ Running on GitHub Actions…")
     else:
         st.success("✓ Ready")
 
@@ -200,23 +200,42 @@ with tab_run:
             type="primary", use_container_width=True
         )
         if btn:
+            requested_at = datetime.now().strftime("%d %b %Y %I:%M %p")
+
+            # 1. Write pending status to run_request.json (for UI status display)
             payload = {
                 "status":       "pending",
                 "date":         date_arg,
                 "courts":       courts_sel,
-                "requested_at": datetime.now().strftime("%d %b %Y %I:%M %p"),
+                "requested_at": requested_at,
             }
             _, sha = gh_get("run_request.json")
-            ok, msg = gh_put("run_request.json", payload, sha,
-                             "Run request from Streamlit UI")
-            if ok:
+            gh_put("run_request.json", payload, sha, "Run request from Streamlit UI")
+
+            # 2. Dispatch GitHub Actions workflow
+            dispatch_url = (f"{API_BASE}/repos/{_repo()}/actions/workflows"
+                            f"/run_automation.yml/dispatches")
+            dispatch_payload = {
+                "ref": _branch(),
+                "inputs": {
+                    "date":         date_arg,
+                    "courts":       ",".join(courts_sel),
+                    "requested_at": requested_at,
+                },
+            }
+            dr = req.post(dispatch_url, headers=_gh_headers(),
+                          json=dispatch_payload, timeout=15)
+
+            if dr.status_code == 204:
                 st.session_state.run_msg = ("ok",
-                    f"✅ Run request sent for **{date_display}** · "
+                    f"✅ Automation started for **{date_display}** · "
                     f"Courts: **{', '.join(courts_sel)}**\n\n"
-                    "Your PC's `watcher.py` will pick this up within 60 seconds. "
+                    "GitHub Actions is running the automation (~5-10 min). "
                     "Switch to the **Results** tab when done.")
             else:
-                st.session_state.run_msg = ("err", f"❌ {msg}")
+                st.session_state.run_msg = ("err",
+                    f"❌ Could not trigger GitHub Actions: "
+                    f"{dr.status_code} — {dr.text[:200]}")
             st.rerun()
 
     if st.session_state.run_msg:
