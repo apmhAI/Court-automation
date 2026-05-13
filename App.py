@@ -132,7 +132,7 @@ with col_h2:
     if rr and rr.get("status") == "pending":
         st.warning("⏳ Run pending…")
     elif rr and rr.get("status") == "running":
-        st.info("⚙️ Running on GitHub Actions…")
+        st.info("⚙️ Running on your PC…")
     else:
         st.success("✓ Ready")
 
@@ -202,7 +202,7 @@ with tab_run:
         if btn:
             requested_at = datetime.now().strftime("%d %b %Y %I:%M %p")
 
-            # 1. Write pending status to run_request.json (for UI status display)
+            # Write pending status to run_request.json — watcher.py will pick this up
             payload = {
                 "status":       "pending",
                 "date":         date_arg,
@@ -210,12 +210,17 @@ with tab_run:
                 "requested_at": requested_at,
             }
             _, sha = gh_get("run_request.json")
-            gh_put("run_request.json", payload, sha, "Run request from Streamlit UI")
-st.session_state.run_msg = ("ok",
-    f"✅ Run requested for **{date_display}** · "
-    f"Courts: **{', '.join(courts_sel)}**\n\n"
-    "Your PC's watcher will pick this up within 60 seconds. "
-    "Switch to the **Results** tab when done.")
+            ok, err = gh_put("run_request.json", payload, sha, "Run request from Streamlit UI")
+
+            if ok:
+                st.session_state.run_msg = ("ok",
+                    f"✅ Run requested for **{date_display}** · "
+                    f"Courts: **{', '.join(courts_sel)}**\n\n"
+                    "Your PC's watcher will pick this up within 60 seconds. "
+                    "Switch to the **Results** tab when done.")
+            else:
+                st.session_state.run_msg = ("err",
+                    f"❌ Could not write run request to GitHub: {err}")
             st.rerun()
 
     if st.session_state.run_msg:
