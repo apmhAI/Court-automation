@@ -211,31 +211,11 @@ with tab_run:
             }
             _, sha = gh_get("run_request.json")
             gh_put("run_request.json", payload, sha, "Run request from Streamlit UI")
-
-            # 2. Dispatch GitHub Actions workflow
-            dispatch_url = (f"{API_BASE}/repos/{_repo()}/actions/workflows"
-                            f"/run_automation.yml/dispatches")
-            dispatch_payload = {
-                "ref": _branch(),
-                "inputs": {
-                    "date":         date_arg,
-                    "courts":       ",".join(courts_sel),
-                    "requested_at": requested_at,
-                },
-            }
-            dr = req.post(dispatch_url, headers=_gh_headers(),
-                          json=dispatch_payload, timeout=15)
-
-            if dr.status_code == 204:
-                st.session_state.run_msg = ("ok",
-                    f"✅ Automation started for **{date_display}** · "
-                    f"Courts: **{', '.join(courts_sel)}**\n\n"
-                    "GitHub Actions is running the automation (~5-10 min). "
-                    "Switch to the **Results** tab when done.")
-            else:
-                st.session_state.run_msg = ("err",
-                    f"❌ Could not trigger GitHub Actions: "
-                    f"{dr.status_code} — {dr.text[:200]}")
+st.session_state.run_msg = ("ok",
+    f"✅ Run requested for **{date_display}** · "
+    f"Courts: **{', '.join(courts_sel)}**\n\n"
+    "Your PC's watcher will pick this up within 60 seconds. "
+    "Switch to the **Results** tab when done.")
             st.rerun()
 
     if st.session_state.run_msg:
