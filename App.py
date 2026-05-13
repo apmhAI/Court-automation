@@ -8,6 +8,7 @@ Scraping runs on your local Windows PC via watcher.py.
 import streamlit as st
 import json, time, base64, requests as req
 from datetime import datetime, timedelta
+from login_page import render_login_page, render_user_menu
 
 # ── Page config ────────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -24,6 +25,13 @@ st.markdown("""
 .stTabs [data-baseweb="tab"] { font-size: 14px; font-weight: 500; }
 </style>
 """, unsafe_allow_html=True)
+
+# ── AUTH GATE — show login page until authenticated ───────────────────────────
+if not render_login_page():
+    st.stop()   # stop here — don't render anything below until logged in
+
+# ── Show user menu in sidebar ──────────────────────────────────────────────────
+render_user_menu()
 
 # ── GitHub config from secrets ────────────────────────────────────────────────
 def _token():  return st.secrets.get("GITHUB_TOKEN", "")
