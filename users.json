@@ -6,5 +6,13 @@
     "created_at": "13 May 2026 06:55 AM",
     "reset_otp": null,
     "reset_expiry": null
+  },
+  "tejashree@apmh.in": {
+    "name": "tejashree",
+    "email": "tejashree@apmh.in",
+    "password_hash": "fde0014574180e0bd85e69700c2a4e3804695979140da66cb6a1e9fbd196c1eb",
+    "created_at": "13 May 2026 10:25 AM",
+    "reset_otp": null,
+    "reset_expiry": null
   }
 }
