@@ -1529,17 +1529,24 @@ def get_sci_pdfs(date_str: str, session) -> list:
 
 
 # ── BHC (FIXED date format) ───────────────────────────────────────────────────
-BHC_CAUSELIST_URL = "https://bombayhighcourt.gov.in/bhc/causelistFinal"
-BHC_BASE_URL      = "https://bombayhighcourt.gov.in"
+BHC_CAUSELIST_URL  = "https://bombayhighcourt.gov.in/bhc/causelistFinal"
+BHC_BYDATE_URL     = "https://bombayhighcourt.gov.in/bhc/causelistBydate"
+BHC_BASE_URL       = "https://bombayhighcourt.gov.in"
 
 
 async def _bhc_async(date_str: str) -> list:
-    """date_str is DD-MM-YYYY, but BHC datepicker needs DD/MM/YYYY"""
-    pdf_entries = []
+    """
+    date_str : DD-MM-YYYY
 
-    # FIX: Convert DD-MM-YYYY to DD/MM/YYYY for BHC datepicker
-    bhc_date = date_str.replace("-", "/")
-    log.info("BHC: using date format: %s", bhc_date)
+    Strategy (three attempts, most reliable first):
+    1. Navigate directly to causelistBydate?causeDt=DD/MM/YYYY  — works for
+       any date including past dates, bypasses the datepicker entirely.
+    2. Navigate to causelistFinal and force-set the date via JS then submit.
+    3. If both return 0 rows, try any hidden POST forms on the page.
+    """
+    pdf_entries = []
+    bhc_date = date_str.replace("-", "/")          # DD/MM/YYYY
+    log.info("BHC: target date = %s", bhc_date)
 
     async with async_playwright() as p:
         browser = await p.chromium.launch(
@@ -1555,177 +1562,175 @@ async def _bhc_async(date_str: str) -> list:
         )
         page = await ctx.new_page()
 
+        # Intercept requests AND responses to/from causelist endpoints
+        ajax_log = []
+        async def _on_request(req):
+            if "get-data" in req.url or "causelist" in req.url.lower():
+                try:
+                    post_data = req.post_data or ""
+                    log.info("BHC REQUEST → %s | POST: %s", req.url, post_data[:400])
+                except Exception:
+                    pass
+        async def _on_response(resp):
+            url = resp.url
+            if "causelist" in url.lower() and resp.status == 200:
+                try:
+                    ct = resp.headers.get("content-type", "")
+                    body = await resp.text()
+                    ajax_log.append({"url": url, "ct": ct, "body": body[:300]})
+                    log.info("BHC RESPONSE ← %s | %d chars | body: %s",
+                             url, len(body), body[:300])
+                except Exception:
+                    pass
+        page.on("request",  _on_request)
+        page.on("response", _on_response)
+
+        # ── Attempt 1: Direct URL with date parameter ─────────────────
+        # Try both slash format (DD/MM/YYYY) and dash format (DD-MM-YYYY)
+        # because the BHC datepicker stores dates as DD-MM-YYYY internally.
+        for causeDt_param in [bhc_date.replace("/", "%2F"), date_str]:
+            direct_url = f"{BHC_BYDATE_URL}?causeDt={causeDt_param}"
+            log.info("BHC attempt 1: direct URL → %s", direct_url)
+            try:
+                await page.goto(direct_url, wait_until="networkidle", timeout=60_000)
+                await page.wait_for_timeout(2_000)
+
+                table_html = await page.evaluate("""
+                    () => {
+                        const t = document.querySelector('table');
+                        return t ? t.outerHTML.slice(0, 800) : 'NO_TABLE';
+                    }
+                """)
+                log.info("BHC attempt 1: table HTML = %s", table_html[:300])
+
+                row_count_a1 = await page.evaluate("""
+                    () => {
+                        const rows = document.querySelectorAll('table tr');
+                        return Array.from(rows).filter(r =>
+                            r.querySelectorAll('td').length > 0
+                        ).length;
+                    }
+                """)
+                log.info("BHC attempt 1: %d data row(s) for causeDt=%s", row_count_a1, causeDt_param)
+
+                if row_count_a1 > 0:
+                    log.info("BHC: direct URL worked — proceeding to download PDFs")
+                    pdf_entries = await _bhc_download_pdfs(page, bhc_date)
+                    await browser.close()
+                    return pdf_entries
+            except Exception as e:
+                log.warning("BHC attempt 1 failed for causeDt=%s: %s", causeDt_param, e)
+
+
+        # ── Attempt 2: causelistFinal + force JS date set ─────────────
+        log.info("BHC attempt 2: causelistFinal with JS date override")
         try:
             await page.goto(BHC_CAUSELIST_URL, wait_until="domcontentloaded", timeout=60_000)
-        except Exception as e:
-            log.error("BHC: causelistFinal load failed: %s", e)
-            await browser.close()
-            return []
-        await page.wait_for_timeout(3_000)
-        log.info("BHC: causelistFinal loaded — %s", page.url)
+            await page.wait_for_timeout(3_000)
+            log.info("BHC: page loaded — %s", page.url)
 
-        filled = False
-
-        # FIX: Use the correct slash-separated date format
-        result = await page.evaluate(f"""
-            () => {{
-                try {{
-                    const inp = document.querySelector('#demo1');
-                    if (!inp) return 'no_input';
-                    jQuery(inp).datepicker('setDate', '{bhc_date}');
-                    ['input','change','blur'].forEach(ev =>
-                        inp.dispatchEvent(new Event(ev, {{bubbles:true}})));
-                    return inp.value;
-                }} catch(e) {{ return 'error:' + e.message; }}
-            }}
-        """)
-        log.info("BHC: jQuery setDate result: %s", result)
-        if result and bhc_date in str(result):
-            filled = True
-            log.info("BHC: date set via jQuery datepicker")
-
-        if not filled:
-            try:
-                loc = page.locator("#demo1").first
-                await loc.click()
-                await page.wait_for_timeout(200)
-                await page.keyboard.press("Control+a")
-                await page.keyboard.press("Delete")
-                await page.keyboard.type(bhc_date, delay=60)  # FIX: use slash format
-                await page.wait_for_timeout(400)
-                await page.keyboard.press("Escape")
-                await page.wait_for_timeout(200)
-                val = await loc.input_value()
-                log.info("BHC: keyboard type → value=%s", val)
-                if bhc_date in val:
-                    filled = True
-            except Exception as e:
-                log.warning("BHC: keyboard type failed: %s", e)
-
-        if not filled:
-            await page.evaluate(f"""
+            # Server expects DD-MM-YYYY (dashes). Using slashes causes PHP to
+            # crash with "Undefined array key 2" when it does explode("-", date).
+            set_result = await page.evaluate(f"""
                 () => {{
                     const inp = document.querySelector('#demo1') ||
-                                document.querySelector('[name="m_causedt"]');
-                    if (inp) {{
-                        inp.value = '{bhc_date}';
+                                document.querySelector('[name="m_causedt"]') ||
+                                document.querySelector('input[type="text"]');
+                    if (!inp) return 'no_input';
+
+                    // Method 1: jQuery datepicker (uses DD-MM-YYYY format internally)
+                    try {{
                         if (typeof jQuery !== 'undefined') {{
-                            jQuery(inp).trigger('change').trigger('blur');
+                            jQuery(inp).datepicker('option', 'maxDate', null);
+                            jQuery(inp).datepicker('setDate', '{date_str}');
                         }}
-                        ['input','change','blur'].forEach(ev =>
-                            inp.dispatchEvent(new Event(ev, {{bubbles:true}})));
-                    }}
+                    }} catch(e) {{}}
+
+                    // Method 2: Direct value — must use DD-MM-YYYY (dashes)
+                    const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+                        window.HTMLInputElement.prototype, 'value').set;
+                    nativeInputValueSetter.call(inp, '{date_str}');
+
+                    // Method 3: Fire all relevant events
+                    ['input', 'change', 'blur', 'keyup'].forEach(ev =>
+                        inp.dispatchEvent(new Event(ev, {{bubbles: true}}))
+                    );
+                    inp.dispatchEvent(new InputEvent('input', {{bubbles: true}}));
+
+                    return inp.value;
                 }}
             """)
-            await page.wait_for_timeout(300)
-            log.warning("BHC: used last-resort JS fill")
+            log.info("BHC attempt 2: date set result = %s", set_result)
+            await page.wait_for_timeout(500)
 
-        search_clicked = False
-        for sel in [
-            "button.sendbtn",
-            "button.sendbtn.w-100",
-            "form button[type='submit']",
-        ]:
-            try:
-                loc = page.locator(sel).first
-                if await loc.count() > 0:
-                    await loc.click()
-                    search_clicked = True
-                    log.info("BHC: search clicked via '%s'", sel)
-                    break
-            except Exception:
-                continue
-
-        if not search_clicked:
-            clicked = await page.evaluate("""
-                () => {
-                    const btn = document.querySelector('button.sendbtn') ||
-                                document.querySelector('form button[type="submit"]');
-                    if (btn) { btn.click(); return true; }
-                    return false;
-                }
-            """)
-            if clicked:
-                log.info("BHC: search clicked via JS")
-                search_clicked = True
-
-        if not search_clicked:
-            await page.keyboard.press("Enter")
-            log.warning("BHC: search via Enter (fallback)")
-
-        log.info("BHC: waiting for AJAX table to load...")
-        table_appeared = False
-        for attempt in range(30):
-            await page.wait_for_timeout(1_000)
-            row_count_check = await page.evaluate(
-                "() => document.querySelectorAll('table tbody tr').length"
+            # Verify the value was actually set
+            actual_val = await page.evaluate(
+                "() => (document.querySelector('#demo1') || {}).value || ''"
             )
-            still_loading = await page.evaluate("""
-                () => {
-                    const t = document.body.innerText;
-                    return t.includes('Searching') || t.includes('Loading...');
-                }
-            """)
-            log.info("BHC poll %d/30 — rows=%d loading=%s",
-                     attempt+1, row_count_check, still_loading)
-            if row_count_check > 0:
-                table_appeared = True
-                log.info("BHC: table loaded after %ds", attempt+1)
-                break
-            if not still_loading and attempt >= 5:
-                break
+            log.info("BHC attempt 2: field value = %s", actual_val)
 
-        if not table_appeared:
-            await page.wait_for_timeout(3_000)
+            # Click search button
+            search_clicked = False
+            for sel in ["button.sendbtn", "button.sendbtn.w-100",
+                        "form button[type='submit']", "input[type='submit']"]:
+                try:
+                    el = page.locator(sel).first
+                    if await el.count() > 0:
+                        await el.click()
+                        search_clicked = True
+                        log.info("BHC attempt 2: search clicked via '%s'", sel)
+                        break
+                except Exception:
+                    continue
 
-        table_meta = await page.evaluate("""
-            () => {
-                const tables = document.querySelectorAll('table');
-                if (!tables.length) return { rowCount: 0, entireColIdx: -1, headers: [] };
-                const t = tables[0];
-                let entireColIdx = -1;
-                const headerRow = t.querySelector('thead tr, tr:first-child');
-                const headers = [];
-                if (headerRow) {
-                    Array.from(headerRow.querySelectorAll('th, td')).forEach((c, i) => {
-                        const txt = (c.innerText || '').trim().toLowerCase();
-                        headers.push(txt);
-                        if (txt.includes('entire')) entireColIdx = i;
-                    });
-                }
-                if (entireColIdx < 0) {
-                    Array.from(t.querySelectorAll('tr')).forEach(row => {
-                        Array.from(row.querySelectorAll('th,td')).forEach((c,i) => {
-                            if ((c.innerText||'').toLowerCase().includes('entire')) entireColIdx = i;
-                        });
-                    });
-                }
-                const bodyRows = t.querySelectorAll('tbody tr');
-                return {
-                    rowCount: bodyRows.length,
-                    entireColIdx,
-                    headers,
-                    firstRowHtml: bodyRows.length > 0 ? bodyRows[0].outerHTML.slice(0,500) : ''
-                };
-            }
-        """)
+            if not search_clicked:
+                await page.keyboard.press("Enter")
 
-        row_count      = table_meta.get("rowCount", 0)
-        entire_col_idx = table_meta.get("entireColIdx", -1)
-        log.info("BHC: table — %d rows, Entire Causelist col = %d, headers = %s",
-                 row_count, entire_col_idx, table_meta.get("headers", []))
-
-        if row_count == 0:
-            page_text = await page.evaluate("() => document.body.innerText.slice(0,600)")
-            log.error("BHC: 0 rows — page text: %s", page_text)
+            # Wait for network to settle, then poll DOM
             try:
-                await page.screenshot(path="bhc_no_rows.png")
-                log.error("BHC: screenshot saved as bhc_no_rows.png")
+                await page.wait_for_load_state("networkidle", timeout=15_000)
             except Exception:
                 pass
 
-            # ── Fallback for past dates: try hidden form POST directly ────
-            log.warning("BHC: trying direct form POST fallback for past date %s", bhc_date)
+            for attempt in range(20):
+                await page.wait_for_timeout(1_000)
+                rc = await page.evaluate("""
+                    () => Array.from(document.querySelectorAll('table tr'))
+                        .filter(r => r.querySelectorAll('td').length > 0).length
+                """)
+                log.info("BHC attempt 2 poll %d/20 — rows=%d", attempt + 1, rc)
+                if rc > 0:
+                    log.info("BHC attempt 2: table loaded with %d rows", rc)
+                    pdf_entries = await _bhc_download_pdfs(page, bhc_date)
+                    await browser.close()
+                    return pdf_entries
+                loading = await page.evaluate(
+                    "() => document.body.innerText.includes('Searching') || "
+                    "document.body.innerText.includes('Loading')"
+                )
+                if not loading and attempt >= 12:
+                    table_html2 = await page.evaluate("""
+                        () => {
+                            const t = document.querySelector('table');
+                            return t ? t.outerHTML.slice(0, 600) : 'NO_TABLE';
+                        }
+                    """)
+                    log.info("BHC attempt 2: giving up — table HTML = %s", table_html2[:400])
+                    break
+
+        except Exception as e:
+            log.warning("BHC attempt 2 failed: %s", e)
+
+        # ── Attempt 3: Hidden POST forms ──────────────────────────────
+        log.info("BHC attempt 3: scanning for hidden POST forms")
+        try:
+            page_text_a3 = await page.evaluate("() => document.body.innerText.slice(0, 400)")
+            log.error("BHC: 0 rows — page snippet: %s", page_text_a3)
+            try:
+                await page.screenshot(path="bhc_no_rows.png")
+            except Exception:
+                pass
+
             hidden_forms = await page.evaluate("""
                 () => {
                     const forms = document.querySelectorAll(
@@ -1739,7 +1744,7 @@ async def _bhc_async(date_str: str) -> list:
                     }));
                 }
             """)
-            log.info("BHC fallback: %d hidden form(s) found", len(hidden_forms))
+            log.info("BHC attempt 3: %d hidden form(s)", len(hidden_forms))
 
             for form in hidden_forms:
                 action = form.get("action", "")
@@ -1778,117 +1783,123 @@ async def _bhc_async(date_str: str) -> list:
                                 "source":      "BHC",
                                 "pdf_bytes":   pdf_bytes_dl,
                             })
-                            log.info("BHC fallback: got PDF (%d bytes)", len(pdf_bytes_dl))
+                            log.info("BHC attempt 3: got PDF (%d bytes)", len(pdf_bytes_dl))
                 except Exception as fe:
-                    log.warning("BHC fallback POST failed: %s", fe)
+                    log.warning("BHC attempt 3 form POST failed: %s", fe)
 
-            await browser.close()
-            log.info("BHC fallback: %d PDF(s) collected", len(pdf_entries))
-            return pdf_entries
+        except Exception as e:
+            log.warning("BHC attempt 3 failed: %s", e)
 
-        all_form_data = await page.evaluate("""
-            () => {
-                const rows = document.querySelectorAll('table tbody tr');
-                const results = [];
-                rows.forEach((row, rowIdx) => {
-                    const cells = Array.from(row.querySelectorAll('td'));
-                    if (!cells.length) return;
-                    const coram = cells[0].innerText.trim();
-                    const lastCell = cells[cells.length - 1];
-                    const form = lastCell.querySelector('form');
-                    if (!form) return;
-                    const fields = {};
-                    Array.from(form.querySelectorAll('input')).forEach(inp => {
-                        if (inp.name) fields[inp.name] = inp.value;
-                    });
-                    const allInputs = Array.from(form.querySelectorAll('input[name]'));
-                    const multiFields = {};
-                    allInputs.forEach(inp => {
-                        if (!multiFields[inp.name]) multiFields[inp.name] = [];
-                        multiFields[inp.name].push(inp.value);
-                    });
-                    results.push({ rowIdx, coram, action: form.action, fields, multiFields });
-                });
-                return results;
-            }
-        """)
-        log.info("BHC: %d rows to download", len(all_form_data))
-
-        for form_info in all_form_data:
-            coram   = form_info.get("coram", "")
-            action  = form_info.get("action", "")
-            mfields = form_info.get("multiFields", {})
-            row_idx = form_info.get("rowIdx", 0)
-
-            if not coram or not action:
-                continue
-            if re.search(r'\b(officer|registrar|admin|staff|duty|superintendent)\b',
-                         coram, re.IGNORECASE):
-                continue
-
-            log.info("  BHC row %d/%d: %s", row_idx+1, len(all_form_data), coram[:55])
-
-            body_parts = []
-            for key, vals in mfields.items():
-                for v in vals:
-                    body_parts.append(f"{key}={v}")
-            body_str = "&".join(body_parts)
-
-            try:
-                pdf_b64 = await page.evaluate(f"""
-                    async () => {{
-                        const resp = await fetch('{action}', {{
-                            method: 'POST',
-                            headers: {{
-                                'Content-Type': 'application/x-www-form-urlencoded',
-                                'X-Requested-With': 'XMLHttpRequest',
-                                'Accept': 'application/pdf,*/*',
-                            }},
-                            body: {repr(body_str)},
-                            credentials: 'same-origin',
-                        }});
-                        if (!resp.ok) return 'ERROR:' + resp.status;
-                        const ct = resp.headers.get('content-type') || '';
-                        if (!ct.includes('pdf') && resp.status !== 200) return 'BAD_CT:' + ct;
-                        const buf = await resp.arrayBuffer();
-                        const bytes = new Uint8Array(buf);
-                        let bin = '';
-                        bytes.forEach(b => bin += String.fromCharCode(b));
-                        return btoa(bin);
-                    }}
-                """)
-
-                if isinstance(pdf_b64, str) and pdf_b64.startswith("ERROR:"):
-                    log.warning("  BHC row %d fetch error: %s", row_idx+1, pdf_b64)
-                    continue
-                if isinstance(pdf_b64, str) and pdf_b64.startswith("BAD_CT:"):
-                    log.warning("  BHC row %d bad content-type: %s", row_idx+1, pdf_b64)
-                    continue
-
-                pdf_bytes = base64.b64decode(pdf_b64)
-
-                if b"%PDF" not in pdf_bytes[:16]:
-                    log.warning("  BHC row %d not a PDF (%d bytes)", row_idx+1, len(pdf_bytes))
-                    continue
-
-                log.info("  ✓ BHC row %d: %d bytes — %s", row_idx+1, len(pdf_bytes), coram[:40])
-
-                pdf_entries.append({
-                    "court":       coram,
-                    "description": f"BHC Entire Causelist — {coram}",
-                    "url":         action,
-                    "source":      "BHC",
-                    "pdf_bytes":   pdf_bytes,
-                })
-
-            except Exception as e:
-                log.warning("  BHC row %d Playwright fetch failed: %s", row_idx+1, e)
-                continue
-
-        log.info("BHC: %d PDFs downloaded via Playwright", len(pdf_entries))
         await browser.close()
+        log.info("BHC: total %d PDF(s) collected", len(pdf_entries))
+        return pdf_entries
 
-    log.info("BHC: %d unique PDF(s) collected", len(pdf_entries))
+
+async def _bhc_download_pdfs(page, bhc_date: str) -> list:
+    """
+    Given a page that already has the BHC results table loaded,
+    collect all form data and download each bench's PDF.
+    """
+    pdf_entries = []
+
+    all_form_data = await page.evaluate("""
+        () => {
+            // Use 'table tr' and filter to data rows only (BHC omits <tbody>)
+            const rows = Array.from(document.querySelectorAll('table tr'))
+                .filter(r => r.querySelectorAll('td').length > 0);
+            const results = [];
+            rows.forEach((row, rowIdx) => {
+                const cells = Array.from(row.querySelectorAll('td'));
+                if (!cells.length) return;
+                const coram = cells[0].innerText.trim();
+                const lastCell = cells[cells.length - 1];
+                const form = lastCell.querySelector('form');
+                if (!form) return;
+                const multiFields = {};
+                Array.from(form.querySelectorAll('input[name]')).forEach(inp => {
+                    if (!multiFields[inp.name]) multiFields[inp.name] = [];
+                    multiFields[inp.name].push(inp.value);
+                });
+                results.push({
+                    rowIdx, coram,
+                    action: form.action,
+                    multiFields
+                });
+            });
+            return results;
+        }
+    """)
+    log.info("BHC: %d bench row(s) to download", len(all_form_data))
+
+    for form_info in all_form_data:
+        coram   = form_info.get("coram", "")
+        action  = form_info.get("action", "")
+        mfields = form_info.get("multiFields", {})
+        row_idx = form_info.get("rowIdx", 0)
+
+        if not coram or not action:
+            continue
+        if re.search(r'\b(officer|registrar|admin|staff|duty|superintendent)\b',
+                     coram, re.IGNORECASE):
+            continue
+
+        log.info("  BHC bench %d/%d: %s", row_idx + 1, len(all_form_data), coram[:55])
+
+        body_parts = []
+        for key, vals in mfields.items():
+            for v in vals:
+                body_parts.append(f"{key}={v}")
+        body_str = "&".join(body_parts)
+
+        try:
+            pdf_b64 = await page.evaluate(f"""
+                async () => {{
+                    const resp = await fetch('{action}', {{
+                        method: 'POST',
+                        headers: {{
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'Accept': 'application/pdf,*/*',
+                        }},
+                        body: {repr(body_str)},
+                        credentials: 'same-origin',
+                    }});
+                    if (!resp.ok) return 'ERROR:' + resp.status;
+                    const ct = resp.headers.get('content-type') || '';
+                    if (!ct.includes('pdf') && resp.status !== 200) return 'BAD_CT:' + ct;
+                    const buf = await resp.arrayBuffer();
+                    const bytes = new Uint8Array(buf);
+                    let bin = '';
+                    bytes.forEach(b => bin += String.fromCharCode(b));
+                    return btoa(bin);
+                }}
+            """)
+
+            if isinstance(pdf_b64, str) and pdf_b64.startswith(("ERROR:", "BAD_CT:")):
+                log.warning("  BHC bench %d: %s", row_idx + 1, pdf_b64)
+                continue
+
+            pdf_bytes_dl = base64.b64decode(pdf_b64)
+            if b"%PDF" not in pdf_bytes_dl[:16]:
+                log.warning("  BHC bench %d: not a valid PDF (%d bytes)",
+                            row_idx + 1, len(pdf_bytes_dl))
+                continue
+
+            log.info("  ✓ BHC bench %d: %d bytes — %s",
+                     row_idx + 1, len(pdf_bytes_dl), coram[:40])
+            pdf_entries.append({
+                "court":       coram,
+                "description": f"BHC Entire Causelist — {coram}",
+                "url":         action,
+                "source":      "BHC",
+                "pdf_bytes":   pdf_bytes_dl,
+            })
+
+        except Exception as e:
+            log.warning("  BHC bench %d fetch failed: %s", row_idx + 1, e)
+            continue
+
+    log.info("BHC: downloaded %d PDF(s)", len(pdf_entries))
     return pdf_entries
 
 
@@ -1968,8 +1979,8 @@ def _extract_table_rows(pdf_bytes: bytes) -> list:
     width = Counter(len(r) for r in raw).most_common(1)[0][0]
     log.info("  Canonical table width: %d cols, %d raw rows", width, len(raw))
 
-    # Single-column PDFs are not real structured tables — every paragraph
-    # becomes a "row". Fall through to text-line search instead.
+    # Single-column PDFs are not real structured tables.
+    # Fall through to text-line search instead.
     if width <= 1:
         log.warning("  Skipping table — width=%d (not a structured table)", width)
         return []
@@ -2089,7 +2100,6 @@ _ITEM_START_NCLAT = re.compile(
 )
 
 def _search_nclat_text(client: str, lines: list) -> list:
-    """Split NCLAT plain-text cause list into per-case blocks, then match."""
     blocks, cur = [], []
     for line in lines:
         stripped = line.strip()
@@ -2103,15 +2113,11 @@ def _search_nclat_text(client: str, lines: list) -> list:
             cur.append(stripped)
     if cur:
         blocks.append(cur)
-
     log.info("  NCLAT text: %d item blocks from %d lines", len(blocks), len(lines))
-
     matched = []
     for block in blocks:
         if name_matches(client, "\n".join(block)):
             matched.append([l for l in block if l.strip()][:20])
-
-    # Fallback: proximity search on raw lines if no structured blocks found
     if not matched and not blocks:
         tokens = _core_tokens(client)
         CASE_PAT = re.compile(r'CP|CA|MA|TA|IA|AA|RCP', re.IGNORECASE)
@@ -2122,7 +2128,6 @@ def _search_nclat_text(client: str, lines: list) -> list:
             if any(CASE_PAT.search(l) for l in context):
                 matched.append([l.strip() for l in context if l.strip()][:15])
                 break
-
     return matched
 
 
@@ -2212,12 +2217,7 @@ def search_pdf(entry: dict, session) -> list:
         return results
 
     for client in CLIENT_NAMES:
-        if is_bhc:
-            blocks = _search_bhc_text(client, lines)
-        elif source == "NCLAT":
-            blocks = _search_nclat_text(client, lines)
-        else:
-            blocks = _search_sci_text(client, lines)
+        blocks = _search_bhc_text(client, lines) if is_bhc else _search_sci_text(client, lines)
         if not blocks: continue
         seen_k, unique = set(), []
         for blk in blocks:
