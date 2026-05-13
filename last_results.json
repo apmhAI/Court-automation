@@ -1,27 +1,67 @@
 {
-  "date": "28 April 2026",
-  "generated": "13 May 2026 02:58 PM",
-  "total": 2,
+  "date": "15 April 2026",
+  "generated": "13 May 2026 03:49 PM",
+  "total": 6,
   "entries": [
     {
-      "source": "SCI",
-      "client": "POOJA RAMESH SINGH",
-      "court": "Supreme Court of India",
+      "source": "BHC",
+      "client": "S.J.THANAWALLA and ORS",
+      "court": "HON'BLE SHRI JUSTICE ABHAY AHUJA",
       "case_no": "",
-      "parties": "62 C.A. No. 11950/2025 POOJA RAMESH SINGH VISHESH VIJAY KALRA | XVII-B | Versus | JAMMU AND KASHMIR BANK LTD AND ANR. DUA ASSOCIATES [R-1], | SHAGUN MATTA [R-2] | {Mention Memo} | NEW DELHI | 27-04-2026 18:45:18 | ADDITIONAL REGISTRAR | SUPREME COURT OF INDIA | [ IT WILL BE APPRECIATED IF THE LEARNE",
+      "parties": "19 S/3225/1997 UNION OF INDIA - | [Original] VS AJINKYA BADAR | S.J.THANAWALLA and ORS. DEFENDANT 3 | 2ND COURT RECEIVER | GOVT. PLEADER | PURNANAND & CO. | U.U.& BERJIS(3) | W.S. FILED BY DEF.3 | ALMT LEGAL | REMARK : WS FILED BY DEF.(1 & 2) (Sault matter) COMMISSIONER APPOINTED. W/S.OF DEFT.NO.4 D",
       "counsel": "",
       "purpose": "",
-      "date": "28 April 2026"
+      "date": "15 April 2026"
     },
     {
-      "source": "SCI",
+      "source": "BHC",
       "client": "JAMMU AND KASHMIR BANK",
-      "court": "Supreme Court of India",
+      "court": "HON'BLE MS. JUSTICE GAURI GODSE",
       "case_no": "",
-      "parties": "62 C.A. No. 11950/2025 POOJA RAMESH SINGH VISHESH VIJAY KALRA | XVII-B | Versus | JAMMU AND KASHMIR BANK LTD AND ANR. DUA ASSOCIATES [R-1], | SHAGUN MATTA [R-2] | {Mention Memo} | NEW DELHI | 27-04-2026 18:45:18 | ADDITIONAL REGISTRAR | SUPREME COURT OF INDIA | [ IT WILL BE APPRECIATED IF THE LEARNE",
+      "parties": "73 IA/2276/2026 THE JAMMU AND KASHMIR BANK Payoja Gandhi | [Civil] LIMITED KUSUMAKAR KAUSHIK | In VS CLOVE LEGAL | WP/11334/2016 M/S. GIGATECH PRIVATE LIMITED | AND ANR. | REMARK : APPLICANT PRAYS FOR THAT WRIT PETITION NO. 11334/2016 AND CIVIL APPLICATION NO. | 20970/2019 MAY BE RESTORED TO THE FIL",
       "counsel": "",
       "purpose": "",
-      "date": "28 April 2026"
+      "date": "15 April 2026"
+    },
+    {
+      "source": "BHC",
+      "client": "J. C. FLOWERS ASSET RECONSTRUCTION PRIVATE LIMITED",
+      "court": "HON'BLE SHRI JUSTICE RAJESH S. PATIL",
+      "case_no": "",
+      "parties": "22 IA/6895/2025 J. C. FLOWERS ASSET Trilegal | [Original] RECONSTRUCTION PRIVATE LJ Law | In LIMITED AND ANR TUSHAR A. GORADIA | EXA/604/2022 VS | SUMER BUILDERS AND 2 ORS",
+      "counsel": "",
+      "purpose": "",
+      "date": "15 April 2026"
+    },
+    {
+      "source": "BHC",
+      "client": "BHARAT MEHTA",
+      "court": "HON'BLE SHRI JUSTICE JITENDRA SHANTILAL JAIN",
+      "case_no": "",
+      "parties": "38 FA/343/2017 UNON OF INDIA THR.DEPUTY SALT BHARAT H MEHTA | [Civil] COMMISSIONER.MUMBAI FOR RESPONDENT NO.1(A) 1(B) | VS FOR RESPONDENT NO.4 | HANUMANBUX LALCHAND FOR RESPONDENT NO.2(F) | MUMDRA,SINCE DECEASED (i),,2(F)(ii), AND 2(F) (v) | THR.LRS.JUGALKISHORE FOR RESPONDENT NO.2(F) (iii) | H.MUND",
+      "counsel": "",
+      "purpose": "",
+      "date": "15 April 2026"
+    },
+    {
+      "source": "BHC",
+      "client": "BHARAT MEHTA",
+      "court": "HON'BLE SHRI JUSTICE JITENDRA SHANTILAL JAIN",
+      "case_no": "",
+      "parties": "CAF/1091/2017 UNON OF INDIA THR.DEPUTY BHARAT H MEHTA | [Civil] SALT COMMISSIONER.MUMBAI BHARAT H MEHTA | VS WADIA GHANDY and CO. FOR | In HANUMANBUX LALCHAND MUMDR R.NOS.1(A) and 1(B)",
+      "counsel": "",
+      "purpose": "",
+      "date": "15 April 2026"
+    },
+    {
+      "source": "BHC",
+      "client": "BHARAT MEHTA",
+      "court": "HON'BLE SHRI JUSTICE JITENDRA SHANTILAL JAIN",
+      "case_no": "",
+      "parties": "IA/1865/2022 UNON OF INDIA THR.DEPUTY BHARAT H MEHTA | [Civil] SALT COMMISSIONER.MUMBAI | VS | In HANUMANBUX LALCHAND MUNDR",
+      "counsel": "",
+      "purpose": "",
+      "date": "15 April 2026"
     }
   ]
 }
