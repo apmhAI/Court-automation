@@ -1723,8 +1723,68 @@ async def _bhc_async(date_str: str) -> list:
                 log.error("BHC: screenshot saved as bhc_no_rows.png")
             except Exception:
                 pass
+
+            # ── Fallback for past dates: try hidden form POST directly ────
+            log.warning("BHC: trying direct form POST fallback for past date %s", bhc_date)
+            hidden_forms = await page.evaluate("""
+                () => {
+                    const forms = document.querySelectorAll(
+                        'form[action*="causelist"], form[action*="download"]');
+                    return Array.from(forms).map(f => ({
+                        action: f.action,
+                        fields: Array.from(f.querySelectorAll('input[name]'))
+                            .reduce((acc, el) => {
+                                acc[el.name] = el.value; return acc;
+                            }, {})
+                    }));
+                }
+            """)
+            log.info("BHC fallback: %d hidden form(s) found", len(hidden_forms))
+
+            for form in hidden_forms:
+                action = form.get("action", "")
+                fields = form.get("fields", {})
+                if not action:
+                    continue
+                fields["m_causedt"] = bhc_date
+                body_str = "&".join(f"{k}={v}" for k, v in fields.items())
+                try:
+                    pdf_b64 = await page.evaluate(f"""
+                        async () => {{
+                            const resp = await fetch('{action}', {{
+                                method: 'POST',
+                                headers: {{
+                                    'Content-Type': 'application/x-www-form-urlencoded',
+                                    'Accept': 'application/pdf,*/*',
+                                }},
+                                body: {repr(body_str)},
+                                credentials: 'same-origin',
+                            }});
+                            if (!resp.ok) return 'ERROR:' + resp.status;
+                            const buf = await resp.arrayBuffer();
+                            const bytes = new Uint8Array(buf);
+                            let bin = '';
+                            bytes.forEach(b => bin += String.fromCharCode(b));
+                            return btoa(bin);
+                        }}
+                    """)
+                    if isinstance(pdf_b64, str) and not pdf_b64.startswith("ERROR"):
+                        pdf_bytes_dl = base64.b64decode(pdf_b64)
+                        if b"%PDF" in pdf_bytes_dl[:16]:
+                            pdf_entries.append({
+                                "court":       fields.get("m_bench", "BHC"),
+                                "description": f"BHC Causelist — {bhc_date}",
+                                "url":         action,
+                                "source":      "BHC",
+                                "pdf_bytes":   pdf_bytes_dl,
+                            })
+                            log.info("BHC fallback: got PDF (%d bytes)", len(pdf_bytes_dl))
+                except Exception as fe:
+                    log.warning("BHC fallback POST failed: %s", fe)
+
             await browser.close()
-            return []
+            log.info("BHC fallback: %d PDF(s) collected", len(pdf_entries))
+            return pdf_entries
 
         all_form_data = await page.evaluate("""
             () => {
@@ -1908,6 +1968,12 @@ def _extract_table_rows(pdf_bytes: bytes) -> list:
     width = Counter(len(r) for r in raw).most_common(1)[0][0]
     log.info("  Canonical table width: %d cols, %d raw rows", width, len(raw))
 
+    # Single-column PDFs are not real structured tables — every paragraph
+    # becomes a "row". Fall through to text-line search instead.
+    if width <= 1:
+        log.warning("  Skipping table — width=%d (not a structured table)", width)
+        return []
+
     def _norm(row):
         row = [_clean_cell(c) for c in row]; n = len(row)
         if n == 0: return ["","","",""]
@@ -2016,6 +2082,50 @@ def _search_bhc_text(client: str, lines: list) -> list:
     return matched
 
 
+# ── NCLAT text search ─────────────────────────────────────────────────────────
+_ITEM_START_NCLAT = re.compile(
+    r'^\s*\d{1,3}[\s.)\-]+(?:CP|CA|MA|TA|IA|AA|RCP|C\.P|C\.A|M\.A)\s*[\(\[/]',
+    re.IGNORECASE
+)
+
+def _search_nclat_text(client: str, lines: list) -> list:
+    """Split NCLAT plain-text cause list into per-case blocks, then match."""
+    blocks, cur = [], []
+    for line in lines:
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if _ITEM_START_NCLAT.match(stripped):
+            if cur:
+                blocks.append(cur)
+            cur = [stripped]
+        elif cur:
+            cur.append(stripped)
+    if cur:
+        blocks.append(cur)
+
+    log.info("  NCLAT text: %d item blocks from %d lines", len(blocks), len(lines))
+
+    matched = []
+    for block in blocks:
+        if name_matches(client, "\n".join(block)):
+            matched.append([l for l in block if l.strip()][:20])
+
+    # Fallback: proximity search on raw lines if no structured blocks found
+    if not matched and not blocks:
+        tokens = _core_tokens(client)
+        CASE_PAT = re.compile(r'CP|CA|MA|TA|IA|AA|RCP', re.IGNORECASE)
+        for i, line in enumerate(lines):
+            if not all(t in line.upper() for t in tokens):
+                continue
+            context = lines[max(0, i-5): i+6]
+            if any(CASE_PAT.search(l) for l in context):
+                matched.append([l.strip() for l in context if l.strip()][:15])
+                break
+
+    return matched
+
+
 # ── SCI text search ────────────────────────────────────────────────────────────
 _ITEM_START_SCI = re.compile(
     r'^\s*\d{1,4}\s*[.)]\s+'
@@ -2102,7 +2212,12 @@ def search_pdf(entry: dict, session) -> list:
         return results
 
     for client in CLIENT_NAMES:
-        blocks = _search_bhc_text(client, lines) if is_bhc else _search_sci_text(client, lines)
+        if is_bhc:
+            blocks = _search_bhc_text(client, lines)
+        elif source == "NCLAT":
+            blocks = _search_nclat_text(client, lines)
+        else:
+            blocks = _search_sci_text(client, lines)
         if not blocks: continue
         seen_k, unique = set(), []
         for blk in blocks:
