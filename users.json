@@ -30,5 +30,13 @@
     "created_at": "13 May 2026 11:51 AM",
     "reset_otp": null,
     "reset_expiry": null
+  },
+  "ami@apmh.in": {
+    "name": "Ami Ganatra",
+    "email": "ami@apmh.in",
+    "password_hash": "57f9b690d6153eda4c0fd863b0a489457223c695b35bcecf804bcf9c2b1af228",
+    "created_at": "14 May 2026 01:32 PM",
+    "reset_otp": null,
+    "reset_expiry": null
   }
 }
