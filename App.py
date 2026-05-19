@@ -260,7 +260,7 @@ with tab_results:
     entries = (results or {}).get("entries", [])
 
     if not entries:
-        st.info("No results yet. Run the automation first and come back here.")
+        st.info(" NO RESULT FOUND ...")
     else:
         run_date_r  = (results or {}).get("date", "")
         generated_r = (results or {}).get("generated", "")
