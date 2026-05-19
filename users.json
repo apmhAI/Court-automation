@@ -38,5 +38,13 @@
     "created_at": "14 May 2026 01:32 PM",
     "reset_otp": null,
     "reset_expiry": null
+  },
+  "vedika@apmh.in": {
+    "name": "vedika",
+    "email": "vedika@apmh.in",
+    "password_hash": "1876831fe496fe80d45d66360a882f022041a815300969b9f25c562ab7d9273e",
+    "created_at": "19 May 2026 06:43 AM",
+    "reset_otp": null,
+    "reset_expiry": null
   }
 }
