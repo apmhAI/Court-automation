@@ -7,7 +7,7 @@ Scraping runs on your local Windows PC via watcher.py.
 
 import streamlit as st
 import json, time, base64, requests as req
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from login_page import render_login_page, render_user_menu
 
 # ── Page config ────────────────────────────────────────────────────────────────
@@ -128,11 +128,17 @@ with col_h1:
     st.markdown("## ⚖️ Court Cause List Automation")
     st.caption("NCLT &nbsp;·&nbsp; NCLAT &nbsp;·&nbsp; Supreme Court of India &nbsp;·&nbsp; Bombay High Court")
 with col_h2:
-    rr, _ = gh_get("run_request.json")
+    rr, rr_hdr_sha = gh_get("run_request.json")
     if rr and rr.get("status") == "pending":
         st.warning("⏳ Run pending…")
+        if st.button("🚫 Reset", key="hdr_reset"):
+            gh_put("run_request.json", {"status": "idle"}, rr_hdr_sha, "Reset stuck run")
+            st.rerun()
     elif rr and rr.get("status") == "running":
-        st.info("⚙️ Running on your PC…")
+        st.info("⚙️ Running…")
+        if st.button("🚫 Reset", key="hdr_reset2"):
+            gh_put("run_request.json", {"status": "idle"}, rr_hdr_sha, "Reset stuck run")
+            st.rerun()
     else:
         st.success("✓ Ready")
 
@@ -346,11 +352,35 @@ with tab_results:
         )
 
     # Auto-refresh while pending/running
-    rr3, _ = gh_get("run_request.json")
+    rr3, rr3_sha = gh_get("run_request.json")
     if rr3 and rr3.get("status") in ("pending", "running"):
-        st.info("⏳ Run is in progress — auto-refreshing in 20 seconds…")
-        time.sleep(20)
-        st.rerun()
+        # Check if watcher has gone silent (requested_at more than 5 min ago and still pending)
+        requested_at_str = rr3.get("requested_at", "")
+        watcher_silent = False
+        if rr3.get("status") == "pending" and requested_at_str:
+            try:
+                req_time = datetime.strptime(requested_at_str, "%d %b %Y %I:%M %p")
+                watcher_silent = (datetime.now() - req_time).total_seconds() > 300
+            except Exception:
+                pass
+
+        if watcher_silent:
+            st.warning(
+                "⚠️ **Watcher not responding** — the automation PC may be offline or "
+                "watcher.py is not running. Please contact the administrator.\n\n"
+                "You can reset the status below and try again later."
+            )
+            if st.button("🔄 Reset run status", key="results_reset"):
+                gh_put("run_request.json", {"status": "idle"}, rr3_sha, "Reset stuck run")
+                st.rerun()
+        else:
+            st.info("⏳ Run is in progress — auto-refreshing in 20 seconds…")
+            time.sleep(20)
+            st.rerun()
+    elif rr3 and rr3.get("status") == "done":
+        completed = rr3.get("completed_at", "")
+        if completed:
+            st.success(f"✅ Last run completed at {completed}")
 
 
 # ══════════════════════════════════════════════════════════════════════════════
