@@ -1,6 +1,17 @@
 {
-  "date": "22 April 2026",
-  "generated": "02 Jun 2026 10:33 AM",
-  "total": 0,
-  "entries": []
+  "date": "15 April 2026",
+  "generated": "12 May 2026 04:48 PM",
+  "total": 1,
+  "entries": [
+    {
+      "source": "NCLAT",
+      "client": "JAMMU AND KASHMIR BANK",
+      "court": "Court-IV",
+      "case_no": "Comp. App. (AT) (Ins) No. 1054 of 2024 & I.A. No. 6867 of 2025",
+      "parties": "Comp. App. (AT) | Jammu & Kashmir Bank Ltd. (Ins) No. 1054 of 2024 & I.A. No. 6867 of 2025",
+      "counsel": "Munawwar Naseem | Ravinder K Rawat Vs. Jitender Kumar Jain & Anr.",
+      "purpose": "",
+      "date": "15 April 2026"
+    }
+  ]
 }

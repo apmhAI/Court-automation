@@ -1,0 +1,252 @@
+2026-05-13 12:38:31,502 [INFO] ==================================================
+2026-05-13 12:38:31,502 [INFO]   Watcher started | Repo: apmhAI/Court-automation | Poll: 60s
+2026-05-13 12:38:31,504 [INFO] ==================================================
+2026-05-13 12:38:32,747 [INFO] ▶ Run request: date=08-05-2026 courts=['NCLT']
+2026-05-13 12:38:34,486 [INFO] Pushed run_request.json
+2026-05-13 12:38:35,583 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-13 12:38:35,584 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 08-05-2026 --nclt --no-prompt
+2026-05-13 12:41:09,554 [INFO] Script finished — return code: 0
+2026-05-13 12:41:12,680 [INFO] Pushed last_results.json
+2026-05-13 12:41:12,685 [INFO] Pushed last_results.json (2 entries)
+2026-05-13 12:41:15,503 [INFO] Pushed run_request.json
+2026-05-13 12:41:15,505 [INFO] ✓ Done for 08-05-2026
+2026-05-13 13:06:31,781 [INFO] ==================================================
+2026-05-13 13:06:31,782 [INFO]   Watcher started | Repo: apmhAI/Court-automation | Poll: 60s
+2026-05-13 13:06:31,783 [INFO] ==================================================
+2026-05-13 13:06:32,918 [INFO] ▶ Run request: date=15-04-2026 courts=['BHC']
+2026-05-13 13:06:34,482 [INFO] Pushed run_request.json
+2026-05-13 13:06:35,545 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-13 13:06:35,547 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 15-04-2026 --bhc --no-prompt
+2026-05-13 13:07:11,038 [INFO] Script finished — return code: 0
+2026-05-13 13:07:13,745 [INFO] Pushed last_results.json
+2026-05-13 13:07:13,750 [INFO] Pushed last_results.json (2 entries)
+2026-05-13 13:07:16,390 [INFO] Pushed run_request.json
+2026-05-13 13:07:16,403 [INFO] ✓ Done for 15-04-2026
+2026-05-13 13:10:21,689 [INFO] ▶ Run request: date=15-04-2026 courts=['BHC']
+2026-05-13 13:10:23,305 [INFO] Pushed run_request.json
+2026-05-13 13:10:24,362 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-13 13:10:24,365 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 15-04-2026 --bhc --no-prompt
+2026-05-13 13:11:02,132 [INFO] Script finished — return code: 0
+2026-05-13 13:11:04,592 [INFO] Pushed last_results.json
+2026-05-13 13:11:04,598 [INFO] Pushed last_results.json (2 entries)
+2026-05-13 13:11:07,207 [INFO] Pushed run_request.json
+2026-05-13 13:11:07,214 [INFO] ✓ Done for 15-04-2026
+2026-05-13 13:28:26,987 [INFO] ▶ Run request: date=15-04-2026 courts=['BHC']
+2026-05-13 13:28:28,549 [INFO] Pushed run_request.json
+2026-05-13 13:28:29,816 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-13 13:28:29,817 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 15-04-2026 --bhc --no-prompt
+2026-05-13 13:29:00,141 [INFO] Script finished — return code: 0
+2026-05-13 13:29:02,700 [INFO] Pushed last_results.json
+2026-05-13 13:29:11,182 [INFO] Pushed last_results.json (2 entries)
+2026-05-13 13:29:13,885 [INFO] Pushed run_request.json
+2026-05-13 13:29:13,890 [INFO] ✓ Done for 15-04-2026
+2026-05-13 14:56:54,539 [INFO] ▶ Run request: date=28-04-2026 courts=['SCI']
+2026-05-13 14:56:56,221 [INFO] Pushed run_request.json
+2026-05-13 14:56:57,277 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-13 14:56:57,278 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 28-04-2026 --sci --no-prompt
+2026-05-13 14:58:42,733 [INFO] Script finished — return code: 0
+2026-05-13 14:58:45,585 [INFO] Pushed last_results.json
+2026-05-13 14:58:45,591 [INFO] Pushed last_results.json (2 entries)
+2026-05-13 14:58:48,126 [INFO] Pushed run_request.json
+2026-05-13 14:58:48,128 [INFO] ✓ Done for 28-04-2026
+2026-05-13 15:46:07,375 [INFO] ▶ Run request: date=15-04-2026 courts=['BHC']
+2026-05-13 15:46:08,965 [INFO] Pushed run_request.json
+2026-05-13 15:46:10,056 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-13 15:46:10,056 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 15-04-2026 --bhc --no-prompt
+2026-05-13 15:49:54,475 [INFO] Script finished — return code: 0
+2026-05-13 15:49:57,191 [INFO] Pushed last_results.json
+2026-05-13 15:49:57,194 [INFO] Pushed last_results.json (6 entries)
+2026-05-13 15:49:59,857 [INFO] Pushed run_request.json
+2026-05-13 15:49:59,860 [INFO] ✓ Done for 15-04-2026
+2026-05-13 15:51:01,104 [INFO] ▶ Run request: date=06-05-2026 courts=['NCLAT']
+2026-05-13 15:51:02,772 [INFO] Pushed run_request.json
+2026-05-13 15:51:03,841 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-13 15:51:03,842 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 06-05-2026 --nclat --no-prompt
+2026-05-13 15:51:33,015 [INFO] Script finished — return code: 0
+2026-05-13 15:51:35,651 [INFO] Pushed last_results.json
+2026-05-13 15:51:35,656 [INFO] Pushed last_results.json (1 entries)
+2026-05-13 15:51:38,333 [INFO] Pushed run_request.json
+2026-05-13 15:51:38,337 [INFO] ✓ Done for 06-05-2026
+2026-05-13 15:54:41,581 [INFO] ▶ Run request: date=22-04-2026 courts=['NCLT']
+2026-05-13 15:57:09,029 [INFO] Pushed run_request.json
+2026-05-13 15:57:10,114 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-13 15:57:10,116 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 22-04-2026 --nclt --no-prompt
+2026-05-13 15:59:37,545 [INFO] Script finished — return code: 0
+2026-05-13 15:59:40,266 [INFO] Pushed last_results.json
+2026-05-13 15:59:40,270 [INFO] Pushed last_results.json (1 entries)
+2026-05-13 15:59:43,042 [INFO] Pushed run_request.json
+2026-05-13 15:59:43,052 [INFO] ✓ Done for 22-04-2026
+2026-05-13 16:05:50,058 [INFO] ▶ Run request: date=28-04-2026 courts=['SCI']
+2026-05-13 16:05:51,648 [INFO] Pushed run_request.json
+2026-05-13 16:05:52,734 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-13 16:05:52,734 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 28-04-2026 --sci --no-prompt
+2026-05-13 16:07:36,843 [INFO] Script finished — return code: 0
+2026-05-13 16:07:39,977 [INFO] Pushed last_results.json
+2026-05-13 16:07:39,981 [INFO] Pushed last_results.json (2 entries)
+2026-05-13 16:07:43,192 [INFO] Pushed run_request.json
+2026-05-13 16:07:43,198 [INFO] ✓ Done for 28-04-2026
+2026-05-13 16:41:45,459 [INFO] ▶ Run request: date=22-04-2026 courts=['NCLT']
+2026-05-13 16:41:47,042 [INFO] Pushed run_request.json
+2026-05-13 16:41:48,094 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-13 16:41:48,111 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 22-04-2026 --nclt --no-prompt
+2026-05-13 16:44:45,738 [INFO] Script finished — return code: 0
+2026-05-13 16:44:48,386 [INFO] Pushed last_results.json
+2026-05-13 16:44:48,389 [INFO] Pushed last_results.json (1 entries)
+2026-05-13 16:44:51,287 [INFO] Pushed run_request.json
+2026-05-13 16:44:51,309 [INFO] ✓ Done for 22-04-2026
+2026-05-13 17:20:42,505 [INFO] ▶ Run request: date=22-04-2026 courts=['NCLT']
+2026-05-13 17:20:44,822 [INFO] Pushed run_request.json
+2026-05-13 17:20:46,153 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-13 17:20:46,154 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 22-04-2026 --nclt --no-prompt
+2026-05-13 17:21:45,147 [INFO] Script finished — return code: 0
+2026-05-13 17:21:47,842 [INFO] Pushed last_results.json
+2026-05-13 17:21:47,845 [INFO] Pushed last_results.json (1 entries)
+2026-05-13 17:21:50,492 [INFO] Pushed run_request.json
+2026-05-13 17:21:50,495 [INFO] ✓ Done for 22-04-2026
+2026-05-13 17:22:51,657 [INFO] ▶ Run request: date=22-04-2026 courts=['NCLT', 'NCLAT']
+2026-05-13 17:22:53,352 [INFO] Pushed run_request.json
+2026-05-13 17:22:54,397 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-13 17:22:54,397 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 22-04-2026 --nclt --nclat --no-prompt
+2026-05-13 17:25:21,743 [INFO] Script finished — return code: 0
+2026-05-13 17:25:24,754 [INFO] Pushed last_results.json
+2026-05-13 17:25:24,763 [INFO] Pushed last_results.json (0 entries)
+2026-05-13 17:25:27,866 [INFO] Pushed run_request.json
+2026-05-13 17:25:27,876 [INFO] ✓ Done for 22-04-2026
+2026-05-14 13:06:32,870 [INFO] ==================================================
+2026-05-14 13:06:32,871 [INFO]   Watcher started | Repo: apmhAI/Court-automation | Poll: 60s
+2026-05-14 13:06:32,872 [INFO] ==================================================
+2026-05-15 14:48:20,084 [INFO] ==================================================
+2026-05-15 14:48:20,084 [INFO]   Watcher started | Repo: apmhAI/Court-automation | Poll: 60s
+2026-05-15 14:48:20,085 [INFO] ==================================================
+2026-05-15 14:48:21,296 [INFO] ▶ Run request: date=15-05-2026 courts=['NCLT', 'NCLAT', 'SCI', 'BHC']
+2026-05-16 13:06:33,421 [INFO] ==================================================
+2026-05-16 13:06:33,422 [INFO]   Watcher started | Repo: apmhAI/Court-automation | Poll: 60s
+2026-05-16 13:06:33,424 [INFO] ==================================================
+2026-05-16 13:06:34,533 [INFO] ▶ Run request: date=15-05-2026 courts=['NCLT', 'NCLAT']
+2026-05-16 13:06:35,971 [INFO] Pushed run_request.json
+2026-05-16 13:06:36,955 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-16 13:06:36,956 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 15-05-2026 --nclt --nclat --no-prompt
+2026-05-18 13:06:32,866 [INFO] ==================================================
+2026-05-18 13:06:32,867 [INFO]   Watcher started | Repo: apmhAI/Court-automation | Poll: 60s
+2026-05-18 13:06:32,868 [INFO] ==================================================
+2026-05-19 12:18:48,322 [INFO] ==================================================
+2026-05-19 12:18:48,323 [INFO]   Watcher started | Repo: apmhAI/Court-automation | Poll: 60s
+2026-05-19 12:18:48,324 [INFO] ==================================================
+2026-05-19 12:18:50,599 [INFO] ▶ Run request: date=14-05-2026 courts=['NCLT', 'NCLAT', 'SCI', 'BHC']
+2026-05-19 12:18:52,279 [INFO] Pushed run_request.json
+2026-05-19 12:18:53,390 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-19 12:18:53,391 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 14-05-2026 --nclt --nclat --sci --bhc --no-prompt
+2026-05-19 12:23:20,766 [INFO] Script finished — return code: 0
+2026-05-19 12:23:23,518 [INFO] Pushed last_results.json
+2026-05-19 12:23:23,521 [INFO] Pushed last_results.json (0 entries)
+2026-05-19 12:23:35,126 [INFO] Pushed run_request.json
+2026-05-19 12:23:35,131 [INFO] ✓ Done for 14-05-2026
+2026-05-19 12:26:48,656 [INFO] ▶ Run request: date=14-05-2026 courts=['NCLT', 'NCLAT', 'SCI', 'BHC']
+2026-05-19 12:26:50,486 [INFO] Pushed run_request.json
+2026-05-19 12:26:51,568 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-19 12:26:51,569 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 14-05-2026 --nclt --nclat --sci --bhc --no-prompt
+2026-05-19 12:31:34,424 [INFO] Script finished — return code: 0
+2026-05-19 12:31:37,214 [INFO] Pushed last_results.json
+2026-05-19 12:31:37,220 [INFO] Pushed last_results.json (0 entries)
+2026-05-19 12:31:40,007 [INFO] Pushed run_request.json
+2026-05-19 12:31:40,009 [INFO] ✓ Done for 14-05-2026
+2026-05-19 12:32:41,144 [INFO] ▶ Run request: date=08-05-2026 courts=['NCLT']
+2026-05-19 12:32:42,738 [INFO] Pushed run_request.json
+2026-05-19 12:32:43,903 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-19 12:32:43,904 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 08-05-2026 --nclt --no-prompt
+2026-05-19 12:35:06,309 [INFO] Script finished — return code: 0
+2026-05-19 12:35:09,964 [INFO] Pushed last_results.json
+2026-05-19 12:35:09,966 [INFO] Pushed last_results.json (2 entries)
+2026-05-19 12:35:13,182 [INFO] Pushed run_request.json
+2026-05-19 12:35:13,187 [INFO] ✓ Done for 08-05-2026
+2026-05-19 12:55:02,141 [INFO] ==================================================
+2026-05-19 12:55:02,142 [INFO]   Watcher started | Repo: apmhAI/Court-automation | Poll: 60s
+2026-05-19 12:55:02,142 [INFO] ==================================================
+2026-05-19 12:56:04,052 [INFO] ▶ Run request: date=08-05-2026 courts=['NCLT']
+2026-05-19 12:56:05,466 [INFO] Pushed run_request.json
+2026-05-19 12:56:06,343 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-19 12:56:06,344 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 08-05-2026 --nclt --no-prompt
+2026-05-19 12:58:04,561 [INFO] Script finished — return code: 0
+2026-05-19 12:58:06,750 [INFO] Pushed last_results.json
+2026-05-19 12:58:06,756 [INFO] Pushed last_results.json (2 entries)
+2026-05-19 12:58:08,900 [INFO] Pushed run_request.json
+2026-05-19 12:58:08,963 [INFO] ✓ Done for 08-05-2026
+2026-05-19 13:00:10,720 [INFO] ▶ Run request: date=14-05-2026 courts=['NCLT', 'NCLAT', 'SCI', 'BHC']
+2026-05-19 13:00:12,097 [INFO] Pushed run_request.json
+2026-05-19 13:00:13,252 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-19 13:00:13,256 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 14-05-2026 --nclt --nclat --sci --bhc --no-prompt
+2026-05-19 13:03:34,760 [INFO] Script finished — return code: 0
+2026-05-19 13:03:36,972 [INFO] Pushed last_results.json
+2026-05-19 13:03:36,974 [INFO] Pushed last_results.json (0 entries)
+2026-05-19 13:03:39,350 [INFO] Pushed run_request.json
+2026-05-19 13:03:39,351 [INFO] ✓ Done for 14-05-2026
+2026-05-19 14:43:39,363 [ERROR] Poll error: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/apmhAI/Court-automation/contents/run_request.json?ref=main (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))
+2026-05-21 17:14:17,772 [INFO] ==================================================
+2026-05-21 17:14:17,773 [INFO]   Watcher started | Repo: apmhAI/Court-automation | Poll: 60s
+2026-05-21 17:14:17,774 [INFO] ==================================================
+2026-05-21 17:14:19,049 [INFO] ▶ Run request: date=20-05-2026 courts=['NCLT', 'NCLAT', 'SCI', 'BHC']
+2026-05-21 17:14:22,893 [INFO] Pushed run_request.json
+2026-05-21 17:14:24,537 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-21 17:14:24,539 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 20-05-2026 --nclt --nclat --sci --bhc --no-prompt
+2026-05-21 17:20:08,410 [INFO] Script finished — return code: 0
+2026-05-21 17:20:11,221 [INFO] Pushed last_results.json
+2026-05-21 17:20:11,226 [INFO] Pushed last_results.json (0 entries)
+2026-05-21 17:20:15,562 [INFO] Pushed run_request.json
+2026-05-21 17:20:15,570 [INFO] ✓ Done for 20-05-2026
+2026-05-21 17:22:18,743 [INFO] ▶ Run request: date=21-05-2026 courts=['NCLT', 'NCLAT', 'SCI', 'BHC']
+2026-05-21 17:22:20,655 [INFO] Pushed run_request.json
+2026-05-21 17:22:21,759 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-21 17:22:21,760 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 21-05-2026 --nclt --nclat --sci --bhc --no-prompt
+2026-05-21 17:25:49,657 [INFO] Script finished — return code: 0
+2026-05-21 17:25:52,546 [INFO] Pushed last_results.json
+2026-05-21 17:25:52,555 [INFO] Pushed last_results.json (0 entries)
+2026-05-21 17:25:55,393 [INFO] Pushed run_request.json
+2026-05-21 17:25:55,401 [INFO] ✓ Done for 21-05-2026
+2026-05-21 18:47:04,183 [INFO] ==================================================
+2026-05-21 18:47:04,185 [INFO]   Watcher started | Repo: apmhAI/Court-automation | Poll: 60s
+2026-05-21 18:47:04,186 [INFO] ==================================================
+2026-05-21 19:04:23,025 [INFO] ▶ Run request: date=22-05-2026 courts=['NCLT', 'NCLAT', 'SCI', 'BHC']
+2026-05-21 19:04:24,492 [INFO] Pushed run_request.json
+2026-05-21 19:04:25,311 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-21 19:04:25,312 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 22-05-2026 --nclt --nclat --sci --bhc --no-prompt
+2026-05-21 19:06:56,701 [INFO] Script finished — return code: 0
+2026-05-21 19:06:59,998 [INFO] Pushed last_results.json
+2026-05-21 19:07:00,002 [INFO] Pushed last_results.json (2 entries)
+2026-05-21 19:07:02,871 [INFO] Pushed run_request.json
+2026-05-21 19:07:02,874 [INFO] ✓ Done for 22-05-2026
+2026-05-22 18:30:01,810 [INFO] ==================================================
+2026-05-22 18:30:01,811 [INFO]   Watcher started | Repo: apmhAI/Court-automation | Poll: 60s
+2026-05-22 18:30:01,811 [INFO] ==================================================
+2026-05-25 18:30:03,878 [INFO] ==================================================
+2026-05-25 18:30:03,878 [INFO]   Watcher started | Repo: apmhAI/Court-automation | Poll: 60s
+2026-05-25 18:30:03,879 [INFO] ==================================================
+2026-05-26 18:30:03,629 [INFO] ==================================================
+2026-05-26 18:30:03,630 [INFO]   Watcher started | Repo: apmhAI/Court-automation | Poll: 60s
+2026-05-26 18:30:03,630 [INFO] ==================================================
+2026-05-28 18:44:35,783 [INFO] ==================================================
+2026-05-28 18:44:35,805 [INFO]   Watcher started | Repo: apmhAI/Court-automation | Poll: 60s
+2026-05-28 18:44:35,805 [INFO] ==================================================
+2026-05-30 17:48:21,915 [INFO] ==================================================
+2026-05-30 17:48:21,916 [INFO]   Watcher started | Repo: apmhAI/Court-automation | Poll: 60s
+2026-05-30 17:48:21,918 [INFO] ==================================================
+2026-05-30 17:49:23,952 [INFO] ▶ Run request: date=30-05-2026 courts=['NCLT', 'NCLAT', 'SCI', 'BHC']
+2026-05-30 17:49:25,432 [INFO] Pushed run_request.json
+2026-05-30 17:49:26,418 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-30 17:49:26,418 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 30-05-2026 --nclt --nclat --sci --bhc --no-prompt
+2026-05-30 17:50:50,191 [INFO] Script finished — return code: 0
+2026-05-30 17:50:52,446 [INFO] Pushed last_results.json
+2026-05-30 17:50:52,451 [INFO] Pushed last_results.json (0 entries)
+2026-05-30 17:50:55,110 [INFO] Pushed run_request.json
+2026-05-30 17:50:55,117 [INFO] ✓ Done for 30-05-2026
+2026-05-30 18:46:05,606 [INFO] ▶ Run request: date=22-04-2026 courts=['NCLT', 'NCLAT', 'SCI', 'BHC']
+2026-05-30 18:46:07,977 [INFO] Pushed run_request.json
+2026-05-30 18:46:09,086 [INFO] Updated clients.json (19 NCLT + 5 extra)
+2026-05-30 18:46:09,088 [INFO] Running: C:\Users\DELL_001\AppData\Local\Programs\Python\Python313\python.exe C:\Users\DELL_001\Downloads\Cauelist UI\court_automation.py --date 22-04-2026 --nclt --nclat --sci --bhc --no-prompt
+2026-05-30 18:55:24,423 [INFO] Script finished — return code: 0
+2026-05-30 18:55:26,797 [INFO] Pushed last_results.json
+2026-05-30 18:55:26,805 [INFO] Pushed last_results.json (8 entries)
+2026-05-30 18:55:29,427 [INFO] Pushed run_request.json
+2026-05-30 18:55:29,437 [INFO] ✓ Done for 22-04-2026
+2026-05-30 18:57:13,665 [INFO] ==================================================
+2026-05-30 18:57:13,665 [INFO]   Watcher started | Repo: apmhAI/Court-automation | Poll: 60s
+2026-05-30 18:57:13,665 [INFO] ==================================================
