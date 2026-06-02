@@ -1,37 +1,17 @@
 {
-  "date": "08 May 2026",
-  "generated": "02 Jun 2026 11:06 AM",
-  "total": 3,
+  "date": "22/04/2026",
+  "generated": "02 Jun 2026 11:11 AM",
+  "total": 1,
   "entries": [
     {
-      "source": "SCI",
-      "client": "KASHYAP MEHTA",
-      "court": "Supreme Court of India",
-      "case_no": "",
-      "parties": "45 C.A. No. BSE LTD K J JOHN AND CO | 2045-2046/2023 | XVII | Versus | KASHYAP K. MEHTA AND ORS. SAMIR MALIK [R-1], [R-4] | IA No. 70766/2023 - PERMISSION TO FILE | ADDITIONAL DOCUMENTS/FACTS/ANNEXURES | IA No. 64667/2023 - STAY APPLICATION | 46 SLP(C) No. 27837/2023 RAM CHAND SHARMA GOLDY GOYAL [P-",
-      "counsel": "",
-      "purpose": "",
-      "date": "08 May 2026"
-    },
-    {
-      "source": "SCI",
-      "client": "JAMMU AND KASHMIR BANK",
-      "court": "Supreme Court of India",
-      "case_no": "",
-      "parties": "21 W.P.(Crl.) No. 422/2025 RASHPAL SINGH TODD AND ANR. DHRUV SHARMA | X | Versus | JAMMU AND KASHMIR BANK LTD. AND ORS. B. K. SATIJA [R-1], ACM | LEGAL [R-2], SHARATH | SAMPATH [R-3], [R-4], | TUNGESH [R-8], NINAD | DOGRA [R-11] | FOR ADMISSION",
-      "counsel": "",
-      "purpose": "",
-      "date": "08 May 2026"
-    },
-    {
-      "source": "SCI",
-      "client": "KASHYAP MEHTA",
-      "court": "Supreme Court of India",
-      "case_no": "",
-      "parties": "48 C.A. No. 2045-2046/2023 BSE LTD K J JOHN AND CO | XVII | Versus | KASHYAP K. MEHTA AND ORS. SAMIR MALIK[R-1], [R-4] | IA No. 70766/2023 - PERMISSION TO FILE | ADDITIONAL DOCUMENTS/FACTS/ANNEXURES | IA No. 64667/2023 - STAY APPLICATION",
-      "counsel": "",
-      "purpose": "",
-      "date": "08 May 2026"
+      "source": "NCLT",
+      "client": "DEEPAK VIJAY BAGRA",
+      "court": "Mumbai Bench Court-II",
+      "case_no": "C. P. (IB)-1163(MB)2023 (RP App-03.09.2024)",
+      "parties": "The Bank of Maharashtra Limited Vs. Deepak Vijay Bagra",
+      "purpose": "Further Consideration Last Listed 05.03.2026",
+      "counsel": "Abhishek Samant",
+      "date": "22/04/2026"
     }
   ]
 }
