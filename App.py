@@ -285,11 +285,15 @@ with tab_results:
 
     # Warn if results are from a different date than the last run request
     rr_check, _ = gh_get("run_request.json")
-    if rr_check:
-        last_req_date = rr_check.get("date", "")          # format: DD-MM-YYYY
-        results_date  = (results or {}).get("date", "")   # format: DD-MM-YYYY
-        if last_req_date and results_date and last_req_date != results_date:
-            # Convert for display
+    if rr_check and rr_check.get("status") in ("pending", "running"):
+        last_req_date = rr_check.get("date", "")   # DD-MM-YYYY
+        results_date  = (results or {}).get("date", "")
+        # Normalise results_date to DD-MM-YYYY for comparison
+        try:
+            results_date_norm = datetime.strptime(results_date, "%d %B %Y").strftime("%d-%m-%Y")
+        except Exception:
+            results_date_norm = results_date
+        if last_req_date and results_date_norm and last_req_date != results_date_norm:
             try:
                 d = datetime.strptime(last_req_date, "%d-%m-%Y").strftime("%d %B %Y")
             except Exception:
