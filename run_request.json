@@ -1,4 +1,9 @@
 {
-  "status": "running",
-  "started_at": "02 Jun 2026 10:01 AM"
+  "status": "pending",
+  "date": "02-06-2026",
+  "courts": [
+    "NCLT",
+    "NCLAT"
+  ],
+  "requested_at": "02 Jun 2026 10:02 AM"
 }
