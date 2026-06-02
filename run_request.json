@@ -1,9 +1,3 @@
 {
-  "status": "pending",
-  "date": "02-06-2026",
-  "courts": [
-    "NCLT",
-    "NCLAT"
-  ],
-  "requested_at": "02 Jun 2026 09:29 AM"
+  "status": "idle"
 }
