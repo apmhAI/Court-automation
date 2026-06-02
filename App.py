@@ -265,6 +265,23 @@ with tab_results:
     results, _ = gh_get("last_results.json")
     entries = (results or {}).get("entries", [])
 
+    # Warn if results are from a different date than the last run request
+    rr_check, _ = gh_get("run_request.json")
+    if rr_check:
+        last_req_date = rr_check.get("date", "")          # format: DD-MM-YYYY
+        results_date  = (results or {}).get("date", "")   # format: DD-MM-YYYY
+        if last_req_date and results_date and last_req_date != results_date:
+            # Convert for display
+            try:
+                d = datetime.strptime(last_req_date, "%d-%m-%Y").strftime("%d %B %Y")
+            except Exception:
+                d = last_req_date
+            st.warning(
+                f"⚠️ **These results are from a previous run** — showing **{results_date}**, "
+                f"but the last request was for **{d}**. "
+                "The new run is still in progress or has not started yet."
+            )
+
     if not entries:
         st.info(" NO RESULT FOUND ...")
     else:
