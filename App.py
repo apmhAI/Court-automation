@@ -208,7 +208,7 @@ with tab_run:
         if btn:
             requested_at = datetime.now().strftime("%d %b %Y %I:%M %p")
 
-            # Write pending status to run_request.json — watcher.py will pick this up
+            # 1. Write pending status to run_request.json
             payload = {
                 "status":       "pending",
                 "date":         date_arg,
@@ -219,11 +219,28 @@ with tab_run:
             ok, err = gh_put("run_request.json", payload, sha, "Run request from Streamlit UI")
 
             if ok:
-                st.session_state.run_msg = ("ok",
-                    f"✅ Run requested for **{date_display}** · "
-                    f"Courts: **{', '.join(courts_sel)}**\n\n"
-                    "Your PC's watcher will pick this up within 60 seconds. "
-                    "Switch to the **Results** tab when done.")
+                # 2. Trigger GitHub Actions workflow (runs on cloud — no PC needed)
+                dispatch_url = f"https://api.github.com/repos/{_repo()}/actions/workflows/run_automation.yml/dispatches"
+                dispatch_payload = {
+                    "ref": _branch(),
+                    "inputs": {
+                        "date":         date_arg,
+                        "courts":       ",".join(courts_sel),
+                        "requested_at": requested_at,
+                    }
+                }
+                dr = req.post(dispatch_url, headers=_gh_headers(), json=dispatch_payload, timeout=15)
+                if dr.status_code == 204:
+                    st.session_state.run_msg = ("ok",
+                        f"✅ Run started for **{date_display}** · "
+                        f"Courts: **{', '.join(courts_sel)}**\n\n"
+                        "GitHub Actions is now running the automation in the cloud (~5–10 min). "
+                        "Switch to the **Results** tab to see progress.")
+                else:
+                    st.session_state.run_msg = ("warn",
+                        f"⚠️ Run queued but GitHub Actions dispatch failed ({dr.status_code}). "
+                        "Make sure the token in Streamlit secrets has the **workflow** scope. "
+                        "The run request is saved — watcher.py can still pick it up if running.")
             else:
                 st.session_state.run_msg = ("err",
                     f"❌ Could not write run request to GitHub: {err}")
@@ -231,8 +248,9 @@ with tab_run:
 
     if st.session_state.run_msg:
         kind, msg = st.session_state.run_msg
-        if kind == "ok": st.success(msg)
-        else:            st.error(msg)
+        if kind == "ok":   st.success(msg)
+        elif kind == "warn": st.warning(msg)
+        else:              st.error(msg)
 
     # Show pending status
     rr2, rr_sha = gh_get("run_request.json")
