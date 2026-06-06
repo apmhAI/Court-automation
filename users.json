@@ -78,5 +78,13 @@
     "created_at": "02 Jun 2026 11:19 AM",
     "reset_otp": null,
     "reset_expiry": null
+  },
+  "adv.amiganatra@gmail.com": {
+    "name": "Ami",
+    "email": "adv.amiganatra@gmail.com",
+    "password_hash": "063524f169a598e83aced9502be044c0b791658c19b746b9e056440f93d4d3c4",
+    "created_at": "06 Jun 2026 09:14 AM",
+    "reset_otp": null,
+    "reset_expiry": null
   }
 }
