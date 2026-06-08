@@ -1,0 +1,140 @@
+name: Run Court Automation
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Date (DD-MM-YYYY)'
+        required: true
+        type: string
+      courts:
+        description: 'Courts — comma-separated (NCLT,NCLAT,SCI,BHC)'
+        required: true
+        type: string
+      requested_at:
+        description: 'Requested at (display only)'
+        required: false
+        type: string
+
+jobs:
+  automate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y tesseract-ocr poppler-utils
+
+      - name: Install Python dependencies
+        run: pip install -r requirements-automation.txt
+
+      - name: Install Playwright Chromium
+        run: python -m playwright install chromium --with-deps
+
+      - name: Pull latest clients.json from GitHub
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          python - <<'PYEOF'
+          import json, base64, requests, os
+          from pathlib import Path
+          token = os.environ["GH_TOKEN"]
+          repo  = os.environ["REPO"]
+          headers = {"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"}
+          r = requests.get(f"https://api.github.com/repos/{repo}/contents/clients.json", headers=headers)
+          if r.ok:
+              data = json.loads(base64.b64decode(r.json()["content"]))
+              Path("clients.json").write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+              print(f"clients.json updated")
+          else:
+              print("Warning: could not fetch clients.json")
+          PYEOF
+
+      - name: Mark run as running
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          python - <<'PYEOF'
+          import json, base64, requests, os
+          from datetime import datetime
+          token = os.environ["GH_TOKEN"]
+          repo  = os.environ["REPO"]
+          headers = {"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"}
+          r = requests.get(f"https://api.github.com/repos/{repo}/contents/run_request.json", headers=headers)
+          d = r.json(); sha = d["sha"]
+          rr = json.loads(base64.b64decode(d["content"]))
+          rr["status"] = "running"
+          rr["started_at"] = datetime.now().strftime("%d %b %Y %I:%M %p")
+          encoded = base64.b64encode(json.dumps(rr, indent=2).encode()).decode()
+          r2 = requests.put(f"https://api.github.com/repos/{repo}/contents/run_request.json",
+              headers=headers, json={"message": "Mark as running", "content": encoded, "sha": sha, "branch": "main"})
+          print(f"Mark running: {r2.status_code}")
+          PYEOF
+
+      - name: Run court automation
+        run: |
+          DATE="${{ inputs.date }}"
+          COURTS="${{ inputs.courts }}"
+          FLAGS=""
+          IFS=',' read -ra COURT_LIST <<< "$COURTS"
+          for court in "${COURT_LIST[@]}"; do
+            court=$(echo "$court" | tr -d ' ')
+            case $court in
+              NCLT)  FLAGS="$FLAGS --nclt"  ;;
+              NCLAT) FLAGS="$FLAGS --nclat" ;;
+              SCI)   FLAGS="$FLAGS --sci"   ;;
+              BHC)   FLAGS="$FLAGS --bhc"   ;;
+            esac
+          done
+          echo "Running: python court_automation.py --date $DATE $FLAGS --no-prompt"
+          python court_automation.py --date "$DATE" $FLAGS --no-prompt
+
+      - name: Push results and mark done
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          python - <<'PYEOF'
+          import json, base64, requests, os
+          from datetime import datetime
+          from pathlib import Path
+          token = os.environ["GH_TOKEN"]
+          repo  = os.environ["REPO"]
+          headers = {"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"}
+          def gh_get(path):
+              r = requests.get(f"https://api.github.com/repos/{repo}/contents/{path}", headers=headers)
+              if not r.ok: return None, None
+              d = r.json()
+              return json.loads(base64.b64decode(d["content"])), d["sha"]
+          def gh_put(path, content, sha, msg):
+              encoded = base64.b64encode(json.dumps(content, indent=2, ensure_ascii=False).encode()).decode()
+              r = requests.put(f"https://api.github.com/repos/{repo}/contents/{path}",
+                  headers=headers, json={"message": msg, "content": encoded, "sha": sha, "branch": "main"})
+              print(f"Push {path}: {r.status_code}")
+              if not r.ok: print(r.text[:200])
+          results_path = Path("last_results.json")
+          if results_path.exists():
+              results_data = json.loads(results_path.read_text(encoding="utf-8"))
+              _, old_sha = gh_get("last_results.json")
+              gh_put("last_results.json", results_data, old_sha, f"Results {results_data.get('total',0)} match(es)")
+          rr, rr_sha = gh_get("run_request.json")
+          if rr:
+              rr["status"] = "done"
+              rr["completed_at"] = datetime.now().strftime("%d %b %Y %I:%M %p")
+              gh_put("run_request.json", rr, rr_sha, "Run complete")
+          PYEOF
