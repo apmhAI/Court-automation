@@ -176,11 +176,15 @@ def signup(name: str, email: str, password: str) -> tuple:
     return False, f"Could not create account: {msg}"
 
 def request_password_reset(email: str) -> tuple:
-    """Generates OTP, stores it, sends email. Returns (True, "ok") or (False, msg)."""
+    """
+    Generates OTP, stores it, tries to email it.
+    Returns (True, otp_or_"ok") where otp is returned only when email fails,
+    so the caller can show it on screen as a fallback.
+    """
     users = _load_users()
     key   = email.strip().lower()
     if key not in users:
-        # Don't reveal if email exists — return ok anyway
+        # Don't reveal whether email exists — always return ok
         return True, "ok"
     otp    = _generate_otp()
     expiry = (datetime.now() + timedelta(minutes=15)).strftime("%Y-%m-%d %H:%M:%S")
@@ -191,7 +195,8 @@ def request_password_reset(email: str) -> tuple:
         return False, f"Could not store reset code: {msg}"
     sent, smtp_msg = _send_reset_email(key, otp, users[key]["name"])
     if not sent:
-        return False, f"Could not send email — {smtp_msg}"
+        # Email failed — return the OTP so the UI can show it on screen
+        return True, f"EMAIL_FAILED:{otp}"
     return True, "ok"
 
 def verify_reset_otp(email: str, otp: str) -> tuple:

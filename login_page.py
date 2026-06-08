@@ -186,6 +186,11 @@ def render_login_page():
                 if ok:
                     st.session_state.reset_email = email.strip().lower()
                     st.session_state.auth_screen = "verify"
+                    if msg.startswith("EMAIL_FAILED:"):
+                        otp_on_screen = msg.split(":", 1)[1]
+                        st.session_state.otp_on_screen = otp_on_screen
+                    else:
+                        st.session_state.otp_on_screen = None
                     st.rerun()
                 else:
                     st.error(msg)
@@ -201,7 +206,19 @@ def render_login_page():
     elif screen == "verify":
         st.markdown("### Enter reset code")
         email = st.session_state.reset_email
-        st.info(f"A 6-digit code was sent to **{email}**. Check your inbox.")
+        otp_on_screen = st.session_state.get("otp_on_screen")
+        if otp_on_screen:
+            st.warning("⚠️ Email could not be sent. Use the code below to reset your password:")
+            st.markdown(
+                f"<div style='text-align:center;margin:16px 0'>"
+                f"<span style='font-size:36px;font-weight:700;letter-spacing:10px;"
+                f"color:#185FA5;background:#EBF3FC;padding:16px 24px;"
+                f"border-radius:8px;display:inline-block'>{otp_on_screen}</span>"
+                f"</div>",
+                unsafe_allow_html=True
+            )
+        else:
+            st.info(f"A 6-digit code was sent to **{email}**. Check your inbox.")
 
         otp      = st.text_input("6-digit code", placeholder="123456",
                                   max_chars=6, key="reset_otp")
@@ -225,8 +242,9 @@ def render_login_page():
                     ok, msg = reset_password(email, otp, new_pass)
                 if ok:
                     st.success("✅ Password reset successfully! Please sign in with your new password.")
-                    st.session_state.auth_screen  = "login"
-                    st.session_state.reset_email  = ""
+                    st.session_state.auth_screen   = "login"
+                    st.session_state.reset_email   = ""
+                    st.session_state.otp_on_screen = None
                     st.rerun()
                 else:
                     st.error(msg)
@@ -237,7 +255,12 @@ def render_login_page():
                 with st.spinner("Resending…"):
                     ok, msg = request_password_reset(email)
                 if ok:
-                    st.success("New code sent!")
+                    if msg.startswith("EMAIL_FAILED:"):
+                        st.session_state.otp_on_screen = msg.split(":", 1)[1]
+                        st.rerun()
+                    else:
+                        st.session_state.otp_on_screen = None
+                        st.success("New code sent to your email!")
                 else:
                     st.error(msg)
         with col2:
@@ -250,19 +273,51 @@ def render_login_page():
 
 def render_user_menu():
     """
-    Renders a small logout button in the top-right of the main app.
+    Renders user info, change-password form, and logout button in the sidebar.
     Call this at the top of app.py after authentication passes.
     """
+    from auth import _verify_password, _hash_password, _load_users, _save_users
+
     user = st.session_state.get("user", {})
     name = user.get("name", "User")
+    email = user.get("email", "")
 
     with st.sidebar:
         st.markdown(f"### 👤 {name}")
-        st.caption(user.get("email", ""))
+        st.caption(email)
+        st.divider()
+
+        # ── Change Password ────────────────────────────────────────────
+        with st.expander("🔑 Change Password"):
+            cur  = st.text_input("Current password", type="password",
+                                  key="cp_current")
+            new1 = st.text_input("New password", type="password",
+                                  placeholder="Min 6 characters", key="cp_new1")
+            new2 = st.text_input("Confirm new password", type="password",
+                                  key="cp_new2")
+            if st.button("Update password", use_container_width=True, key="cp_btn"):
+                if not all([cur, new1, new2]):
+                    st.error("Fill in all fields.")
+                elif new1 != new2:
+                    st.error("New passwords don't match.")
+                elif len(new1) < 6:
+                    st.error("Password must be at least 6 characters.")
+                elif not _verify_password(cur, user.get("password_hash", "")):
+                    st.error("Current password is incorrect.")
+                else:
+                    users = _load_users()
+                    users[email]["password_hash"] = _hash_password(new1)
+                    ok, msg = _save_users(users)
+                    if ok:
+                        st.session_state.user["password_hash"] = _hash_password(new1)
+                        st.success("✅ Password updated!")
+                    else:
+                        st.error(f"Could not save: {msg}")
+
         st.divider()
         if st.button("🚪 Sign out", use_container_width=True):
             for key in ["authenticated", "user", "auth_screen",
-                        "reset_email", "clients_loaded",
+                        "reset_email", "otp_on_screen", "clients_loaded",
                         "save_msg", "run_msg"]:
                 st.session_state.pop(key, None)
             st.rerun()
