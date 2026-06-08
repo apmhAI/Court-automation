@@ -1584,9 +1584,12 @@ async def _bhc_async(date_str: str) -> list:
         await page.wait_for_timeout(3_000)
         log.info("BHC: causelistFinal loaded — %s", page.url)
 
+        # Extract day, month, year for format-agnostic verification
+        dd, mm, yyyy = date_str.split("-")  # date_str is DD-MM-YYYY
+
         filled = False
 
-        # FIX: Use the correct slash-separated date format
+        # Try 1: jQuery datepicker setDate (accepts DD/MM/YYYY)
         result = await page.evaluate(f"""
             () => {{
                 try {{
@@ -1600,7 +1603,8 @@ async def _bhc_async(date_str: str) -> list:
             }}
         """)
         log.info("BHC: jQuery setDate result: %s", result)
-        if result and bhc_date in str(result):
+        # Accept any separator — just check that DD, MM, YYYY are all present
+        if result and dd in str(result) and mm in str(result) and yyyy in str(result):
             filled = True
             log.info("BHC: date set via jQuery datepicker")
 
@@ -1611,18 +1615,20 @@ async def _bhc_async(date_str: str) -> list:
                 await page.wait_for_timeout(200)
                 await page.keyboard.press("Control+a")
                 await page.keyboard.press("Delete")
-                await page.keyboard.type(bhc_date, delay=60)  # FIX: use slash format
+                await page.keyboard.type(bhc_date, delay=60)
                 await page.wait_for_timeout(400)
                 await page.keyboard.press("Escape")
                 await page.wait_for_timeout(200)
                 val = await loc.input_value()
                 log.info("BHC: keyboard type → value=%s", val)
-                if bhc_date in val:
+                if dd in val and mm in val and yyyy in val:
                     filled = True
+                    log.info("BHC: date set via keyboard")
             except Exception as e:
                 log.warning("BHC: keyboard type failed: %s", e)
 
         if not filled:
+            # Last resort: directly set the value in whatever format the field holds
             await page.evaluate(f"""
                 () => {{
                     const inp = document.querySelector('#demo1') ||
@@ -1638,7 +1644,7 @@ async def _bhc_async(date_str: str) -> list:
                 }}
             """)
             await page.wait_for_timeout(300)
-            log.warning("BHC: used last-resort JS fill")
+            log.warning("BHC: used last-resort JS fill — value forced to %s", bhc_date)
 
         search_clicked = False
         for sel in [

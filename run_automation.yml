@@ -135,12 +135,14 @@ jobs:
           python court_automation.py --date "$DATE" $FLAGS --no-prompt
 
       # ── 9. Upload debug screenshot (always, so we can see what NCLT served) ──
-      - name: Upload debug screenshot
+      - name: Upload debug screenshots
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: nclt-debug-screenshot
-          path: nclt_page_debug.png
+          name: debug-screenshots
+          path: |
+            nclt_page_debug.png
+            bhc_no_rows.png
           if-no-files-found: ignore
 
       # ── 10. Push results + mark done (always runs, even on failure) ────────
