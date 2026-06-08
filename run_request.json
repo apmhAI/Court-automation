@@ -1,5 +1,5 @@
 {
-  "status": "running",
+  "status": "done",
   "date": "08-06-2026",
   "courts": [
     "NCLT",
@@ -8,5 +8,6 @@
     "BHC"
   ],
   "requested_at": "08 Jun 2026 06:09 AM",
-  "started_at": "08 Jun 2026 06:10 AM"
+  "started_at": "08 Jun 2026 06:10 AM",
+  "completed_at": "08 Jun 2026 06:11 AM"
 }
