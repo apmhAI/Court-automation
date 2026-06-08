@@ -3,9 +3,7 @@
   "date": "08-06-2026",
   "courts": [
     "NCLT",
-    "NCLAT",
-    "SCI",
-    "BHC"
+    "NCLAT"
   ],
   "requested_at": "08 Jun 2026 07:23 AM"
 }
