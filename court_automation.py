@@ -934,7 +934,7 @@ async def run_nclt_automation(search_date: datetime = None):
         for attempt in range(3):
             try:
                 log.info(f"Opening NCLT cause list page (attempt {attempt+1})…")
-                await page.goto("https://nclt.gov.in/all-couse-list",
+                await page.goto("https://nclt.gov.in/all-cause-list",
                                 wait_until="domcontentloaded", timeout=45000)
                 break
             except Exception as e:
