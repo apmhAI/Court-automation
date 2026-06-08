@@ -134,7 +134,16 @@ jobs:
           echo "Running: python court_automation.py --date $DATE $FLAGS --no-prompt"
           python court_automation.py --date "$DATE" $FLAGS --no-prompt
 
-      # ── 9. Push results + mark done (always runs, even on failure) ─────────
+      # ── 9. Upload debug screenshot (always, so we can see what NCLT served) ──
+      - name: Upload debug screenshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nclt-debug-screenshot
+          path: nclt_page_debug.png
+          if-no-files-found: ignore
+
+      # ── 10. Push results + mark done (always runs, even on failure) ────────
       - name: Push results and mark done
         if: always()
         env:

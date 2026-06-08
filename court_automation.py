@@ -945,7 +945,27 @@ async def run_nclt_automation(search_date: datetime = None):
                     return []
                 await page.wait_for_timeout(3000)
 
-        await page.wait_for_timeout(3000)  # FIX: longer wait for CAPTCHA to render
+        await page.wait_for_timeout(3000)
+
+        # Log page title and URL so we can see if we landed on the right page
+        page_title = await page.title()
+        page_url   = page.url
+        log.info(f"Page loaded — title: '{page_title}' | url: {page_url}")
+
+        # Save a screenshot for debugging (uploaded as workflow artifact)
+        try:
+            await page.screenshot(path="nclt_page_debug.png", full_page=True)
+            log.info("Screenshot saved: nclt_page_debug.png")
+        except Exception as e:
+            log.warning(f"Could not save screenshot: {e}")
+
+        # Check if the date field exists at all
+        date_field_exists = await page.locator("#edit-field-cause-date-value").count()
+        if date_field_exists == 0:
+            page_text_preview = (await page.inner_text("body"))[:500]
+            log.error(f"Date field #edit-field-cause-date-value NOT FOUND on page. Page preview:\n{page_text_preview}")
+            await browser.close()
+            return []
 
         await select_date_from_calendar(page, "edit-field-cause-date-value",   search_date)
         await select_date_from_calendar(page, "edit-field-cause-date-value-1", search_date)
