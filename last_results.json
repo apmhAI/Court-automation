@@ -1,6 +1,77 @@
 {
   "date": "08-06-2026",
-  "generated": "08 Jun 2026 06:43 AM",
-  "total": 0,
-  "entries": []
+  "generated": "08 Jun 2026 07:24 AM",
+  "total": 7,
+  "entries": [
+    {
+      "source": "NCLT",
+      "client": "MR. ADITYA RAHEJA",
+      "court": "Principal Bench Court-I",
+      "case_no": "(IB)- 182(PB)/2024",
+      "parties": "Surinder Aggarwal & Ors. Vs. Raheja Developers Limited",
+      "purpose": "For Order",
+      "counsel": "Piyush Singh/ Aditya Parulia/ Vivek Kumar",
+      "date": "08/06/2026"
+    },
+    {
+      "source": "NCLT",
+      "client": "MR. ATUL TANSUKHLAL MEHTA",
+      "court": "Mumbai Bench Court-V",
+      "case_no": "C.P. (IB)/95(MB)2025",
+      "parties": "Mr. Atul Tansukhlal Mehta",
+      "purpose": "Further Consideration",
+      "counsel": "Mehul Shah",
+      "date": "08/06/2026"
+    },
+    {
+      "source": "NCLT",
+      "client": "MRS. ANITA RAHEJA",
+      "court": "Mumbai Bench Court-I",
+      "case_no": "",
+      "parties": "IA(I.B.C)/2301(MB)2026- Anita D Raheja",
+      "purpose": "",
+      "counsel": "",
+      "date": "08/06/2026"
+    },
+    {
+      "source": "NCLT",
+      "client": "MR. DEEPAK RAHEJA",
+      "court": "Mumbai Bench Court-I",
+      "case_no": "C.P. (IB)/57(MB)2024",
+      "parties": "IA(I.B.C)/1816(MB)2026 - Deepak Raheja Vs IDBI Trusteeship Services Limited IN THE MATTER OF IDBI TRUSTEESHIP SERVICES LIMITED v/s MR. DEEPAK RAHEJA",
+      "purpose": "Last Listed 11.05.2026",
+      "counsel": "DSK Legal Akash Agarwal Devarajan Raman",
+      "date": "08/06/2026"
+    },
+    {
+      "source": "NCLT",
+      "client": "MRS. ANITA RAHEJA",
+      "court": "Mumbai Bench Court-I",
+      "case_no": "C.P. (IB)/58(MB)2024",
+      "parties": "IA(I.B.C)/1944(MB)2026 - Anita Rahejavs IDBI Trusteeship Services Limited IN THE MATTER OF IDBI TRUSTEESHIP SERVICES LIMITED V/s MRS. ANITA RAHEJA",
+      "purpose": "Last Listed 12.05.2026",
+      "counsel": "DSK Legal Akash Agarwal",
+      "date": "08/06/2026"
+    },
+    {
+      "source": "NCLT",
+      "client": "MR. SHIV RAHEJA",
+      "court": "Mumbai Bench Court-I",
+      "case_no": "C.P. (IB)/59(MB)2024",
+      "parties": "IA(I.B.C)/2024(MB)2026 - Shiv Raheja Vs IDBI Trusteeship Services Limited IN THE MATTER OF IDBI TRUSTEESHIP SERVICES LIMITED V/s MR. SHIV RAHEJA",
+      "purpose": "Last Listed 15.05.2026",
+      "counsel": "DSK Legal Akash Agarwal",
+      "date": "08/06/2026"
+    },
+    {
+      "source": "NCLT",
+      "client": "MR. ADITYA RAHEJA",
+      "court": "Mumbai Bench Court-I",
+      "case_no": "C.P. (IB)/68(MB)2024",
+      "parties": "IA(I.B.C)/1833(MB)2026 - Aditya Raheja Vs IDBI Trusteeship Services Limited IN THE MATTER OF IDBI TRUSTEESHIP SERVICES LIMITED V/s MR. ADITYA RAHEJA",
+      "purpose": "Last Listed 11.05.2026",
+      "counsel": "DSK Legal Akash Agarwal Devarajan Raman",
+      "date": "08/06/2026"
+    }
+  ]
 }
