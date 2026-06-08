@@ -157,7 +157,7 @@ CONFIG = {
         "smtp_port": 587,
         "sender_email": "vedika@apmh.in",
         "sender_password": "Vedrsat@2526#",
-        "recipient_emails": ["tejashree@apmh.in"],
+        "recipient_emails": ["ami@apmh.in"],
     },
     "log_file": "court_automation.log",
     "headless": True,  # FIX: Set True for server mode; False for debugging
