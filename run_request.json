@@ -1,9 +1,10 @@
 {
-  "status": "running",
+  "status": "done",
   "date": "08-05-2026",
   "courts": [
     "NCLT"
   ],
   "requested_at": "08 Jun 2026 06:27 AM",
-  "started_at": "08 Jun 2026 06:27 AM"
+  "started_at": "08 Jun 2026 06:27 AM",
+  "completed_at": "08 Jun 2026 06:28 AM"
 }
