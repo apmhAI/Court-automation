@@ -140,6 +140,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
+          RUN_DATE: ${{ inputs.date }}
         run: |
           python - <<'PYEOF'
           import json, base64, requests, os
@@ -181,14 +182,35 @@ jobs:
                   print(f"Failed to push {path}: {r.status_code} {r.text[:200]}")
 
           # Push last_results.json
+          # IMPORTANT: the checked-out repo already contains last_results.json
+          # (from a previous run). We must NOT push it unless the date matches
+          # the current run — otherwise stale data from a previous date shows in the UI.
+          requested_date = os.environ.get("RUN_DATE", "")
           results_path = Path("last_results.json")
           if results_path.exists():
               results_data = json.loads(results_path.read_text(encoding="utf-8"))
+              results_date = results_data.get("date", "")
+              if results_date != requested_date:
+                  print(f"WARNING: last_results.json has date '{results_date}' but run was for '{requested_date}' — pushing empty results to avoid showing stale data")
+                  results_data = {
+                      "date": requested_date,
+                      "generated": datetime.now().strftime("%d %b %Y %I:%M %p"),
+                      "total": 0,
+                      "entries": []
+                  }
               _, old_sha = gh_get("last_results.json")
               gh_put("last_results.json", results_data, old_sha,
-                     f"Results — {results_data.get('total', 0)} match(es)")
+                     f"Results {results_data.get('total', 0)} match(es)")
           else:
-              print("last_results.json not found — skipping push")
+              print("last_results.json not found — pushing empty results")
+              empty = {
+                  "date": requested_date,
+                  "generated": datetime.now().strftime("%d %b %Y %I:%M %p"),
+                  "total": 0,
+                  "entries": []
+              }
+              _, old_sha = gh_get("last_results.json")
+              gh_put("last_results.json", empty, old_sha, f"Empty results for {requested_date}")
 
           # Mark run_request.json as done
           rr, rr_sha = gh_get("run_request.json")
