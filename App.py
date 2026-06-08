@@ -208,7 +208,7 @@ with tab_run:
         if btn:
             requested_at = datetime.now().strftime("%d %b %Y %I:%M %p")
 
-            # Write pending status to run_request.json — watcher.py will pick this up
+            # 1. Write pending status to run_request.json
             payload = {
                 "status":       "pending",
                 "date":         date_arg,
@@ -219,11 +219,28 @@ with tab_run:
             ok, err = gh_put("run_request.json", payload, sha, "Run request from Streamlit UI")
 
             if ok:
-                st.session_state.run_msg = ("ok",
-                    f"✅ Run requested for **{date_display}** · "
-                    f"Courts: **{', '.join(courts_sel)}**\n\n"
-                    "Your PC's watcher will pick this up within 60 seconds. "
-                    "Switch to the **Results** tab when done.")
+                # 2. Trigger GitHub Actions workflow (runs on cloud — no PC needed)
+                dispatch_url = f"https://api.github.com/repos/{_repo()}/actions/workflows/run_automation.yml/dispatches"
+                dispatch_payload = {
+                    "ref": _branch(),
+                    "inputs": {
+                        "date":         date_arg,
+                        "courts":       ",".join(courts_sel),
+                        "requested_at": requested_at,
+                    }
+                }
+                dr = req.post(dispatch_url, headers=_gh_headers(), json=dispatch_payload, timeout=15)
+                if dr.status_code == 204:
+                    st.session_state.run_msg = ("ok",
+                        f"✅ Run started for **{date_display}** · "
+                        f"Courts: **{', '.join(courts_sel)}**\n\n"
+                        "GitHub Actions is now running the automation in the cloud (~5–10 min). "
+                        "Switch to the **Results** tab to see progress.")
+                else:
+                    st.session_state.run_msg = ("warn",
+                        f"⚠️ Run queued but GitHub Actions dispatch failed ({dr.status_code}). "
+                        "Make sure the token in Streamlit secrets has the **workflow** scope. "
+                        "The run request is saved — watcher.py can still pick it up if running.")
             else:
                 st.session_state.run_msg = ("err",
                     f"❌ Could not write run request to GitHub: {err}")
@@ -231,8 +248,9 @@ with tab_run:
 
     if st.session_state.run_msg:
         kind, msg = st.session_state.run_msg
-        if kind == "ok": st.success(msg)
-        else:            st.error(msg)
+        if kind == "ok":   st.success(msg)
+        elif kind == "warn": st.warning(msg)
+        else:              st.error(msg)
 
     # Show pending status
     rr2, rr_sha = gh_get("run_request.json")
@@ -263,16 +281,104 @@ with tab_results:
             st.rerun()
 
     results, _ = gh_get("last_results.json")
-    entries = (results or {}).get("entries", [])
+    entries     = (results or {}).get("entries", [])
+    rr_check, rr_check_sha = gh_get("run_request.json")
+
+    # ── Status banner ────────────────────────────────────────────────────────
+    if rr_check:
+        status       = rr_check.get("status", "idle")
+        searched_raw = rr_check.get("date", "")          # DD-MM-YYYY
+        courts_done  = rr_check.get("courts", [])
+        completed_at = rr_check.get("completed_at", "")
+        started_at   = rr_check.get("started_at", "")
+
+        try:
+            searched_display = datetime.strptime(searched_raw, "%d-%m-%Y").strftime("%d %B %Y")
+        except Exception:
+            searched_display = searched_raw
+
+        if status == "done":
+            st.success(
+                f"✅ Search complete — **{searched_display}** · "
+                f"Courts: **{', '.join(courts_done)}** · "
+                f"Finished at: {completed_at}"
+            )
+        elif status == "running":
+            st.info(
+                f"⚙️ Running now — searching **{searched_display}** · "
+                f"Courts: **{', '.join(courts_done)}** · "
+                f"Started: {started_at}"
+            )
+        elif status == "pending":
+            req_time_str = rr_check.get("requested_at", "")
+            silent = False
+            try:
+                req_time = datetime.strptime(req_time_str, "%d %b %Y %I:%M %p")
+                silent = (datetime.now() - req_time).total_seconds() > 300
+            except Exception:
+                pass
+            if silent:
+                st.warning(
+                    f"⚠️ **Not responding** — run for **{searched_display}** has been pending for "
+                    "over 5 minutes. GitHub Actions may not be configured yet, or the token in "
+                    "Streamlit secrets may be outdated."
+                )
+                if st.button("🔄 Reset", key="results_reset"):
+                    gh_put("run_request.json", {"status": "idle"}, rr_check_sha, "Reset stuck run")
+                    st.rerun()
+            else:
+                st.info(f"⏳ Queued — searching **{searched_display}** · Courts: **{', '.join(courts_done)}**")
+
+    # ── Stale-data warning (only when a run is in progress) ──────────────────
+    if rr_check and rr_check.get("status") in ("pending", "running"):
+        results_date_raw = (results or {}).get("date", "")
+        last_req_date    = rr_check.get("date", "")
+        # results date is now stored as DD-MM-YYYY; also handle legacy "DD Month YYYY"
+        results_date_norm = results_date_raw
+        for _fmt in ("%d-%m-%Y", "%d %B %Y", "%d/%m/%Y"):
+            try:
+                results_date_norm = datetime.strptime(results_date_raw, _fmt).strftime("%d-%m-%Y")
+                break
+            except Exception:
+                pass
+        if last_req_date and results_date_norm and last_req_date != results_date_norm:
+            try:
+                req_disp = datetime.strptime(last_req_date, "%d-%m-%Y").strftime("%d %B %Y")
+            except Exception:
+                req_disp = last_req_date
+            st.warning(
+                f"⚠️ Showing old results for **{results_date_raw}** while the new run "
+                f"for **{req_disp}** is in progress."
+            )
+
+    st.divider()
 
     if not entries:
-        st.info(" NO RESULT FOUND ...")
+        searched_raw = (rr_check or {}).get("date", "")
+        courts_done  = (rr_check or {}).get("courts", [])
+        try:
+            searched_display = datetime.strptime(searched_raw, "%d-%m-%Y").strftime("%d %B %Y")
+        except Exception:
+            searched_display = searched_raw or "—"
+        st.info(
+            f"No cases found for your clients on **{searched_display}**"
+            + (f" in **{', '.join(courts_done)}**." if courts_done else ".")
+            + "\n\nThis means the courts listed no cases for your clients on this date."
+        )
     else:
         run_date_r  = (results or {}).get("date", "")
         generated_r = (results or {}).get("generated", "")
+        # Convert stored DD-MM-YYYY to human-readable for display
+        run_date_display = run_date_r
+        for _fmt in ("%d-%m-%Y", "%d/%m/%Y"):
+            try:
+                run_date_display = datetime.strptime(run_date_r, _fmt).strftime("%d %B %Y")
+                break
+            except Exception:
+                pass
 
         st.caption(
-            f"**{len(entries)} match(es)** for **{run_date_r}** &nbsp;·&nbsp; "
+            f"**{len(entries)} match(es)** for **{run_date_display}** &nbsp;·&nbsp; "
             f"Generated {generated_r}"
         )
 
@@ -347,40 +453,14 @@ with tab_results:
         st.download_button(
             "⬇ Download CSV",
             data=csv,
-            file_name=f"court_results_{run_date_r.replace(' ','_').replace('/','_')}.csv",
+            file_name=f"court_results_{run_date_r.replace(' ','_').replace('/','_').replace('-','_')}.csv",
             mime="text/csv",
         )
 
     # Auto-refresh while pending/running
-    rr3, rr3_sha = gh_get("run_request.json")
-    if rr3 and rr3.get("status") in ("pending", "running"):
-        # Check if watcher has gone silent (requested_at more than 5 min ago and still pending)
-        requested_at_str = rr3.get("requested_at", "")
-        watcher_silent = False
-        if rr3.get("status") == "pending" and requested_at_str:
-            try:
-                req_time = datetime.strptime(requested_at_str, "%d %b %Y %I:%M %p")
-                watcher_silent = (datetime.now() - req_time).total_seconds() > 300
-            except Exception:
-                pass
-
-        if watcher_silent:
-            st.warning(
-                "⚠️ **Watcher not responding** — the automation PC may be offline or "
-                "watcher.py is not running. Please contact the administrator.\n\n"
-                "You can reset the status below and try again later."
-            )
-            if st.button("🔄 Reset run status", key="results_reset"):
-                gh_put("run_request.json", {"status": "idle"}, rr3_sha, "Reset stuck run")
-                st.rerun()
-        else:
-            st.info("⏳ Run is in progress — auto-refreshing in 20 seconds…")
-            time.sleep(20)
-            st.rerun()
-    elif rr3 and rr3.get("status") == "done":
-        completed = rr3.get("completed_at", "")
-        if completed:
-            st.success(f"✅ Last run completed at {completed}")
+    if rr_check and rr_check.get("status") in ("pending", "running"):
+        time.sleep(20)
+        st.rerun()
 
 
 # ══════════════════════════════════════════════════════════════════════════════

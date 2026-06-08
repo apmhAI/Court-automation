@@ -1220,9 +1220,9 @@ async def run_nclt_automation(search_date: datetime = None):
             "parties": e.get("parties", "") or e.get("raw_block", "")[:200],
             "purpose": e.get("purpose", ""),
             "counsel": e.get("counsel", ""),
-            "date":    e.get("_pdf_date", search_date.strftime("%d/%m/%Y")),
+            "date":    e.get("_pdf_date", search_date.strftime("%d-%m-%Y")),
         })
-    _save_results(nclt_ui_entries, search_date.strftime("%d/%m/%Y"), "NCLT")
+    _save_results(nclt_ui_entries, search_date.strftime("%d-%m-%Y"), "NCLT")
     return all_matches
 
 
@@ -2369,7 +2369,7 @@ def main():
                             "parties": row4[2],
                             "counsel": row4[3],
                             "purpose": "",
-                            "date":    date_display,
+                            "date":    date_str,
                         })
                 else:
                     for blk in r.get("entries", []):
@@ -2381,10 +2381,10 @@ def main():
                             "parties": " | ".join(l for l in blk if l.strip())[:300],
                             "counsel": "",
                             "purpose": "",
-                            "date":    date_display,
+                            "date":    date_str,
                         })
             for src in set(r.get("source","") for r in final) or ["OTHER"]:
-                _save_results([e for e in ui_entries if e["source"]==src], date_display, src)
+                _save_results([e for e in ui_entries if e["source"]==src], date_str, src)
 
     print("\n  Done.\n")
 
