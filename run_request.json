@@ -1,12 +1,3 @@
 {
-  "status": "running",
-  "date": "08-06-2026",
-  "courts": [
-    "NCLT",
-    "NCLAT",
-    "SCI",
-    "BHC"
-  ],
-  "requested_at": "08 Jun 2026 07:22 AM",
-  "started_at": "08 Jun 2026 07:22 AM"
+  "status": "idle"
 }
