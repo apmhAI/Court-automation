@@ -1,9 +1,10 @@
 {
-  "status": "pending",
+  "status": "running",
   "date": "10-06-2026",
   "courts": [
     "SCI",
     "BHC"
   ],
-  "requested_at": "10 Jun 2026 07:17 AM"
+  "requested_at": "10 Jun 2026 07:17 AM",
+  "started_at": "10 Jun 2026 07:18 AM"
 }
