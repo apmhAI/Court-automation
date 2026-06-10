@@ -1,13 +1,9 @@
 {
-  "status": "done",
-  "date": "11-06-2026",
+  "status": "pending",
+  "date": "09-06-2026",
   "courts": [
     "NCLT",
-    "NCLAT",
-    "SCI",
-    "BHC"
+    "NCLAT"
   ],
-  "requested_at": "10 Jun 2026 02:03 PM",
-  "started_at": "10 Jun 2026 02:04 PM",
-  "completed_at": "10 Jun 2026 02:09 PM"
+  "requested_at": "10 Jun 2026 02:42 PM"
 }
