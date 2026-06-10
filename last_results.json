@@ -1,37 +1,27 @@
 {
-  "date": "09-06-2026",
-  "generated": "10 Jun 2026 09:20 AM",
-  "total": 3,
+  "date": "11-06-2026",
+  "generated": "10 Jun 2026 02:09 PM",
+  "total": 2,
   "entries": [
     {
       "source": "NCLT",
-      "client": "SHROFF TEXTILES LIMITED",
-      "court": "Mumbai Bench Court-VI",
-      "case_no": "C.P. (IB)/304(MB)2026",
-      "parties": "Sachetna Finance Private Limited Vs Shroff Textiles Limited",
-      "purpose": "Reply/ Rejoinder/ Short Synopsis Along With Citations / Further Consideration",
-      "counsel": "Eternity Legal Deepali Sheth",
-      "date": "09/06/2026"
-    },
-    {
-      "source": "NCLT",
-      "client": "CALYX LENORA REALTY LLP",
-      "court": "Mumbai Bench Court-IV",
-      "case_no": "C.P. (IB)/204(MB)2021",
-      "parties": "IA(I.B.C)/494(MB)2026 NITIN SALAVE VS ATUL TANSUKHLAL MEHTA RESOLUTION PROFESSIONAL OF CALYX LENORA REALTY LLP IA(I.B.C)/2286(MB)2025 GAURAV SUNIL SOMANI VS ATUL TANSUKHLAL MEHTA In the matter of MADHURE INFRA ENGINEERING PVT. LTD. VS CALYX LENORA REALTY LLP",
-      "purpose": "Further Consideration Last Listed 08.05.2026",
-      "counsel": "MAYANK PADIYA BARAKA LEGAL LLP",
-      "date": "09/06/2026"
-    },
-    {
-      "source": "NCLT",
-      "client": "MRS. ANITA RAHEJA",
+      "client": "SHIVAJI PANDURANG GHATAGE",
       "court": "Mumbai Bench Court-I",
-      "case_no": "C.P. (IB)/291(MB)2023",
-      "parties": "IA(I.B.C)/1979(MB)2026 - First Choice Properties India Pvt Ltd VS Jayesh Sanghrajka IA(I.B.C)/2009(MB)2026 - Sachana Exports Private Limited VS Jayesh Sanghrajka IA(I.B.C)/2320(MB)2026 - Anita D Raheja VS Jayesh Sanghrajka Resolution Professional of GSTAAD Hotels",
-      "purpose": "(NEW IA/CA) Admission",
-      "counsel": "DSK LEGAL Viloma Shah",
-      "date": "09/06/2026"
+      "case_no": "C.P. (IB)/353(MB)2026",
+      "parties": "SHIVAJI PANDURANG GHATAGE VS UNION BANK OF INDIA",
+      "purpose": "Last Listed 13.05.2026",
+      "counsel": "Jenil Shah",
+      "date": "11/06/2026"
+    },
+    {
+      "source": "BHC",
+      "client": "MR. DEEPAK RAHEJA",
+      "court": "HON'BLE SHRI JUSTICE AMIT BORKAR",
+      "case_no": "",
+      "parties": "24 CARBP/249/2025 SUNIL MADHAVDAS AHUJA Lexicon Law Partners | [Original] VS Joby Mathew and Associates | (ECHCBM02173442023) DEEPAK RAHEJA Ajinkya Jaibhave | Joby Mathew and Associates | GP OS | REMARK : Affidavit of Service e-filed on 29.09.2023. Served on Respondents Nos. 1 to 8.==",
+      "counsel": "",
+      "purpose": "",
+      "date": "11-06-2026"
     }
   ]
 }
