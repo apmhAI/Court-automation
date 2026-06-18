@@ -1,57 +1,17 @@
 {
-  "date": "16-06-2026",
-  "generated": "15 Jun 2026 01:12 PM",
-  "total": 5,
+  "date": "18-06-2026",
+  "generated": "18 Jun 2026 06:25 AM",
+  "total": 1,
   "entries": [
     {
-      "source": "NCLAT",
-      "client": "JAMMU AND KASHMIR BANK",
-      "court": "Chennai Bench",
-      "case_no": "C omp App (AT) (CH) (Ins) No. 269/2026 For Stay IA No. 757/2026 For Condone Delay IA No. 758/2026 For Exemption IA No. 759/2026 For Urgent Hearing IA No. 760/2026 (With Defects) Case No.",
-      "parties": "Shoukath Sherif Vs Jammu And Kashmir Bank Ltd Name of the Parties",
-      "counsel": "Ms. Abitha Banu | Mr. VV Sivakumar For Caveator Counsel for Appellants | Counsel for Respondents",
-      "purpose": "",
-      "date": "16-06-2026"
-    },
-    {
-      "source": "NCLAT",
-      "client": "JAMMU AND KASHMIR BANK",
-      "court": "Chennai Bench",
-      "case_no": "C omp App (AT) (CH) (Ins) No. 39/2025 For Exemption IA No. 146/2025",
-      "parties": "Kanumuru Raghu Rama Krishna Raju Vs Jammu And Kashmir Bank & Anr. WITH",
-      "counsel": "Mr. Yogesh Kumar Jagia | Mr. VV Sivakumar- R1",
-      "purpose": "",
-      "date": "16-06-2026"
-    },
-    {
-      "source": "NCLAT",
-      "client": "JAMMU AND KASHMIR BANK",
-      "court": "Chennai Bench",
-      "case_no": "C omp App (AT) (CH) (Ins) No. 40/2025",
-      "parties": "Jammu And Kashmir Bank Ltd. Vs Kanumuru Raghu Rama Krishna Raju WITH",
-      "counsel": "Mr. VV Sivakumar | Mr. Yogesh Kumar Jagia",
-      "purpose": "",
-      "date": "16-06-2026"
-    },
-    {
-      "source": "NCLAT",
-      "client": "JAMMU AND KASHMIR BANK",
-      "court": "Chennai Bench",
-      "case_no": "C omp App (AT) (CH) (Ins) No. 41/2025",
-      "parties": "Jammu And Kashmir Bank Ltd. Vs Kanumuru Bharat WITH",
-      "counsel": "Mr. VV Sivakumar | Mr. Yogesh Kumar Jagia",
-      "purpose": "",
-      "date": "16-06-2026"
-    },
-    {
-      "source": "NCLAT",
-      "client": "JAMMU AND KASHMIR BANK",
-      "court": "Chennai Bench",
-      "case_no": "C omp App (AT) (CH) (Ins) No. 42/2025 For Exemption IA No. 150/2025",
-      "parties": "Kanumuru Bharat Vs Jammu and Kashmir Bank & Anr",
-      "counsel": "Mr. Yogesh Kumar Jagia | Mr. VV Sivakumar- R1",
-      "purpose": "",
-      "date": "16-06-2026"
+      "source": "NCLT",
+      "client": "ESSEL INFRAPROJECTS LIMITED",
+      "court": "Mumbai Bench Court-V",
+      "case_no": "RCP(IB)/6(MB)2023 (CIRP-28.08.2024)",
+      "parties": "IA/462/2026 Hemant J Mehta VS Khalid Irfan Khan IN THE MATTER OF Jammu And Kashmir Bank Limited Vs Essel Infraprojects Limited",
+      "purpose": "Further Consideration",
+      "counsel": "Devarajan Raman",
+      "date": "18/06/2026"
     }
   ]
 }
