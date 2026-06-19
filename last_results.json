@@ -1,6 +1,6 @@
 {
-  "date": "19-06-2026",
-  "generated": "19 Jun 2026 12:43 PM",
+  "date": "22-06-2026",
+  "generated": "19 Jun 2026 12:44 PM",
   "total": 6,
   "entries": [
     {
@@ -8,60 +8,60 @@
       "client": "MR. HEMANT MEHTA",
       "court": "Mumbai Bench Court-III",
       "case_no": "1",
-      "parties": "Hemant J. Mehta Vs. Darshan Lalitkumar Gandhi & Ors.",
-      "purpose": "For seeking appropriate directions",
-      "counsel": "",
-      "date": "19/06/2026"
+      "parties": "Suresh J Thanawala VS Hemant Mehta",
+      "purpose": "IA For quash and set aside",
+      "counsel": "PURNANAND",
+      "date": "22/06/2026"
     },
     {
       "source": "NCLT",
       "client": "HEMANT J MEHTA",
       "court": "Mumbai Bench Court-III",
       "case_no": "1",
-      "parties": "Hemant J. Mehta Vs. Darshan Lalitkumar Gandhi & Ors.",
-      "purpose": "For seeking appropriate directions",
-      "counsel": "",
-      "date": "19/06/2026"
+      "parties": "Suresh J Thanawala VS Hemant Mehta",
+      "purpose": "IA For quash and set aside",
+      "counsel": "PURNANAND",
+      "date": "22/06/2026"
     },
     {
       "source": "NCLT",
-      "client": "MR. DEEPAK RAHEJA",
-      "court": "Mumbai Bench Court-I",
-      "case_no": "",
-      "parties": "IA(I.B.C)/2515(MB)2026- DEEPAK B RAHEJA VS",
-      "purpose": "(NEW IA/CA)",
-      "counsel": "",
-      "date": "19/06/2026"
+      "client": "MR. HEMANT MEHTA",
+      "court": "Mumbai Bench Court-III",
+      "case_no": "2",
+      "parties": "Bahar Housing and Developers VS Hemant Mehta",
+      "purpose": "Exclusion of property from the assets of the Corporate Debtor",
+      "counsel": "Aendri Legal",
+      "date": "22/06/2026"
     },
     {
       "source": "NCLT",
-      "client": "MR. DEEPAK RAHEJA",
-      "court": "Mumbai Bench Court-I",
-      "case_no": "",
-      "parties": "IA(I.B.C)/2516(MB)2026- DEEPAK B RAHEJA VS",
-      "purpose": "(NEW IA/CA)",
-      "counsel": "",
-      "date": "19/06/2026"
+      "client": "HEMANT J MEHTA",
+      "court": "Mumbai Bench Court-III",
+      "case_no": "2",
+      "parties": "Bahar Housing and Developers VS Hemant Mehta",
+      "purpose": "Exclusion of property from the assets of the Corporate Debtor",
+      "counsel": "Aendri Legal",
+      "date": "22/06/2026"
     },
     {
       "source": "NCLT",
-      "client": "SHIVAJI PANDURANG GHATAGE",
+      "client": "MRS. ANITA RAHEJA",
       "court": "Mumbai Bench Court-I",
-      "case_no": "C.P. (IB)/353(MB)2026",
-      "parties": "SHIVAJI PANDURANG GHATAGE VS UNION BANK OF INDIA",
-      "purpose": "Last Listed 17.06.2026 09.06.2026",
-      "counsel": "Jenil Shah Devarajan Raman",
-      "date": "19/06/2026"
+      "case_no": "C.P. (IB)/291(MB)2023",
+      "parties": "IA(I.B.C)/2320(MB)2026 - Anita D Raheja VS Jayesh Sanghrajka Resolution Professional of GSTAAD Hotels Pvt Ltd IA(I.B.C)/1979(MB)2026 - First Choice Properties India Pvt Ltd VS Jayesh Sanghrajka IA(I.B.C)/2009(MB)2026 - Sachana Exports Private Limited VS Jayesh Sanghrajka IN THE MATTER OF OMKARA ASSETS RECONSTRUCTION PRIVATE LIMITED V/s GSTAAD HOTELS PRIVATE LIMITED",
+      "purpose": "Last Listed 09.06.2026",
+      "counsel": "DSK LEGAL Viloma Shah Akash Agarwal",
+      "date": "22/06/2026"
     },
     {
-      "source": "BHC",
-      "client": "BHARAT MEHTA",
-      "court": "HON'BLE JUSTICE SHRI ARIF S. DOCTOR",
-      "case_no": "",
-      "parties": "1 TS/63/2012 Kamla Poddar - | [Original] VS M/S. HARIANI and CO. | In Nandini Vinay Kumar Podar and Anr. BHARAT H. MEHTA (ADV FOR | TP/1188/2011 CAVEATOR) | PROSPER DSOUZA (LEGAL AID | COUNSEL) | M/S. MAHESH JANI and CO. | M/S. S. KASLIWALS and | ASSOCIATES (FOR CAVEATRIX) | M/S. MAHESH JANI & CO. (",
-      "counsel": "",
-      "purpose": "",
-      "date": "19-06-2026"
+      "source": "NCLT",
+      "client": "CALYX LENORA REALTY LLP",
+      "court": "Mumbai Bench Court-IV",
+      "case_no": "C.P. (IB)/204(MB)2021",
+      "parties": "IA(I.B.C)/2604(MB)2025 ATUL RMC VS MR. ATUL TANSUKHLAL MEHTA IA(I.B.C)/2068(MB)2025 MRS. ALKA RAMANLAL GANDHI VS MR. ATUL TANSUKHLAL MEHTA IA(I.B.C)/3199(MB)2025 MRS. MEGHALI PRAMOD PAWAR VS MR. ATUL TANSUKHLAL MEHTA IA(I.B.C)/2956(MB)2025 MR. SOMANTH RADHAKISAN AROTE VS MR. ATUL TANSUKHLAL MEHTA IA(I.B.C)/2106(MB)2025 MRS. VIDYA RAJESH MOHITE VS MR. ATUL TANSUKHLAL MEHTA In the matter of MADHURE INFRA ENGINEERING PVT. LTD. VS CALYX LENORA REALTY LLP",
+      "purpose": "For Order",
+      "counsel": "KARAN GAJRA",
+      "date": "22/06/2026"
     }
   ]
 }
