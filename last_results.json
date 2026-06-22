@@ -1,67 +1,87 @@
 {
-  "date": "22-06-2026",
-  "generated": "19 Jun 2026 12:44 PM",
-  "total": 6,
+  "date": "23-06-2026",
+  "generated": "22 Jun 2026 01:50 PM",
+  "total": 8,
   "entries": [
     {
       "source": "NCLT",
       "client": "MR. HEMANT MEHTA",
       "court": "Mumbai Bench Court-III",
       "case_no": "1",
-      "parties": "Suresh J Thanawala VS Hemant Mehta",
-      "purpose": "IA For quash and set aside",
-      "counsel": "PURNANAND",
-      "date": "22/06/2026"
+      "parties": "Mr. Hemant Mehta Vs. Apex Grievance",
+      "purpose": "For Pronouncement of order",
+      "counsel": "Ashish Jha",
+      "date": "23/06/2026"
     },
     {
       "source": "NCLT",
       "client": "HEMANT J MEHTA",
       "court": "Mumbai Bench Court-III",
       "case_no": "1",
-      "parties": "Suresh J Thanawala VS Hemant Mehta",
-      "purpose": "IA For quash and set aside",
-      "counsel": "PURNANAND",
-      "date": "22/06/2026"
+      "parties": "Mr. Hemant Mehta Vs. Apex Grievance",
+      "purpose": "For Pronouncement of order",
+      "counsel": "Ashish Jha",
+      "date": "23/06/2026"
     },
     {
       "source": "NCLT",
       "client": "MR. HEMANT MEHTA",
       "court": "Mumbai Bench Court-III",
       "case_no": "2",
-      "parties": "Bahar Housing and Developers VS Hemant Mehta",
-      "purpose": "Exclusion of property from the assets of the Corporate Debtor",
-      "counsel": "Aendri Legal",
-      "date": "22/06/2026"
+      "parties": "Mr. Hemant Mehta Vs. Apex Grievance",
+      "purpose": "For Pronouncement of order",
+      "counsel": "Ashish Jha",
+      "date": "23/06/2026"
     },
     {
       "source": "NCLT",
       "client": "HEMANT J MEHTA",
       "court": "Mumbai Bench Court-III",
       "case_no": "2",
-      "parties": "Bahar Housing and Developers VS Hemant Mehta",
-      "purpose": "Exclusion of property from the assets of the Corporate Debtor",
-      "counsel": "Aendri Legal",
-      "date": "22/06/2026"
+      "parties": "Mr. Hemant Mehta Vs. Apex Grievance",
+      "purpose": "For Pronouncement of order",
+      "counsel": "Ashish Jha",
+      "date": "23/06/2026"
     },
     {
       "source": "NCLT",
-      "client": "MRS. ANITA RAHEJA",
+      "client": "MR. DEEPAK RAHEJA",
       "court": "Mumbai Bench Court-I",
-      "case_no": "C.P. (IB)/291(MB)2023",
-      "parties": "IA(I.B.C)/2320(MB)2026 - Anita D Raheja VS Jayesh Sanghrajka Resolution Professional of GSTAAD Hotels Pvt Ltd IA(I.B.C)/1979(MB)2026 - First Choice Properties India Pvt Ltd VS Jayesh Sanghrajka IA(I.B.C)/2009(MB)2026 - Sachana Exports Private Limited VS Jayesh Sanghrajka IN THE MATTER OF OMKARA ASSETS RECONSTRUCTION PRIVATE LIMITED V/s GSTAAD HOTELS PRIVATE LIMITED",
-      "purpose": "Last Listed 09.06.2026",
-      "counsel": "DSK LEGAL Viloma Shah Akash Agarwal",
-      "date": "22/06/2026"
+      "case_no": "C.P. (IB)/290(MB)2023",
+      "parties": "IA(I.B.C)/2515(MB)2026- DEEPAK B RAHEJA VS",
+      "purpose": "Last Listed 19.06.2026",
+      "counsel": "DSK LEGAL SHARDUL",
+      "date": "23/06/2026"
     },
     {
       "source": "NCLT",
-      "client": "CALYX LENORA REALTY LLP",
-      "court": "Mumbai Bench Court-IV",
-      "case_no": "C.P. (IB)/204(MB)2021",
-      "parties": "IA(I.B.C)/2604(MB)2025 ATUL RMC VS MR. ATUL TANSUKHLAL MEHTA IA(I.B.C)/2068(MB)2025 MRS. ALKA RAMANLAL GANDHI VS MR. ATUL TANSUKHLAL MEHTA IA(I.B.C)/3199(MB)2025 MRS. MEGHALI PRAMOD PAWAR VS MR. ATUL TANSUKHLAL MEHTA IA(I.B.C)/2956(MB)2025 MR. SOMANTH RADHAKISAN AROTE VS MR. ATUL TANSUKHLAL MEHTA IA(I.B.C)/2106(MB)2025 MRS. VIDYA RAJESH MOHITE VS MR. ATUL TANSUKHLAL MEHTA In the matter of MADHURE INFRA ENGINEERING PVT. LTD. VS CALYX LENORA REALTY LLP",
-      "purpose": "For Order",
-      "counsel": "KARAN GAJRA",
-      "date": "22/06/2026"
+      "client": "MR. DEEPAK RAHEJA",
+      "court": "Mumbai Bench Court-I",
+      "case_no": "copy of the Resolution Plan) IA(I.B.C)/2516( MB)2026",
+      "parties": "GSTAAD Hotels Pvt Ltd IA(I.B.C)/2516(MB)2026- DEEPAK B RAHEJA VS JAYESH SANGHRAJKA Resolution Professional of GSTAAD Hotels Pvt Ltd IA(IBC)(PLAN)/42(MB)2026-Mr Jayesh Natvarlal",
+      "purpose": "",
+      "counsel": "",
+      "date": "23/06/2026"
+    },
+    {
+      "source": "BHC",
+      "client": "JAMMU AND KASHMIR BANK",
+      "court": "HON'BLE JUSTICE SHRI ARIF S. DOCTOR",
+      "case_no": "",
+      "parties": "4 CAF/3500/2018 MR. SANJAY YASHWANT BARSING ROHAN RAJARAM SONAWANE | [Civil] VS ROHAN RAJARAM SONAWANE | In THE JAMMU AND KASHMIR BANK SATPUTE AND COMPANY FOR | FA(ST)/19458/2018 LTD. RESP. (VP FILED IN FAST) | SATPUTE AND COMPANY | FOR RESP. | REMARK : Applicants prays for Condonation of delay in f",
+      "counsel": "",
+      "purpose": "",
+      "date": "23-06-2026"
+    },
+    {
+      "source": "BHC",
+      "client": "JAMMU AND KASHMIR BANK",
+      "court": "HON'BLE JUSTICE SHRI ARIF S. DOCTOR",
+      "case_no": "",
+      "parties": "5 CAF/284/2020 MR. RAMESH POPAT KEDARE ROHAN RAJARAM SONAWANE | [Civil] VS ROHAN RAJARAM SONAWANE | In THE JAMMU AND KASHMIR BANK Payoja Gandhi | FA(ST)/18100/2019 LTD. | REMARK : Applicants prays for Condonation of delay in filing the present FA & etc. Note:- 1) Memo Sworn. 2) | B.T. by 1 years and",
+      "counsel": "",
+      "purpose": "",
+      "date": "23-06-2026"
     }
   ]
 }
