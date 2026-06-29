@@ -1,27 +1,107 @@
 {
-  "date": "25-06-2026",
-  "generated": "24 Jun 2026 02:14 PM",
-  "total": 2,
+  "date": "30-06-2026",
+  "generated": "29 Jun 2026 01:28 PM",
+  "total": 10,
   "entries": [
+    {
+      "source": "NCLT",
+      "client": "MR. DEEPAK RAHEJA",
+      "court": "Mumbai Bench Court-I",
+      "case_no": "IA(I.B.C)/2515(",
+      "parties": "IA(I.B.C)/2515(MB)2026- DEEPAK B RAHEJA VS",
+      "purpose": "",
+      "counsel": "",
+      "date": "30/06/2026"
+    },
+    {
+      "source": "NCLT",
+      "client": "MR. DEEPAK RAHEJA",
+      "court": "Mumbai Bench Court-I",
+      "case_no": "copy of the Resolution Plan) IA(I.B.C)/2516( MB)2026",
+      "parties": "GSTAAD Hotels Pvt Ltd IA(I.B.C)/2516(MB)2026- DEEPAK B RAHEJA VS JAYESH SANGHRAJKA Resolution Professional of GSTAAD Hotels Pvt Ltd",
+      "purpose": "",
+      "counsel": "",
+      "date": "30/06/2026"
+    },
+    {
+      "source": "NCLT",
+      "client": "BHARAT MEHTA",
+      "court": "Mumbai Bench Court-II",
+      "case_no": "C .P. (IB)/433(MB)2018",
+      "parties": "Rukson Packaging Pvt. Ltd. V/s Shreechem Pharmaceuticals Pvt. Ltd.",
+      "purpose": "Further Consideration Last Listed 30.04.2026",
+      "counsel": "MDP Partners",
+      "date": "30/06/2026"
+    },
+    {
+      "source": "BHC",
+      "client": "BHARAT MEHTA",
+      "court": "HON'BLE SHRI JUSTICE ABHAY AHUJA",
+      "case_no": "",
+      "parties": "81 IA/3191/2026 Bharat Ratansey Maskai MEHTA AND PADAMSEY | [Original] VS MEHTA AND PADAMSEY | (AMH20240131972C20260 Nitin Ratansey Maskai Mehta and Padamsey | 0020) TPS LAW | In | TS/127/2026 | NOTICE OF MOTION FOR HEARING",
+      "counsel": "",
+      "purpose": "",
+      "date": "30-06-2026"
+    },
     {
       "source": "BHC",
       "client": "MR. HEMANT MEHTA",
-      "court": "HON'BLE JUSTICE PRAFULLA S. KHUBALKAR",
+      "court": "HON'BLE SHRI JUSTICE ABHAY AHUJA",
       "case_no": "",
-      "parties": "50 IA/4470/2026 HEMANT SHANKAR PARAB AND Mrs. Swati Uday Mehta | [Civil] ORS KALPANA TRIVEDI | In VS Mrs. Swati Uday Mehta | FA(ST)/5675/2026 RELIANCE GENERAL INSURANCE Mrs. Swati Uday Mehta | CO.LTD. | REMARK : Applicants (Orig. Respondent Nos. 1 to 3 in FA) praying to withdraw entire amount of Rs.",
+      "parties": "67 IA/466/2026 HEMANT MEHTA Adv Ameya Suhas Mahajan | [Original] VS Adv Ameya Suhas Mahajan | In RAVINDRA MEHTA | N/319/2025",
       "counsel": "",
       "purpose": "",
-      "date": "25-06-2026"
+      "date": "30-06-2026"
+    },
+    {
+      "source": "BHC",
+      "client": "MR. HEMANT MEHTA",
+      "court": "HON'BLE SHRI JUSTICE ABHAY AHUJA",
+      "case_no": "",
+      "parties": "EXA/67/2025 HEMANT MEHTA AND 2 ORS. Adv Ameya Suhas Mahajan | [Orignal] VS Adv Ameya Suhas Mahajan | RAVINDRA MEHTA 4 ORS. | REMARK: == ISSUED NOTICE U/O XXI, RULE 22 OF CPC DT. 14-11-2025 ==",
+      "counsel": "",
+      "purpose": "",
+      "date": "30-06-2026"
+    },
+    {
+      "source": "BHC",
+      "client": "MR. HEMANT MEHTA",
+      "court": "HON'BLE SHRI JUSTICE ABHAY AHUJA",
+      "case_no": "",
+      "parties": "N/319/2025 HEMANT MEHTA AND 2 ORS. Adv Ameya Suhas Mahajan | [Orignal] VS | RAVINDRA MEHTA 4 ORS. | In",
+      "counsel": "",
+      "purpose": "",
+      "date": "30-06-2026"
     },
     {
       "source": "BHC",
       "client": "HEMANT J MEHTA",
-      "court": "HON'BLE JUSTICE PRAFULLA S. KHUBALKAR",
+      "court": "HON'BLE SHRI JUSTICE ABHAY AHUJA",
       "case_no": "",
-      "parties": "50 IA/4470/2026 HEMANT SHANKAR PARAB AND Mrs. Swati Uday Mehta | [Civil] ORS KALPANA TRIVEDI | In VS Mrs. Swati Uday Mehta | FA(ST)/5675/2026 RELIANCE GENERAL INSURANCE Mrs. Swati Uday Mehta | CO.LTD. | REMARK : Applicants (Orig. Respondent Nos. 1 to 3 in FA) praying to withdraw entire amount of Rs.",
+      "parties": "67 IA/466/2026 HEMANT MEHTA Adv Ameya Suhas Mahajan | [Original] VS Adv Ameya Suhas Mahajan | In RAVINDRA MEHTA | N/319/2025",
       "counsel": "",
       "purpose": "",
-      "date": "25-06-2026"
+      "date": "30-06-2026"
+    },
+    {
+      "source": "BHC",
+      "client": "HEMANT J MEHTA",
+      "court": "HON'BLE SHRI JUSTICE ABHAY AHUJA",
+      "case_no": "",
+      "parties": "EXA/67/2025 HEMANT MEHTA AND 2 ORS. Adv Ameya Suhas Mahajan | [Orignal] VS Adv Ameya Suhas Mahajan | RAVINDRA MEHTA 4 ORS. | REMARK: == ISSUED NOTICE U/O XXI, RULE 22 OF CPC DT. 14-11-2025 ==",
+      "counsel": "",
+      "purpose": "",
+      "date": "30-06-2026"
+    },
+    {
+      "source": "BHC",
+      "client": "HEMANT J MEHTA",
+      "court": "HON'BLE SHRI JUSTICE ABHAY AHUJA",
+      "case_no": "",
+      "parties": "N/319/2025 HEMANT MEHTA AND 2 ORS. Adv Ameya Suhas Mahajan | [Orignal] VS | RAVINDRA MEHTA 4 ORS. | In",
+      "counsel": "",
+      "purpose": "",
+      "date": "30-06-2026"
     }
   ]
 }
