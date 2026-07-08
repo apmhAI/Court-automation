@@ -1,47 +1,137 @@
 {
-  "date": "08-07-2026",
-  "generated": "07 Jul 2026 02:24 PM",
-  "total": 4,
+  "date": "09-07-2026",
+  "generated": "08 Jul 2026 01:32 PM",
+  "total": 13,
   "entries": [
     {
       "source": "NCLT",
-      "client": "MR. DEEPAK RAHEJA",
-      "court": "Mumbai Bench Court-I",
-      "case_no": "C.P. (IB)/290(MB)2023",
-      "parties": "IA(I.B.C)/2301(MB)2026- Anita D Rahej VS Jayesh Sanghrajka Resolution Professional of Neo Capricorn Plaza Private Limited IA(I.B.C)/2515(MB)2026- DEEPAK B RAHEJA VS JAYESH SANGHRAJKA Resolution Professional of Neo Capricorn Plaza Pvt Ltd IA(IBC)(PLAN)/41(MB)2026- Mr Jayesh Natvarlal Sanghrajka VS Shree Naman Developers Pvt Ltd IN THE MATTER OF OMKARA ASSETS RECONSTRUCTION PRIVATELIMITED VS NEO CAPRICORN PLAZA PRIVATE LIMITED",
-      "purpose": "Last Listed 01.07.2026",
-      "counsel": "DSK LEGAL Akash Agarwal SHARDUL AMARCHAND MANGALDAS",
-      "date": "08/07/2026"
+      "client": "LOK HOUSING & CONSTRUCTION LTD",
+      "court": "Mumbai Bench Court-III",
+      "case_no": "C.P.(IB)- 4135(MB)/2018 Admitted 03.06.2019",
+      "parties": "Usv Pvt. Ltd V/S. Lok Housing & Construction Ltd.",
+      "purpose": "Further Consideration (Last listed 22.04.2026,04.06.2026)",
+      "counsel": "Ashish Jha",
+      "date": "09/07/2026"
     },
     {
       "source": "NCLT",
-      "client": "MRS. ANITA RAHEJA",
-      "court": "Mumbai Bench Court-I",
-      "case_no": "C.P. (IB)/291(MB)2023",
-      "parties": "IA(I.B.C)/2320(MB)2026 - Anita D Raheja VS Jayesh Sanghrajka Resolution Professional of GSTAAD Hotels Pvt Ltd IA(I.B.C)/2495(MB)2026 - Sandeep G Raheja VS Mr Jayesh Natvarlal Sanghrajka Resolution Professional for GSTAAD Hotels Pvt Ltd IA(I.B.C)/2516(MB)2026- DEEPAK B RAHEJA VS JAYESH SANGHRAJKA Resolution Professional of GSTAAD Hotels Pvt Ltd IA(IBC)(PLAN)/42(MB)2026-Mr Jayesh Natvarlal Sanghrajka VS Shree Naman Developers Pvt Ltd IA(I.B.C)/2647(MB)2026 - Sandeep G Raheja VS Mr Jayesh Natvarlal Sanghrajka Resolution Professional for GSTAAD Hotels Pvt Ltd IN THE MATTER OF OMKARA ASSETS RECONSTRUCTION PRIVATE LIMITED V/s GSTAAD HOTELS PRIVATE LIMITED",
-      "purpose": "Last Listed 01.07.2026 02.07.2026",
-      "counsel": "DSK LEGAL Viloma Shah Akash Agarwal VASHI AND VASHI",
-      "date": "08/07/2026"
+      "client": "MR. HEMANT MEHTA",
+      "court": "Mumbai Bench Court-III",
+      "case_no": "1",
+      "parties": "Mr. Lalit K Jain VS Mr. Hemant Mehta (RP for Lok Housing & Constructions Ltd)",
+      "purpose": "to admit and honor the claim filed by the applicant",
+      "counsel": "Prashant Thakre",
+      "date": "09/07/2026"
     },
     {
       "source": "NCLT",
-      "client": "MR. DEEPAK RAHEJA",
-      "court": "Mumbai Bench Court-I",
-      "case_no": "C.P. (IB)/291(MB)2023",
-      "parties": "IA(I.B.C)/2320(MB)2026 - Anita D Raheja VS Jayesh Sanghrajka Resolution Professional of GSTAAD Hotels Pvt Ltd IA(I.B.C)/2495(MB)2026 - Sandeep G Raheja VS Mr Jayesh Natvarlal Sanghrajka Resolution Professional for GSTAAD Hotels Pvt Ltd IA(I.B.C)/2516(MB)2026- DEEPAK B RAHEJA VS JAYESH SANGHRAJKA Resolution Professional of GSTAAD Hotels Pvt Ltd IA(IBC)(PLAN)/42(MB)2026-Mr Jayesh Natvarlal Sanghrajka VS Shree Naman Developers Pvt Ltd IA(I.B.C)/2647(MB)2026 - Sandeep G Raheja VS Mr Jayesh Natvarlal Sanghrajka Resolution Professional for GSTAAD Hotels Pvt Ltd IN THE MATTER OF OMKARA ASSETS RECONSTRUCTION PRIVATE LIMITED V/s GSTAAD HOTELS PRIVATE LIMITED",
-      "purpose": "Last Listed 01.07.2026 02.07.2026",
-      "counsel": "DSK LEGAL Viloma Shah Akash Agarwal VASHI AND VASHI",
-      "date": "08/07/2026"
+      "client": "HEMANT J MEHTA",
+      "court": "Mumbai Bench Court-III",
+      "case_no": "1",
+      "parties": "Mr. Lalit K Jain VS Mr. Hemant Mehta (RP for Lok Housing & Constructions Ltd)",
+      "purpose": "to admit and honor the claim filed by the applicant",
+      "counsel": "Prashant Thakre",
+      "date": "09/07/2026"
+    },
+    {
+      "source": "NCLT",
+      "client": "LOK HOUSING & CONSTRUCTION LTD",
+      "court": "Mumbai Bench Court-III",
+      "case_no": "1",
+      "parties": "Mr. Lalit K Jain VS Mr. Hemant Mehta (RP for Lok Housing & Constructions Ltd)",
+      "purpose": "to admit and honor the claim filed by the applicant",
+      "counsel": "Prashant Thakre",
+      "date": "09/07/2026"
+    },
+    {
+      "source": "NCLT",
+      "client": "MR. HEMANT MEHTA",
+      "court": "Mumbai Bench Court-III",
+      "case_no": "2",
+      "parties": "HEMANT J. MEHTA",
+      "purpose": "Application for extension/exclusion of CIRP period",
+      "counsel": "Swati Dalmia",
+      "date": "09/07/2026"
+    },
+    {
+      "source": "NCLT",
+      "client": "HEMANT J MEHTA",
+      "court": "Mumbai Bench Court-III",
+      "case_no": "2",
+      "parties": "HEMANT J. MEHTA",
+      "purpose": "Application for extension/exclusion of CIRP period",
+      "counsel": "Swati Dalmia",
+      "date": "09/07/2026"
+    },
+    {
+      "source": "NCLT",
+      "client": "MR. HEMANT MEHTA",
+      "court": "Mumbai Bench Court-III",
+      "case_no": "3",
+      "parties": "Hemant J Mehta",
+      "purpose": "Application for extension/exclusion of CIRP period",
+      "counsel": "Swati Dalmia",
+      "date": "09/07/2026"
+    },
+    {
+      "source": "NCLT",
+      "client": "HEMANT J MEHTA",
+      "court": "Mumbai Bench Court-III",
+      "case_no": "3",
+      "parties": "Hemant J Mehta",
+      "purpose": "Application for extension/exclusion of CIRP period",
+      "counsel": "Swati Dalmia",
+      "date": "09/07/2026"
     },
     {
       "source": "BHC",
-      "client": "BHARAT MEHTA",
-      "court": "HON'BLE SHRI JUSTICE JITENDRA SHANTILAL JAIN",
+      "client": "MR. DEEPAK RAHEJA",
+      "court": "HON'BLE SHRI JUSTICE AMIT BORKAR",
       "case_no": "",
-      "parties": "15 FA/1623/2002 BHARAT N. MEHTA FOR PETITIONER | [Civil] VS SHRI M.B. KOTAK | BHAVANJI H. PURIA and ANR. BIPIN JAYANTILAL JOSHI | SMT. ARATI B. BARVE | REMARK : Note Claim of Rs. 1,50,000/- Filed by Org. Applicant. Sect. 173 MvAct. 1) F.A. admitted on | 20/11/2002 2) R and P received with paper book",
+      "parties": "23 CARBP/249/2025 SUNIL MADHAVDAS AHUJA Lexicon Law Partners | [Original] VS Joby Mathew and Associates | (ECHCBM02173442023) DEEPAK RAHEJA Ajinkya Jaibhave | Joby Mathew and Associates | GP OS | REMARK : Affidavit of Service e-filed on 29.09.2023. Served on Respondents Nos. 1 to 8.==",
       "counsel": "",
       "purpose": "",
-      "date": "08-07-2026"
+      "date": "09-07-2026"
+    },
+    {
+      "source": "BHC",
+      "client": "MR. HEMANT MEHTA",
+      "court": "HON'BLE JUSTICE SHARMILA U. DESHMUKH",
+      "case_no": "",
+      "parties": "106 IA/1499/2026 THE MUNICIPAL COMISSIONER KOMAL PUNJABI BMC | [Civil] (MCGM) AND ANR KOMAL PUNJABI BMC | In VS Jayant Mohan Puranik | AO(ST)/23090/2025 ASHOK B. BUSA Jayant Mohan Puranik | REMARK : INTERIM APPLICATION FILED FOR CONDONE THE DELAY OF 139 DAYS IN FILING AOST. NO. | 23090 OF 2025. NOTE",
+      "counsel": "",
+      "purpose": "",
+      "date": "09-07-2026"
+    },
+    {
+      "source": "BHC",
+      "client": "MR. HEMANT MEHTA",
+      "court": "HON'BLE JUSTICE SHARMILA U. DESHMUKH",
+      "case_no": "",
+      "parties": "IA(ST)/1888/2026 TECHLEAD SOFTWARE ENGINEE R S MIRPURY | [Civil] RING PRIVATE LIMITED THR. | MR. HEMANT BHIRUD | VS | MR. ANIL HARAKCHAND MEHTA | 108 AO(ST)/2055/2026 M/S. SUPER IMPEX THR.ITS Dharmesh S Jain | [Civil] PARTNERS KANTILAL MEGHRAJ BMC | MEHTA AND ANOTHER | VS | THE MUNICIPAL COMMISSIONE",
+      "counsel": "",
+      "purpose": "",
+      "date": "09-07-2026"
+    },
+    {
+      "source": "BHC",
+      "client": "HEMANT J MEHTA",
+      "court": "HON'BLE JUSTICE SHARMILA U. DESHMUKH",
+      "case_no": "",
+      "parties": "106 IA/1499/2026 THE MUNICIPAL COMISSIONER KOMAL PUNJABI BMC | [Civil] (MCGM) AND ANR KOMAL PUNJABI BMC | In VS Jayant Mohan Puranik | AO(ST)/23090/2025 ASHOK B. BUSA Jayant Mohan Puranik | REMARK : INTERIM APPLICATION FILED FOR CONDONE THE DELAY OF 139 DAYS IN FILING AOST. NO. | 23090 OF 2025. NOTE",
+      "counsel": "",
+      "purpose": "",
+      "date": "09-07-2026"
+    },
+    {
+      "source": "BHC",
+      "client": "HEMANT J MEHTA",
+      "court": "HON'BLE JUSTICE SHARMILA U. DESHMUKH",
+      "case_no": "",
+      "parties": "IA(ST)/1888/2026 TECHLEAD SOFTWARE ENGINEE R S MIRPURY | [Civil] RING PRIVATE LIMITED THR. | MR. HEMANT BHIRUD | VS | MR. ANIL HARAKCHAND MEHTA | 108 AO(ST)/2055/2026 M/S. SUPER IMPEX THR.ITS Dharmesh S Jain | [Civil] PARTNERS KANTILAL MEGHRAJ BMC | MEHTA AND ANOTHER | VS | THE MUNICIPAL COMMISSIONE",
+      "counsel": "",
+      "purpose": "",
+      "date": "09-07-2026"
     }
   ]
 }
