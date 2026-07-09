@@ -1,137 +1,37 @@
 {
-  "date": "09-07-2026",
-  "generated": "08 Jul 2026 01:32 PM",
-  "total": 13,
+  "date": "10-07-2026",
+  "generated": "09 Jul 2026 01:50 PM",
+  "total": 3,
   "entries": [
     {
       "source": "NCLT",
-      "client": "LOK HOUSING & CONSTRUCTION LTD",
-      "court": "Mumbai Bench Court-III",
-      "case_no": "C.P.(IB)- 4135(MB)/2018 Admitted 03.06.2019",
-      "parties": "Usv Pvt. Ltd V/S. Lok Housing & Construction Ltd.",
-      "purpose": "Further Consideration (Last listed 22.04.2026,04.06.2026)",
-      "counsel": "Ashish Jha",
-      "date": "09/07/2026"
+      "client": "CHANEL INDIA BUSINESS SOLUTIONS P LTD",
+      "court": "Bengaluru Bench Court-I",
+      "case_no": "CP(IB) No. 288/BB/2025",
+      "parties": "M/s Chanel India Business Solutions Pvt Ltd",
+      "purpose": "For hearing",
+      "counsel": "Mr. Devarajan Raman",
+      "date": "10/07/2026"
     },
     {
       "source": "NCLT",
-      "client": "MR. HEMANT MEHTA",
-      "court": "Mumbai Bench Court-III",
-      "case_no": "1",
-      "parties": "Mr. Lalit K Jain VS Mr. Hemant Mehta (RP for Lok Housing & Constructions Ltd)",
-      "purpose": "to admit and honor the claim filed by the applicant",
-      "counsel": "Prashant Thakre",
-      "date": "09/07/2026"
+      "client": "KAMLESH CORPORATION",
+      "court": "Mumbai Bench Court-VI",
+      "case_no": "C.P. (IB)/671(MB)2025",
+      "parties": "Kamlesh Corporation Vs Harish Textile Engineers Limited",
+      "purpose": "Written Submissions/ For Arguments",
+      "counsel": "Ami Ganatra",
+      "date": "10/07/2026"
     },
     {
       "source": "NCLT",
-      "client": "HEMANT J MEHTA",
-      "court": "Mumbai Bench Court-III",
-      "case_no": "1",
-      "parties": "Mr. Lalit K Jain VS Mr. Hemant Mehta (RP for Lok Housing & Constructions Ltd)",
-      "purpose": "to admit and honor the claim filed by the applicant",
-      "counsel": "Prashant Thakre",
-      "date": "09/07/2026"
-    },
-    {
-      "source": "NCLT",
-      "client": "LOK HOUSING & CONSTRUCTION LTD",
-      "court": "Mumbai Bench Court-III",
-      "case_no": "1",
-      "parties": "Mr. Lalit K Jain VS Mr. Hemant Mehta (RP for Lok Housing & Constructions Ltd)",
-      "purpose": "to admit and honor the claim filed by the applicant",
-      "counsel": "Prashant Thakre",
-      "date": "09/07/2026"
-    },
-    {
-      "source": "NCLT",
-      "client": "MR. HEMANT MEHTA",
-      "court": "Mumbai Bench Court-III",
-      "case_no": "2",
-      "parties": "HEMANT J. MEHTA",
-      "purpose": "Application for extension/exclusion of CIRP period",
-      "counsel": "Swati Dalmia",
-      "date": "09/07/2026"
-    },
-    {
-      "source": "NCLT",
-      "client": "HEMANT J MEHTA",
-      "court": "Mumbai Bench Court-III",
-      "case_no": "2",
-      "parties": "HEMANT J. MEHTA",
-      "purpose": "Application for extension/exclusion of CIRP period",
-      "counsel": "Swati Dalmia",
-      "date": "09/07/2026"
-    },
-    {
-      "source": "NCLT",
-      "client": "MR. HEMANT MEHTA",
-      "court": "Mumbai Bench Court-III",
-      "case_no": "3",
-      "parties": "Hemant J Mehta",
-      "purpose": "Application for extension/exclusion of CIRP period",
-      "counsel": "Swati Dalmia",
-      "date": "09/07/2026"
-    },
-    {
-      "source": "NCLT",
-      "client": "HEMANT J MEHTA",
-      "court": "Mumbai Bench Court-III",
-      "case_no": "3",
-      "parties": "Hemant J Mehta",
-      "purpose": "Application for extension/exclusion of CIRP period",
-      "counsel": "Swati Dalmia",
-      "date": "09/07/2026"
-    },
-    {
-      "source": "BHC",
-      "client": "MR. DEEPAK RAHEJA",
-      "court": "HON'BLE SHRI JUSTICE AMIT BORKAR",
-      "case_no": "",
-      "parties": "23 CARBP/249/2025 SUNIL MADHAVDAS AHUJA Lexicon Law Partners | [Original] VS Joby Mathew and Associates | (ECHCBM02173442023) DEEPAK RAHEJA Ajinkya Jaibhave | Joby Mathew and Associates | GP OS | REMARK : Affidavit of Service e-filed on 29.09.2023. Served on Respondents Nos. 1 to 8.==",
-      "counsel": "",
-      "purpose": "",
-      "date": "09-07-2026"
-    },
-    {
-      "source": "BHC",
-      "client": "MR. HEMANT MEHTA",
-      "court": "HON'BLE JUSTICE SHARMILA U. DESHMUKH",
-      "case_no": "",
-      "parties": "106 IA/1499/2026 THE MUNICIPAL COMISSIONER KOMAL PUNJABI BMC | [Civil] (MCGM) AND ANR KOMAL PUNJABI BMC | In VS Jayant Mohan Puranik | AO(ST)/23090/2025 ASHOK B. BUSA Jayant Mohan Puranik | REMARK : INTERIM APPLICATION FILED FOR CONDONE THE DELAY OF 139 DAYS IN FILING AOST. NO. | 23090 OF 2025. NOTE",
-      "counsel": "",
-      "purpose": "",
-      "date": "09-07-2026"
-    },
-    {
-      "source": "BHC",
-      "client": "MR. HEMANT MEHTA",
-      "court": "HON'BLE JUSTICE SHARMILA U. DESHMUKH",
-      "case_no": "",
-      "parties": "IA(ST)/1888/2026 TECHLEAD SOFTWARE ENGINEE R S MIRPURY | [Civil] RING PRIVATE LIMITED THR. | MR. HEMANT BHIRUD | VS | MR. ANIL HARAKCHAND MEHTA | 108 AO(ST)/2055/2026 M/S. SUPER IMPEX THR.ITS Dharmesh S Jain | [Civil] PARTNERS KANTILAL MEGHRAJ BMC | MEHTA AND ANOTHER | VS | THE MUNICIPAL COMMISSIONE",
-      "counsel": "",
-      "purpose": "",
-      "date": "09-07-2026"
-    },
-    {
-      "source": "BHC",
-      "client": "HEMANT J MEHTA",
-      "court": "HON'BLE JUSTICE SHARMILA U. DESHMUKH",
-      "case_no": "",
-      "parties": "106 IA/1499/2026 THE MUNICIPAL COMISSIONER KOMAL PUNJABI BMC | [Civil] (MCGM) AND ANR KOMAL PUNJABI BMC | In VS Jayant Mohan Puranik | AO(ST)/23090/2025 ASHOK B. BUSA Jayant Mohan Puranik | REMARK : INTERIM APPLICATION FILED FOR CONDONE THE DELAY OF 139 DAYS IN FILING AOST. NO. | 23090 OF 2025. NOTE",
-      "counsel": "",
-      "purpose": "",
-      "date": "09-07-2026"
-    },
-    {
-      "source": "BHC",
-      "client": "HEMANT J MEHTA",
-      "court": "HON'BLE JUSTICE SHARMILA U. DESHMUKH",
-      "case_no": "",
-      "parties": "IA(ST)/1888/2026 TECHLEAD SOFTWARE ENGINEE R S MIRPURY | [Civil] RING PRIVATE LIMITED THR. | MR. HEMANT BHIRUD | VS | MR. ANIL HARAKCHAND MEHTA | 108 AO(ST)/2055/2026 M/S. SUPER IMPEX THR.ITS Dharmesh S Jain | [Civil] PARTNERS KANTILAL MEGHRAJ BMC | MEHTA AND ANOTHER | VS | THE MUNICIPAL COMMISSIONE",
-      "counsel": "",
-      "purpose": "",
-      "date": "09-07-2026"
+      "client": "HARISH TEXTILE ENGINEERS LIMITED",
+      "court": "Mumbai Bench Court-VI",
+      "case_no": "C.P. (IB)/671(MB)2025",
+      "parties": "Kamlesh Corporation Vs Harish Textile Engineers Limited",
+      "purpose": "Written Submissions/ For Arguments",
+      "counsel": "Ami Ganatra",
+      "date": "10/07/2026"
     }
   ]
 }
