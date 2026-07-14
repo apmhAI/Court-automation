@@ -36,8 +36,8 @@
     "email": "ami@apmh.in",
     "password_hash": "063524f169a598e83aced9502be044c0b791658c19b746b9e056440f93d4d3c4",
     "created_at": "14 May 2026 01:32 PM",
-    "reset_otp": null,
-    "reset_expiry": null
+    "reset_otp": "975089",
+    "reset_expiry": "2026-07-14 13:45:19"
   },
   "vedika@apmh.in": {
     "name": "vedika",
