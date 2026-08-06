@@ -1,37 +1,17 @@
 {
-  "date": "10-07-2026",
-  "generated": "09 Jul 2026 01:50 PM",
-  "total": 3,
+  "date": "07-08-2026",
+  "generated": "06 Aug 2026 12:43 PM",
+  "total": 1,
   "entries": [
     {
-      "source": "NCLT",
-      "client": "CHANEL INDIA BUSINESS SOLUTIONS P LTD",
-      "court": "Bengaluru Bench Court-I",
-      "case_no": "CP(IB) No. 288/BB/2025",
-      "parties": "M/s Chanel India Business Solutions Pvt Ltd",
-      "purpose": "For hearing",
-      "counsel": "Mr. Devarajan Raman",
-      "date": "10/07/2026"
-    },
-    {
-      "source": "NCLT",
-      "client": "KAMLESH CORPORATION",
-      "court": "Mumbai Bench Court-VI",
-      "case_no": "C.P. (IB)/671(MB)2025",
-      "parties": "Kamlesh Corporation Vs Harish Textile Engineers Limited",
-      "purpose": "Written Submissions/ For Arguments",
-      "counsel": "Ami Ganatra",
-      "date": "10/07/2026"
-    },
-    {
-      "source": "NCLT",
-      "client": "HARISH TEXTILE ENGINEERS LIMITED",
-      "court": "Mumbai Bench Court-VI",
-      "case_no": "C.P. (IB)/671(MB)2025",
-      "parties": "Kamlesh Corporation Vs Harish Textile Engineers Limited",
-      "purpose": "Written Submissions/ For Arguments",
-      "counsel": "Ami Ganatra",
-      "date": "10/07/2026"
+      "source": "SCI",
+      "client": "JAMMU AND KASHMIR BANK",
+      "court": "Supreme Court of India",
+      "case_no": "",
+      "parties": "21 Diary No. 41955-2026 GOPAL NIGAM ANSHUMAN SIDDHARTH | IV-C NAYAK | Versus | BANK OF BARODA AND ORS. | IA No. 214359/2026 - CONDONATION OF DELAY | IN FILING | IA No. 214354/2026 - EXEMPTION FROM FILING | O.T. | 22 SLP(C) No. 24881/2026 DHANERA DIAMONDS K. PAARI VENDHAN | IX | Versus | SECURITIES A",
+      "counsel": "",
+      "purpose": "",
+      "date": "07-08-2026"
     }
   ]
 }
