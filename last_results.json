@@ -1,87 +1,27 @@
 {
-  "date": "12-08-2026",
-  "generated": "12 Aug 2026 06:31 AM",
-  "total": 8,
+  "date": "14-08-2026",
+  "generated": "13 Aug 2026 01:09 PM",
+  "total": 2,
   "entries": [
     {
-      "source": "NCLT",
-      "client": "ALKA RAJESH MIMANI",
-      "court": "CAUSELIST Mumbai Bench Court -II 12.08.2026",
-      "case_no": "C .P.(IB)1161(MB)2023 RP App-21.06.2024 RP Rep- 13.08.2025",
-      "parties": "The Bank of Maharashtra Limited Vs. Alka Rajesh Mimani",
-      "purpose": "Further Consideration Last Listed 17.07.2026",
-      "counsel": "Abhishek Samant",
-      "date": "View"
+      "source": "BHC",
+      "client": "MR. HEMANT MEHTA",
+      "court": "HON'BLE JUSTICE PRAFULLA S. KHUBALKAR",
+      "case_no": "",
+      "parties": "44 ABA/2040/2026 BADASHA PATEL ALIAS HEMANT Chaurasia | [Criminal] MEHTA | VS | STATE OF MAHARASHTRA | REMARK : (For Anticipatory Bail) Note : 1. The copy of application is not served on the PP. UT given. 2. | Application does not accompany certified copy of judgment or order dtd. 03/06/2026 of tria",
+      "counsel": "",
+      "purpose": "",
+      "date": "14-08-2026"
     },
     {
       "source": "BHC",
-      "client": "BHARAT MEHTA",
-      "court": "HON'BLE SHRI JUSTICE SARANG VIJAYKUMAR KOTWAL\nHON'BLE SHRI JUSTICE RANJITSINHA RAJA BHONSALE",
+      "client": "HEMANT J MEHTA",
+      "court": "HON'BLE JUSTICE PRAFULLA S. KHUBALKAR",
       "case_no": "",
-      "parties": "38 APP/54/2019 INDUKUMAR LADHABHAI MOMAYA - | [Original] (Deleted) KALPESH HANSRAJ SHAH (IN | In VS PERSON) | TRP/4/2014 JAYANTILAL LADHABHAI MOMAYA BHARAT H MEHTA | AND ORS. NIRANJAN JAGTAP | RESPONDENT | NIRANJAN JAGTAP CO | Jawle Sanjay | Jawle Sanjay | NIRANJAN JAGTAP | NIRANJAN JAGTAP AND CO. |",
+      "parties": "44 ABA/2040/2026 BADASHA PATEL ALIAS HEMANT Chaurasia | [Criminal] MEHTA | VS | STATE OF MAHARASHTRA | REMARK : (For Anticipatory Bail) Note : 1. The copy of application is not served on the PP. UT given. 2. | Application does not accompany certified copy of judgment or order dtd. 03/06/2026 of tria",
       "counsel": "",
       "purpose": "",
-      "date": "12-08-2026"
-    },
-    {
-      "source": "BHC",
-      "client": "BHARAT MEHTA",
-      "court": "HON'BLE SHRI JUSTICE ABHAY AHUJA",
-      "case_no": "",
-      "parties": "34 IA/1091/2019 PILOO FALI BOMANJEE 5 ORS. M/S PURNANAND AND CO. | [Original] VS M/S PURNANAND AND CO. | In UNION OF INDIA and 5 ORS. BHARAT H MEHTA | S/3198/2005 DEF. NO. 1 | GOVT.PLEADER (2 TO 4) | S. S. SARKAR [1] | NISHA VALANI [1] U/OBJ | - | M P SAVLA AND CO | REMARK : Amendment carried out on",
-      "counsel": "",
-      "purpose": "",
-      "date": "12-08-2026"
-    },
-    {
-      "source": "BHC",
-      "client": "KASHYAP MEHTA",
-      "court": "HON'BLE SHRI JUSTICE ARUN R. PEDNEKER",
-      "case_no": "",
-      "parties": "17 CRA/222/2026 PARASMAL HIRACHAND MEHTA Prama Raval | [Civil] THR. ITS C. A. OF RAJESH P. MEHTA KASHYAP SHIRISH BHALERAO | VS | KALPESH TULSIDAS RAJPUT | REMARK : APPLICANT PRAYS FOR QUASH AND SET ASIDE THE IMPUGNED ORDER DTD. 18/02/2026 | PASSED BY THE SMALL CAUSE COURT, MUMBAI IN APPEAL NO. 195 O",
-      "counsel": "",
-      "purpose": "",
-      "date": "12-08-2026"
-    },
-    {
-      "source": "NCLAT",
-      "client": "JAMMU AND KASHMIR BANK",
-      "court": "Chennai Bench",
-      "case_no": "C omp App (AT) (CH) (Ins) No. 39/2025 For Exemption IA No. 146/2025",
-      "parties": "Kanumuru Raghu Rama Krishna Raju Vs Jammu And Kashmir Bank & Anr. WITH",
-      "counsel": "Mr. Yogesh Kumar Jagia | Mr. VV Sivakumar- R1",
-      "purpose": "",
-      "date": "12-08-2026"
-    },
-    {
-      "source": "NCLAT",
-      "client": "JAMMU AND KASHMIR BANK",
-      "court": "Chennai Bench",
-      "case_no": "C omp App (AT) (CH) (Ins) No. 40/2025",
-      "parties": "Jammu And Kashmir Bank Ltd. Vs Kanumuru Raghu Rama Krishna Raju WITH",
-      "counsel": "Mr. VV Sivakumar | Mr. Yogesh Kumar Jagia",
-      "purpose": "",
-      "date": "12-08-2026"
-    },
-    {
-      "source": "NCLAT",
-      "client": "JAMMU AND KASHMIR BANK",
-      "court": "Chennai Bench",
-      "case_no": "C omp App (AT) (CH) (Ins) No. 41/2025",
-      "parties": "Jammu And Kashmir Bank Ltd. Vs Kanumuru Bharat WITH",
-      "counsel": "Mr. VV Sivakumar | Mr. Yogesh Kumar Jagia",
-      "purpose": "",
-      "date": "12-08-2026"
-    },
-    {
-      "source": "NCLAT",
-      "client": "JAMMU AND KASHMIR BANK",
-      "court": "Chennai Bench",
-      "case_no": "C omp App (AT) (CH) (Ins) No. 42/2025 For Exemption IA No. 150/2025",
-      "parties": "Kanumuru Bharat Vs Jammu and Kashmir Bank & Anr",
-      "counsel": "Mr. Yogesh Kumar Jagia | Mr. VV Sivakumar- R1",
-      "purpose": "",
-      "date": "12-08-2026"
+      "date": "14-08-2026"
     }
   ]
 }
