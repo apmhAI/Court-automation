@@ -34,10 +34,10 @@
   "ami@apmh.in": {
     "name": "Ami Ganatra",
     "email": "ami@apmh.in",
-    "password_hash": "b087d08258bc4cd22355fd8670f8d44726b5634e6665d7d27eac54f4d9b8b868",
+    "password_hash": "408a2d1d1e3f3c650653f429ad8b5102e07d14a1b7183b81d29052a2d28f64cf",
     "created_at": "14 May 2026 01:32 PM",
-    "reset_otp": "735545",
-    "reset_expiry": "2026-08-13 13:18:46"
+    "reset_otp": null,
+    "reset_expiry": null
   },
   "vedika@apmh.in": {
     "name": "vedika",
