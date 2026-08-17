@@ -1,6 +1,27 @@
 {
   "date": "17-08-2026",
-  "generated": "17 Aug 2026 06:15 AM",
-  "total": 0,
-  "entries": []
+  "generated": "17 Aug 2026 06:17 AM",
+  "total": 2,
+  "entries": [
+    {
+      "source": "BHC",
+      "client": "BHARAT MEHTA",
+      "court": "HON'BLE MS. JUSTICE GAURI GODSE",
+      "case_no": "",
+      "parties": "16 COMEX/1403/2018 THE KALUPUR COMMERCIAL CO OP YASHPAL MAHESHCHANDRA | [Original] BANK LTD. THAKUR | VS Kaustubh Gupte | BHARAT KUMAR KANTILAL | THAKKAR AND 3 OTHERS | REMARK : OBJECTION RAISED ON 04/12/2017. ADD.AFFIDAVIT OF ASHISH N MEHTA DT.27/04/2018 PAGE | NO.1-2 FILED ON 17/05/2018 ===",
+      "counsel": "",
+      "purpose": "",
+      "date": "17-08-2026"
+    },
+    {
+      "source": "BHC",
+      "client": "MR. HEMANT MEHTA",
+      "court": "HON'BLE MS. JUSTICE GAURI GODSE",
+      "case_no": "",
+      "parties": "237 FA/1761/2005 THE REGIONAL DIRECTOR, SHRI. H.V.MEHTA | [Civil] EMPLOYEES' STATE INSURANCE Hemant S Telkar | VS | VOLTAS LTD. | REMARK : Note : 1) F.A. admitted on 17/10/2005. 2) R & P received with paper-book. 3) As per order | dtd.30/11/2005, Bhatta not paid, however Advocate has made statement ",
+      "counsel": "",
+      "purpose": "",
+      "date": "17-08-2026"
+    }
+  ]
 }
