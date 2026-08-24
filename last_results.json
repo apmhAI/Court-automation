@@ -1,17 +1,27 @@
 {
-  "date": "24-08-2026",
-  "generated": "24 Aug 2026 05:06 AM",
-  "total": 4,
+  "date": "25-08-2026",
+  "generated": "24 Aug 2026 01:26 PM",
+  "total": 3,
   "entries": [
     {
-      "source": "BHC",
-      "client": "BHARAT MEHTA",
-      "court": "HON'BLE MS. JUSTICE GAURI GODSE",
+      "source": "NCLAT",
+      "client": "JAMMU AND KASHMIR BANK",
+      "court": "Chennai Bench",
+      "case_no": "IA No. 758/2026 (For Condone Delay) in Comp App (AT) (CH) (Ins) No. 269/2026 For Stay IA No. 757/2026 For Exemption IA No. 759/2026 For Urgent Hearing IA No. 1150/2026",
+      "parties": "Shoukath Sherif Vs Jammu And Kashmir Bank Ltd & 2 Ors.",
+      "counsel": "Ms. Abitha Banu | Mr. VV Sivakumar R1",
+      "purpose": "",
+      "date": "25-08-2026"
+    },
+    {
+      "source": "SCI",
+      "client": "MR. ATUL TANSUKHLAL MEHTA",
+      "court": "Supreme Court of India",
       "case_no": "",
-      "parties": "14 IA/1254/2019 SHARAD MADHAV JOSHI Bharat H Mehta | [Original] VS APPLICANT | In UDAY BHAGWANRAO NIGHOT | EXA/1363/2018",
+      "parties": "38 C.A. No. 3274/2023 MAULIN J BAROT PRASHANT BHUSHAN | III-B | Versus | THE STATE OF GUJARAT AND ORS. HARISH PANDEY , [R-3] | SHYAMAL KUMAR [IMPL], | KHUSHBOO AAKASH SHETH | [INT], [IMPL], CHANDER | SHEKHAR ASHRI [IMPL] | VATSALYA VIGYA [INT], | SAHIL | TAGOTRA [INT], | RAMESHWAR PRASAD | GOYAL [IN",
       "counsel": "",
       "purpose": "",
-      "date": "24-08-2026"
+      "date": "25-08-2026"
     },
     {
       "source": "BHC",
@@ -21,27 +31,7 @@
       "parties": "237 FA/1761/2005 THE REGIONAL DIRECTOR, SHRI. H.V.MEHTA | [Civil] EMPLOYEES' STATE INSURANCE Hemant S Telkar | VS | VOLTAS LTD. | REMARK : Note : 1) F.A. admitted on 17/10/2005. 2) R & P received with paper-book. 3) As per order | dtd.30/11/2005, Bhatta not paid, however Advocate has made statement ",
       "counsel": "",
       "purpose": "",
-      "date": "24-08-2026"
-    },
-    {
-      "source": "BHC",
-      "client": "MR. HEMANT MEHTA",
-      "court": "HON'BLE JUSTICE PRAFULLA S. KHUBALKAR",
-      "case_no": "",
-      "parties": "48 ABA/2040/2026 BADASHA PATEL ALIAS HEMANT Chaurasia | [Criminal] MEHTA | VS | STATE OF MAHARASHTRA | REMARK : (For Anticipatory Bail) Note : 1. The copy of application is not served on the PP. UT given. 2. | Application does not accompany certified copy of judgment or order dtd. 03/06/2026 of tria",
-      "counsel": "",
-      "purpose": "",
-      "date": "24-08-2026"
-    },
-    {
-      "source": "BHC",
-      "client": "HEMANT J MEHTA",
-      "court": "HON'BLE JUSTICE PRAFULLA S. KHUBALKAR",
-      "case_no": "",
-      "parties": "48 ABA/2040/2026 BADASHA PATEL ALIAS HEMANT Chaurasia | [Criminal] MEHTA | VS | STATE OF MAHARASHTRA | REMARK : (For Anticipatory Bail) Note : 1. The copy of application is not served on the PP. UT given. 2. | Application does not accompany certified copy of judgment or order dtd. 03/06/2026 of tria",
-      "counsel": "",
-      "purpose": "",
-      "date": "24-08-2026"
+      "date": "25-08-2026"
     }
   ]
 }
