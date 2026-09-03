@@ -4,6 +4,26 @@
   "total": 8,
   "entries": [
     {
+      "source": "NCLAT",
+      "client": "MR. ATUL TANSUKHLAL MEHTA",
+      "court": "Registrar Court",
+      "case_no": "I.A. No. 6216 of 2026 in Comp. App. (AT) (Ins) No. ___ of 2026",
+      "parties": "Alka Ramanlal Gandhi Vs. Atul Tansukhlal Mehta",
+      "counsel": "Siddharth Chappalgonkar",
+      "purpose": "",
+      "date": "03-09-2026"
+    },
+    {
+      "source": "NCLAT",
+      "client": "ALKA GANDHI",
+      "court": "Registrar Court",
+      "case_no": "I.A. No. 6216 of 2026 in Comp. App. (AT) (Ins) No. ___ of 2026",
+      "parties": "Alka Ramanlal Gandhi Vs. Atul Tansukhlal Mehta",
+      "counsel": "Siddharth Chappalgonkar",
+      "purpose": "",
+      "date": "03-09-2026"
+    },
+    {
       "source": "BHC",
       "client": "BHARAT MEHTA",
       "court": "HON'BLE SHRI JUSTICE S. M. MODAK",
@@ -60,26 +80,6 @@
       "case_no": "",
       "parties": "50 C.A. No. 8615/2017 SANJAY AGARWAL AND ORS. ABHIGYA KUSHWAH , | XVII-B SOUMYA PRIYADARSHINEE | [P-3], [P-4] | Versus | DAILY CAUSE LIST FOR DATED : 03-09-2026 | COURT NO. : 8 | MEGHALAYA FINLEASE PRIVATE LIMITED AND SUJOY DATTA [R-2] | ANR. DHIRAJ ABRAHAM PHILIP | [IMPL] | IA No. 270713/2025 - MOD",
       "counsel": "",
-      "purpose": "",
-      "date": "03-09-2026"
-    },
-    {
-      "source": "NCLAT",
-      "client": "MR. ATUL TANSUKHLAL MEHTA",
-      "court": "Registrar Court",
-      "case_no": "I.A. No. 6216 of 2026 in Comp. App. (AT) (Ins) No. ___ of 2026",
-      "parties": "Alka Ramanlal Gandhi Vs. Atul Tansukhlal Mehta",
-      "counsel": "Siddharth Chappalgonkar",
-      "purpose": "",
-      "date": "03-09-2026"
-    },
-    {
-      "source": "NCLAT",
-      "client": "ALKA GANDHI",
-      "court": "Registrar Court",
-      "case_no": "I.A. No. 6216 of 2026 in Comp. App. (AT) (Ins) No. ___ of 2026",
-      "parties": "Alka Ramanlal Gandhi Vs. Atul Tansukhlal Mehta",
-      "counsel": "Siddharth Chappalgonkar",
       "purpose": "",
       "date": "03-09-2026"
     }
