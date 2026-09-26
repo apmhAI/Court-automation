@@ -1,57 +1,147 @@
 {
-  "date": "22-09-2026",
-  "generated": "21 Sep 2026 01:04 PM",
-  "total": 5,
+  "date": "28-09-2026",
+  "generated": "26 Sep 2026 01:01 PM",
+  "total": 14,
   "entries": [
+    {
+      "source": "BHC",
+      "client": "KAMLESH CORPORATION",
+      "court": "HON'BLE THE CHIEF JUSTICE\nHON'BLE JUSTICE ADVAIT M. SETHNA",
+      "case_no": "",
+      "parties": "51 WP/4214/2026 DARSHANA KAMLESH SHAH Bhutekar and Associates | [Original] VS GP OS | MUNICIPAL CORPORATION OF GR | MUMBAI, THRU THE MUNICIPAL | COMMISSIONER",
+      "counsel": "",
+      "purpose": "",
+      "date": "28-09-2026"
+    },
+    {
+      "source": "BHC",
+      "client": "MR. HEMANT JITENDRARAI MEHTA",
+      "court": "HON'BLE SHRI JUSTICE ABHAY AHUJA",
+      "case_no": "",
+      "parties": "48 S/2802/2006 M/S.DHANRAJ DEVELOPERS Maneksha and Sethna | [Original] VS M/S.SHAH and SANGAHVI | VEENA KHIMJI CHATRABHUJ AND (1(A),1(B),1(C) and 1(D) | 10 OTHERS. SHAH & SANGHAVI [ 1 TO 8 ] | MRS. MANISHA KAPADIA [9] | M/S.SHAH & SANGAHVI (1(A), 1(C) | & 1(D) | REMARK : SPECIFIC PERFORMANCE SUIT (P",
+      "counsel": "",
+      "purpose": "",
+      "date": "28-09-2026"
+    },
+    {
+      "source": "BHC",
+      "client": "MR. HEMANT MEHTA",
+      "court": "HON'BLE SHRI JUSTICE ABHAY AHUJA",
+      "case_no": "",
+      "parties": "2 EXA/74/2022 HEMANT MEHTA AND 2 ORS Adv Ameya Suhas Mahajan | [Original] VS Kanga and Co | RAVINDRA MEHTA AND 4 ORS Kanga and Co | REMARK : ISSUED W/A OF A DEBT NOT SECURED BY NEGOTIABLE INSTRUMENT U/O 21 R 46 OF CPC | DT.24/2/22",
+      "counsel": "",
+      "purpose": "",
+      "date": "28-09-2026"
+    },
+    {
+      "source": "BHC",
+      "client": "MR. HEMANT MEHTA",
+      "court": "HON'BLE SHRI JUSTICE ABHAY AHUJA",
+      "case_no": "",
+      "parties": "IA/1369/2026 HEMANT MEHTA AND 2 ORS Adv Ameya Suhas Mahajan | [Orignal] VS | RAVINDRA MEHTA AND 4 ORS | In",
+      "counsel": "",
+      "purpose": "",
+      "date": "28-09-2026"
+    },
+    {
+      "source": "BHC",
+      "client": "MR. HEMANT MEHTA",
+      "court": "HON'BLE SHRI JUSTICE ABHAY AHUJA",
+      "case_no": "",
+      "parties": "48 S/2802/2006 M/S.DHANRAJ DEVELOPERS Maneksha and Sethna | [Original] VS M/S.SHAH and SANGAHVI | VEENA KHIMJI CHATRABHUJ AND (1(A),1(B),1(C) and 1(D) | 10 OTHERS. SHAH & SANGHAVI [ 1 TO 8 ] | MRS. MANISHA KAPADIA [9] | M/S.SHAH & SANGAHVI (1(A), 1(C) | & 1(D) | REMARK : SPECIFIC PERFORMANCE SUIT (P",
+      "counsel": "",
+      "purpose": "",
+      "date": "28-09-2026"
+    },
+    {
+      "source": "BHC",
+      "client": "HEMANT J MEHTA",
+      "court": "HON'BLE SHRI JUSTICE ABHAY AHUJA",
+      "case_no": "",
+      "parties": "2 EXA/74/2022 HEMANT MEHTA AND 2 ORS Adv Ameya Suhas Mahajan | [Original] VS Kanga and Co | RAVINDRA MEHTA AND 4 ORS Kanga and Co | REMARK : ISSUED W/A OF A DEBT NOT SECURED BY NEGOTIABLE INSTRUMENT U/O 21 R 46 OF CPC | DT.24/2/22",
+      "counsel": "",
+      "purpose": "",
+      "date": "28-09-2026"
+    },
+    {
+      "source": "BHC",
+      "client": "HEMANT J MEHTA",
+      "court": "HON'BLE SHRI JUSTICE ABHAY AHUJA",
+      "case_no": "",
+      "parties": "IA/1369/2026 HEMANT MEHTA AND 2 ORS Adv Ameya Suhas Mahajan | [Orignal] VS | RAVINDRA MEHTA AND 4 ORS | In",
+      "counsel": "",
+      "purpose": "",
+      "date": "28-09-2026"
+    },
+    {
+      "source": "BHC",
+      "client": "HEMANT J MEHTA",
+      "court": "HON'BLE SHRI JUSTICE ABHAY AHUJA",
+      "case_no": "",
+      "parties": "48 S/2802/2006 M/S.DHANRAJ DEVELOPERS Maneksha and Sethna | [Original] VS M/S.SHAH and SANGAHVI | VEENA KHIMJI CHATRABHUJ AND (1(A),1(B),1(C) and 1(D) | 10 OTHERS. SHAH & SANGHAVI [ 1 TO 8 ] | MRS. MANISHA KAPADIA [9] | M/S.SHAH & SANGAHVI (1(A), 1(C) | & 1(D) | REMARK : SPECIFIC PERFORMANCE SUIT (P",
+      "counsel": "",
+      "purpose": "",
+      "date": "28-09-2026"
+    },
+    {
+      "source": "BHC",
+      "client": "MR. HEMANT MEHTA",
+      "court": "HON'BLE SHRI JUSTICE SANDEEP V. MARNE",
+      "case_no": "",
+      "parties": "CAS/170/2018 PRAMOD NARHARI MHATRE ASHISH MEHTA | [Civil] VS HEMANT SETHI | SHRI.PANDHRINATH ATMARAM HEMANT SETHI | In MHATRE (DECEASED) THRU LR HEMANT SETHI",
+      "counsel": "",
+      "purpose": "",
+      "date": "28-09-2026"
+    },
+    {
+      "source": "BHC",
+      "client": "MR. HEMANT MEHTA",
+      "court": "HON'BLE SHRI JUSTICE SANDEEP V. MARNE",
+      "case_no": "",
+      "parties": "CAS/26/2018 PRAMOD NARHARI MHATRE ASHISH MEHTA | [Civil] VS HEMANT SETHI | SHRI.PANDHRINATH ATMARAM HEMANT SETHI | In MHATRE (DECEASED) THRU LR HEMANT SETHI",
+      "counsel": "",
+      "purpose": "",
+      "date": "28-09-2026"
+    },
+    {
+      "source": "BHC",
+      "client": "MR. HEMANT MEHTA",
+      "court": "HON'BLE SHRI JUSTICE SANDEEP V. MARNE",
+      "case_no": "",
+      "parties": "CAS/169/2018 PRAMOD NARHARI MHATRE ASHISH MEHTA | [Civil] VS HEMANT SETHI | SHRI.PANDHRINATH ATMARAM HEMANT SETHI | In MHATRE (DECEASED) THRU LR HEMANT SETHI",
+      "counsel": "",
+      "purpose": "",
+      "date": "28-09-2026"
+    },
+    {
+      "source": "BHC",
+      "client": "MR. HEMANT MEHTA",
+      "court": "HON'BLE SHRI JUSTICE SANDEEP V. MARNE",
+      "case_no": "",
+      "parties": "CAS/27/2018 PRAMOD NARHARI MHATRE ASHISH MEHTA | [Civil] VS HEMANT SETHI | SHRI.PANDHRINATH ATMARAM HEMANT SETHI | In MHATRE (DECEASED) THRU LR HEMANT SETHI",
+      "counsel": "",
+      "purpose": "",
+      "date": "28-09-2026"
+    },
     {
       "source": "BHC",
       "client": "MR. HEMANT MEHTA",
       "court": "HON'BLE MS. JUSTICE GAURI GODSE",
       "case_no": "",
-      "parties": "266 FA/1761/2005 THE REGIONAL DIRECTOR, SHRI. H.V.MEHTA | [Civil] EMPLOYEES' STATE INSURANCE Hemant S Telkar | VS | VOLTAS LTD. | REMARK : Note : 1) F.A. admitted on 17/10/2005. 2) R & P received with paper-book. 3) As per order | dtd.30/11/2005, Bhatta not paid, however Advocate has made statement ",
+      "parties": "272 FA/1761/2005 THE REGIONAL DIRECTOR, SHRI. H.V.MEHTA | [Civil] EMPLOYEES' STATE INSURANCE Hemant S Telkar | VS | VOLTAS LTD. | REMARK : Note : 1) F.A. admitted on 17/10/2005. 2) R & P received with paper-book. 3) As per order | dtd.30/11/2005, Bhatta not paid, however Advocate has made statement ",
       "counsel": "",
       "purpose": "",
-      "date": "22-09-2026"
+      "date": "28-09-2026"
     },
     {
       "source": "BHC",
       "client": "BHARAT MEHTA",
-      "court": "HON'BLE SHRI JUSTICE SOMASEKHAR SUNDARESAN",
+      "court": "HON'BLE JUSTICE SHRI ARIF S. DOCTOR",
       "case_no": "",
-      "parties": "526 COMIP/423/2017 BHARAT BHOGILAL PATEL 0 | [Original] VS DEF. NO. 1 TO 3 | M/S MEHTA CAD CAM SYSTEMS SHADAB PEERZADE | PRIVATE LIMITED | REMARK : WRIT OF SUMMONS ISSUED ON 01/08/2017 == SUMMONS TO ANSWER PLAINT TAKEN ON RECORD | 18/09/2017 == COMMERCIAL CAUSE SUIT AS PER ORDER DT.22/09/2017 PER PR",
+      "parties": "42 TS/63/2012 Kamla Poddar - | [Original] VS Indus Law | In Nandini Vinay Kumar Podar and Anr. M/S. HARIANI and CO. | TP/1188/2011 M/S. MAHESH JANI and CO. | PROSPER DSOUZA (LEGAL AID | COUNSEL) | BHARAT H. MEHTA (ADV FOR | CAVEATOR) | M/S. S. KASLIWALS and | ASSOCIATES (FOR CAVEATRIX) | M/S. MAHESH",
       "counsel": "",
       "purpose": "",
-      "date": "22-09-2026"
-    },
-    {
-      "source": "BHC",
-      "client": "BHARAT MEHTA",
-      "court": "HON'BLE SHRI JUSTICE SOMASEKHAR SUNDARESAN",
-      "case_no": "",
-      "parties": "IPA/108/2016 BHARAT BHOGILAL PATEL BHARAT BHOGILAL PATEL (IN | [Orignal] VS PERSON) | M/S MEHTA CAD CAM SYSTEMS 0 | In PRIVATE LIMITED SHADAB PEERZADE",
-      "counsel": "",
-      "purpose": "",
-      "date": "22-09-2026"
-    },
-    {
-      "source": "BHC",
-      "client": "MR. HEMANT MEHTA",
-      "court": "HON'BLE JUSTICE PRAFULLA S. KHUBALKAR",
-      "case_no": "",
-      "parties": "15 ABA/2040/2026 BADASHA PATEL ALIAS HEMANT Chaurasia | [Criminal] MEHTA | VS | STATE OF MAHARASHTRA | REMARK : (For Anticipatory Bail) Note : 1. The copy of application is not served on the PP. UT given. 2. | Application does not accompany certified copy of judgment or order dtd. 03/06/2026 of tria",
-      "counsel": "",
-      "purpose": "",
-      "date": "22-09-2026"
-    },
-    {
-      "source": "BHC",
-      "client": "HEMANT J MEHTA",
-      "court": "HON'BLE JUSTICE PRAFULLA S. KHUBALKAR",
-      "case_no": "",
-      "parties": "15 ABA/2040/2026 BADASHA PATEL ALIAS HEMANT Chaurasia | [Criminal] MEHTA | VS | STATE OF MAHARASHTRA | REMARK : (For Anticipatory Bail) Note : 1. The copy of application is not served on the PP. UT given. 2. | Application does not accompany certified copy of judgment or order dtd. 03/06/2026 of tria",
-      "counsel": "",
-      "purpose": "",
-      "date": "22-09-2026"
+      "date": "28-09-2026"
     }
   ]
 }
